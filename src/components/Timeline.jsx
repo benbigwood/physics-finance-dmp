@@ -3,8 +3,27 @@ import { motion } from 'framer-motion';
 import TimelineNode from './TimelineNode';
 import PropTypes from 'prop-types';
 
+const parseYear = (yearStr) => {
+    if (String(yearStr).toLowerCase() === 'now') return new Date().getFullYear();
+    // match first 4 digits
+    const match = String(yearStr).match(/\d{4}/);
+    return match ? parseInt(match[0], 10) : 1900;
+};
+
 const Timeline = ({ events, activeEvent, onEventSelect }) => {
     const scrollRef = useRef(null);
+
+    // 1. Sort events by parsed year just in case
+    const sortedEvents = [...events].sort((a, b) => parseYear(a.year) - parseYear(b.year));
+
+    // 2. Find Range
+    if (sortedEvents.length === 0) return null;
+    const minYear = parseYear(sortedEvents[0].year);
+    const maxYear = parseYear(sortedEvents[sortedEvents.length - 1].year);
+    const totalDuration = maxYear - minYear;
+
+    // Safety check for single event or zero duration
+    const duration = totalDuration === 0 ? 1 : totalDuration;
 
     return (
         <div style={{ width: '100%', padding: '0 var(--spacing-md)' }}>
@@ -22,37 +41,57 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
             <div
                 ref={scrollRef}
                 style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    overflowX: 'auto',
-                    paddingBottom: 'var(--spacing-md)',
                     position: 'relative',
+                    width: '100%',
                     maxWidth: '1200px',
                     margin: '0 auto',
-                    gap: 'var(--spacing-sm)'
+                    height: '150px', // Fixed height for absolute nodes
+                    overflowX: 'auto', // Keep scrolling if screen is too small, though absolute layout logic might need min-width
                 }}
             >
-                {/* Background Line */}
-                <div style={{
-                    position: 'absolute',
-                    top: 'calc(1.5rem + 10px - 1px)', // Align with node centers
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'var(--color-surface-hover)',
-                    zIndex: 0
-                }} />
+                {/* Scrollable Inner Container to ensure min-width for mobile */}
+                <div style={{ position: 'relative', minWidth: '800px', height: '100%' }}>
 
-                {events.map((event, index) => (
-                    <TimelineNode
-                        key={event.id}
-                        event={event}
-                        isActive={activeEvent && activeEvent.id === event.id}
-                        onClick={onEventSelect}
-                        isLast={index === events.length - 1}
-                    />
-                ))}
+                    {/* Background Line */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '50px', // Vertically centered roughly
+                        left: '20px', // Start padding
+                        right: '20px', // End padding
+                        height: '2px',
+                        background: 'var(--color-timeline-line-color)',
+                        zIndex: 0
+                    }} />
+
+                    {sortedEvents.map((event, index) => {
+                        const year = parseYear(event.year);
+                        // Calculate percentage position (0 to 1)
+                        const relativePos = (year - minYear) / duration;
+                        // Convert to percentage string (leave padding on sides)
+                        // Mapping 0->0% and 1->100% within the "safe area" (e.g., 5% to 95%)
+                        const leftPercent = 5 + (relativePos * 90);
+
+                        return (
+                            <div
+                                key={event.id}
+                                style={{
+                                    position: 'absolute',
+                                    left: `${leftPercent}%`,
+                                    top: '20px', // Adjust to align node circle with line
+                                    transform: 'translateX(-50%)', // Center node on the point
+                                    zIndex: 1
+                                }}
+                            >
+                                <TimelineNode
+                                    event={event}
+                                    isActive={activeEvent && activeEvent.id === event.id}
+                                    onClick={onEventSelect}
+                                    isLast={index === sortedEvents.length - 1}
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

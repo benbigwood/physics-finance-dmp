@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Timeline from './components/Timeline';
 import ContentPanel from './components/ContentPanel';
 import Glossary from './components/Glossary';
@@ -10,6 +10,26 @@ function App() {
   const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [filterType, setFilterType] = useState('All');
+  const [theme, setTheme] = useState('system'); // 'system', 'light', 'dark'
+
+  // Apply Theme
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'system') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', theme);
+    }
+  }, [theme]);
+
+  // Toggle function
+  const toggleTheme = () => {
+    setTheme(prev => {
+      if (prev === 'system') return 'light';
+      if (prev === 'light') return 'dark';
+      return 'system';
+    });
+  };
 
   // const physicstypes = ['All', ...new Set(timelineEvents.map(e => e.visualType))];
 
@@ -44,6 +64,22 @@ function App() {
         position: 'relative'
       }}>
         <div style={{ position: 'absolute', top: 0, right: 0, display: 'flex', gap: '0.5rem' }}>
+          <button
+            onClick={toggleTheme}
+            style={{
+              padding: '0.5rem 1rem',
+              background: 'transparent',
+              border: '1px solid var(--color-accent)',
+              color: 'var(--color-accent)',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.9rem',
+              minWidth: '80px'
+            }}
+          >
+            {theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark'}
+          </button>
           <button
             onClick={() => setIsResourcesOpen(true)}
             style={{

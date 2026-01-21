@@ -1,27 +1,27 @@
 :root {
-  /* Colors */
-  --color-bg: #0f172a; /* Slate 900 - Deep background */
-  --color-surface: #1e293b; /* Slate 800 - Cards/Panels */
-  --color-surface-hover: #334155; /* Slate 700 */
-  --color-text-primary: #f1f5f9; /* Slate 100 */
-  --color-text-secondary: #94a3b8; /* Slate 400 */
+  /* Default to Light Mode Colors */
+  --color-bg: #f8fafc; /* Slate 50 */
+  --color-surface: #ffffff; /* White */
+  --color-surface-hover: #e2e8f0; /* Slate 200 */
+  --color-text-primary: #0f172a; /* Slate 900 */
+  --color-text-secondary: #64748b; /* Slate 500 */
   
-  --color-accent: #38bdf8; /* Sky 400 - Physics/Tech feel */
-  --color-accent-glow: rgba(56, 189, 248, 0.3);
+  --color-accent: #0ea5e9; /* Sky 500 */
+  --color-accent-glow: rgba(14, 165, 233, 0.2);
   
-  --color-finance: #cbd5e1; /* Slate 300 - Professional */
-  --color-highlight: #f59e0b; /* Amber 500 - Key insights/Gold */
+  --color-finance: #475569; /* Slate 600 */
+  --color-highlight: #d97706; /* Amber 600 */
 
-  --gradient-main: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); /* Deep blue/indigo */
+  --gradient-main: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
   
   /* Timeline */
-  --timeline-line-color: #475569;
+  --timeline-line-color: #cbd5e1; /* Slate 300 */
   --timeline-node-size: 20px;
   --timeline-node-hover-size: 30px;
 
   /* Typography */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', sans-serif; /* Modern, geometric */
+  --font-display: 'Outfit', sans-serif;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -33,4 +33,63 @@
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* System Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-hover: #334155;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    
+    --color-accent: #38bdf8;
+    --color-accent-glow: rgba(56, 189, 248, 0.3);
+    
+    --color-finance: #cbd5e1;
+    --color-highlight: #f59e0b;
+
+    --gradient-main: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    
+    --timeline-line-color: #475569;
+  }
+}
+
+/* Manual Dark Mode Override */
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-hover: #334155;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  
+  --color-accent: #38bdf8;
+  --color-accent-glow: rgba(56, 189, 248, 0.3);
+  
+  --color-finance: #cbd5e1;
+  --color-highlight: #f59e0b;
+
+  --gradient-main: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  
+  --timeline-line-color: #475569;
+}
+
+/* Manual Light Mode Override */
+[data-theme="light"] {
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-hover: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  
+  --color-accent: #0ea5e9;
+  --color-accent-glow: rgba(14, 165, 233, 0.2);
+  
+  --color-finance: #475569;
+  --color-highlight: #d97706;
+
+  --gradient-main: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  
+  --timeline-line-color: #cbd5e1;
 }
