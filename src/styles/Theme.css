@@ -1,0 +1,36 @@
+:root {
+  /* Colors */
+  --color-bg: #0f172a; /* Slate 900 - Deep background */
+  --color-surface: #1e293b; /* Slate 800 - Cards/Panels */
+  --color-surface-hover: #334155; /* Slate 700 */
+  --color-text-primary: #f1f5f9; /* Slate 100 */
+  --color-text-secondary: #94a3b8; /* Slate 400 */
+  
+  --color-accent: #38bdf8; /* Sky 400 - Physics/Tech feel */
+  --color-accent-glow: rgba(56, 189, 248, 0.3);
+  
+  --color-finance: #cbd5e1; /* Slate 300 - Professional */
+  --color-highlight: #f59e0b; /* Amber 500 - Key insights/Gold */
+
+  --gradient-main: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); /* Deep blue/indigo */
+  
+  /* Timeline */
+  --timeline-line-color: #475569;
+  --timeline-node-size: 20px;
+  --timeline-node-hover-size: 30px;
+
+  /* Typography */
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', sans-serif; /* Modern, geometric */
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
