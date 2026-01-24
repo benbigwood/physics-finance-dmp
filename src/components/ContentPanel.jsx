@@ -81,7 +81,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                             {/* Image Display */}
                             {activeEvent.image ? (
                                 <img
-                                    src={`/${activeEvent.image}`}
+                                    src={`${import.meta.env.BASE_URL}${activeEvent.image}`}
                                     alt={activeEvent.title}
                                     style={{
                                         width: '100%',
