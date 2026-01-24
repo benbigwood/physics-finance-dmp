@@ -3,7 +3,7 @@ import Timeline from './components/Timeline';
 import ContentPanel from './components/ContentPanel';
 import Glossary from './components/Glossary';
 import Resources from './components/Resources';
-import { timelineEvents } from './data/timelineEvents';
+import { timelineEvents } from './data/timelineEvents.jsx';
 
 function App() {
   const [activeEvent, setActiveEvent] = useState(null);

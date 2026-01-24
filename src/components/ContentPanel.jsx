@@ -91,52 +91,60 @@ const ContentPanel = ({ activeEvent, onClose }) => {
 
                     {/* Right Column: Content */}
                     <div>
-                        <h2 style={{ fontSize: '2rem', marginBottom: 'var(--spacing-sm)', color: 'var(--color-text-primary)' }}>
-                            {activeEvent.title} <span style={{ color: 'var(--color-accent)', fontSize: '1.5rem' }}>({activeEvent.year})</span>
-                        </h2>
-
-                        <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                            <h4 style={{ color: 'var(--color-accent)', marginBottom: '0.5rem' }}>The Physics Connection</h4>
-                            <p style={{ fontSize: '1.1rem' }}>{activeEvent.physicsConnection}</p>
-                        </div>
-
-                        <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                            <p><strong>Context:</strong> {activeEvent.context}</p>
-                        </div>
-
-                        <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                            <h4 style={{ color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>The Mathematics</h4>
-                            <MathDisplay math={activeEvent.math} />
-                        </div>
-
-                        <div style={{
-                            padding: 'var(--spacing-sm)',
-                            background: 'rgba(56, 189, 248, 0.1)',
-                            borderLeft: '4px solid var(--color-accent)',
-                            borderRadius: '0 8px 8px 0'
-                        }}>
-                            <p><strong>Real-World Impact:</strong> {activeEvent.impact}</p>
-                        </div>
-
-                        {/* Sub-paths for "What's Happening Now?" */}
-                        {activeEvent.subPaths && (
-                            <div style={{ marginTop: 'var(--spacing-md)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                                {activeEvent.subPaths.map(path => (
-                                    <motion.div
-                                        key={path.id}
-                                        whileHover={{ scale: 1.05, backgroundColor: 'var(--color-surface-hover)' }}
-                                        style={{
-                                            padding: '1rem',
-                                            border: '1px solid var(--color-surface-hover)',
-                                            borderRadius: '8px',
-                                            cursor: 'pointer'
-                                        }}
-                                    >
-                                        <h5 style={{ color: 'var(--color-highlight)' }}>{path.title}</h5>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>{path.desc}</p>
-                                    </motion.div>
-                                ))}
+                        {activeEvent.customContent ? (
+                            <div className="custom-content">
+                                {activeEvent.customContent}
                             </div>
+                        ) : (
+                            <>
+                                <h2 style={{ fontSize: '2rem', marginBottom: 'var(--spacing-sm)', color: 'var(--color-text-primary)' }}>
+                                    {activeEvent.title} <span style={{ color: 'var(--color-accent)', fontSize: '1.5rem' }}>({activeEvent.year})</span>
+                                </h2>
+
+                                <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                                    <h4 style={{ color: 'var(--color-accent)', marginBottom: '0.5rem' }}>The Physics Connection</h4>
+                                    <p style={{ fontSize: '1.1rem' }}>{activeEvent.physicsConnection}</p>
+                                </div>
+
+                                <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                                    <p><strong>Context:</strong> {activeEvent.context}</p>
+                                </div>
+
+                                <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                                    <h4 style={{ color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>The Mathematics</h4>
+                                    <MathDisplay math={activeEvent.math} />
+                                </div>
+
+                                <div style={{
+                                    padding: 'var(--spacing-sm)',
+                                    background: 'rgba(56, 189, 248, 0.1)',
+                                    borderLeft: '4px solid var(--color-accent)',
+                                    borderRadius: '0 8px 8px 0'
+                                }}>
+                                    <p><strong>Real-World Impact:</strong> {activeEvent.impact}</p>
+                                </div>
+
+                                {/* Sub-paths for "What's Happening Now?" */}
+                                {activeEvent.subPaths && (
+                                    <div style={{ marginTop: 'var(--spacing-md)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                                        {activeEvent.subPaths.map(path => (
+                                            <motion.div
+                                                key={path.id}
+                                                whileHover={{ scale: 1.05, backgroundColor: 'var(--color-surface-hover)' }}
+                                                style={{
+                                                    padding: '1rem',
+                                                    border: '1px solid var(--color-surface-hover)',
+                                                    borderRadius: '8px',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <h5 style={{ color: 'var(--color-highlight)' }}>{path.title}</h5>
+                                                <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>{path.desc}</p>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
