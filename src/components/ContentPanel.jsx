@@ -78,12 +78,24 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                             overflow: 'hidden',
                             marginBottom: 'var(--spacing-sm)'
                         }}>
-                            {/* Placeholder for image - in real app would use real images */}
-                            <div style={{ textAlign: 'center', color: 'var(--color-text-secondary)' }}>
-                                [Image: {activeEvent.image}]
-                                <br />
-                                <small>Visual: {activeEvent.visualType}</small>
-                            </div>
+                            {/* Image Display */}
+                            {activeEvent.image ? (
+                                <img
+                                    src={`/${activeEvent.image}`}
+                                    alt={activeEvent.title}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                            ) : (
+                                <div style={{ textAlign: 'center', color: 'var(--color-text-secondary)' }}>
+                                    No Image Available
+                                    <br />
+                                    <small>Visual: {activeEvent.visualType}</small>
+                                </div>
+                            )}
                         </div>
                         <h4 style={{ color: 'var(--color-highlight)' }}>{activeEvent.physicist}</h4>
                         <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Key Figure</p>

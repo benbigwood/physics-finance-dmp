@@ -41,7 +41,7 @@ export const timelineEvents = [
     title: "Black-Scholes Model",
     physicist: "Ed Thorp, Fisher Black, Myron Scholes, Robert Merton",
     physicsConnection: "Heat Diffusion Equation",
-    image: "black-scholes.jpg",
+    image: "black-scholes.png",
     visualType: "heat-equation",
     customContent: (
       <div>
