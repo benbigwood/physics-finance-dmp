@@ -1,30 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
-// import { BlockMath, InlineMath } from 'react-katex'; // We'll use katex directly or simple div if react-katex is an issue, but let's try direct HTML for now with a library if needed or just use simple math display since importing react-katex might require config. 
-// Actually, simple way is to use `katex` in `useEffect` to render to a ref.
-import 'katex/dist/katex.min.css';
-import katex from 'katex';
-import { useEffect, useRef } from 'react';
+import MathDisplay from './MathDisplay';
+import { useEffect, useRef } from 'react'; // Checking if used elsewhere, if not might need to clean up imports too, but keeping minimal diff.
 import PropTypes from 'prop-types';
-
-const MathDisplay = ({ math }) => {
-    const containerRef = useRef(null);
-    useEffect(() => {
-        if (containerRef.current) {
-            try {
-                katex.render(math, containerRef.current, {
-                    throwOnError: false,
-                    displayMode: true,
-                    output: 'html' // Use HTML output
-                });
-            } catch (e) {
-                containerRef.current.innerText = math;
-            }
-        }
-    }, [math]);
-    return <div ref={containerRef} className="math-display" />;
-};
-
-MathDisplay.propTypes = { math: PropTypes.string.isRequired };
 
 const ContentPanel = ({ activeEvent, onClose }) => {
     if (!activeEvent) return null;

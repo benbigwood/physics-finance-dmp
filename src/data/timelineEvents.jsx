@@ -1,3 +1,5 @@
+import MathDisplay from '../components/MathDisplay';
+
 export const timelineEvents = [
   {
     id: "1900",

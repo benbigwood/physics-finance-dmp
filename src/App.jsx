@@ -144,7 +144,9 @@ function App() {
             <option value="All">All Concepts</option>
             {/* We can map unique physicsConnections or visualTypes */}
             {Array.from(new Set(timelineEvents.map(e => e.visualType))).map(type => (
-              <option key={type} value={type}>{type}</option>
+              <option key={type} value={type}>
+                {type.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
+              </option>
             ))}
           </select>
         </div>
