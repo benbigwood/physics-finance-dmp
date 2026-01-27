@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MathDisplay from './MathDisplay';
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import BlackScholesSimulation from './BlackScholesSimulation';
+import BrownianMotionSimulation from './BrownianMotionSimulation';
 
 const ExplanationView = ({ activeEvent }) => (
     <div className="explanation-view">
@@ -197,20 +199,26 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                         <ExplanationView activeEvent={activeEvent} />
                                     )}
                                     {activeTab === 'simulation' && (
-                                        <div style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            height: '300px',
-                                            background: 'var(--color-bg)',
-                                            borderRadius: '8px',
-                                            color: 'var(--color-text-secondary)'
-                                        }}>
-                                            <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.5 }}>⚛️ 📈</span>
-                                            <h3>Interactive Simulation</h3>
-                                            <p>Coming Soon...</p>
-                                        </div>
+                                        activeEvent.id === '1973' ? (
+                                            <BlackScholesSimulation />
+                                        ) : activeEvent.id === '1900' ? (
+                                            <BrownianMotionSimulation />
+                                        ) : (
+                                            <div style={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                height: '300px',
+                                                background: 'var(--color-bg)',
+                                                borderRadius: '8px',
+                                                color: 'var(--color-text-secondary)'
+                                            }}>
+                                                <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.5 }}>⚛️ 📈</span>
+                                                <h3>Interactive Simulation</h3>
+                                                <p>Coming Soon...</p>
+                                            </div>
+                                        )
                                     )}
                                 </div>
                             </>
