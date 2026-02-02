@@ -4,6 +4,8 @@ import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import BlackScholesSimulation from './BlackScholesSimulation';
 import BrownianMotionSimulation from './BrownianMotionSimulation';
+import FractalMarketSimulation from './FractalMarketSimulation';
+import FractalTreeComparison from './FractalTreeComparison';
 
 const ExplanationView = ({ activeEvent }) => (
     <div className="explanation-view">
@@ -190,19 +192,26 @@ const ContentPanel = ({ activeEvent, onClose }) => {
 
                                 {/* Tab Content */}
                                 <div className="tab-content">
-                                    {activeTab === 'story' && (
+                                    <div style={{ display: activeTab === 'story' ? 'block' : 'none' }}>
                                         <div className="custom-content fade-in">
                                             {activeEvent.customContent}
                                         </div>
-                                    )}
-                                    {activeTab === 'explanation' && (
+                                    </div>
+
+                                    <div style={{ display: activeTab === 'explanation' ? 'block' : 'none' }}>
                                         <ExplanationView activeEvent={activeEvent} />
-                                    )}
-                                    {activeTab === 'simulation' && (
-                                        activeEvent.id === '1973' ? (
+                                    </div>
+
+                                    <div style={{ display: activeTab === 'simulation' ? 'block' : 'none' }}>
+                                        {activeEvent.id === '1973' ? (
                                             <BlackScholesSimulation />
                                         ) : activeEvent.id === '1900' ? (
                                             <BrownianMotionSimulation />
+                                        ) : activeEvent.id === '1960' ? (
+                                            <>
+                                                <FractalMarketSimulation />
+                                                <FractalTreeComparison />
+                                            </>
                                         ) : (
                                             <div style={{
                                                 display: 'flex',
@@ -218,8 +227,8 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                 <h3>Interactive Simulation</h3>
                                                 <p>Coming Soon...</p>
                                             </div>
-                                        )
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </>
                         ) : (

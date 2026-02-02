@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const BlackScholesSimulation = () => {
     // State for inputs
@@ -150,6 +150,271 @@ const BlackScholesSimulation = () => {
                     </span>
                 </div>
             </div>
+
+            {/* Heat Transfer Simulation Section */}
+            <div style={{ marginTop: '2rem', borderTop: '1px solid var(--color-surface-hover)', paddingTop: '1.5rem' }}>
+                <h3 style={{ color: 'var(--color-highlight)', marginBottom: '1rem', textAlign: 'center' }}>
+                    The Physics: Heat Diffusion Analogy
+                </h3>
+                <p style={{ textAlign: 'center', color: 'var(--color-text-secondary)', marginBottom: '1rem', fontSize: '0.9rem' }}>
+                    Black & Scholes discovered that option prices evolve exactly like heat diffusing through a metal rod.
+                    <br />
+                    <strong>Diffusivity (How fast heat spreads) ≈ Volatility (σ)</strong>
+                </p>
+
+                <HeatDiffusionCanvas sigma={sigma} timeToMaturity={T} />
+            </div>
+        </div>
+    );
+};
+
+const HeatDiffusionCanvas = ({ sigma, timeToMaturity }) => {
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+
+        // Animation State
+        let startTime = null;
+        const CYCLE_DURATION = 8000; // 8 seconds per cycle
+        const SEPARATION_PHASE = 2000; // 2 seconds to approach
+
+        const loop = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerX = width / 2;
+
+            // Cycle Management
+            const cycleTime = elapsed % CYCLE_DURATION;
+
+            // Phase Logic
+            let separation = 0;
+            let displayTime = 0;
+            let phase = 'approach'; // 'approach' or 'diffuse'
+
+            if (cycleTime < SEPARATION_PHASE) {
+                phase = 'approach';
+                // Ease Out Bounce or simple Ease Out Quart
+                const progress = cycleTime / SEPARATION_PHASE;
+                // Start at 150px, end at 0px
+                const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+                separation = 150 * (1 - ease);
+                displayTime = 0;
+            } else {
+                phase = 'diffuse';
+                separation = 0;
+                // Time simulation time
+                const vizTime = cycleTime - SEPARATION_PHASE;
+                // Map milliseconds to "Years" roughly
+                // Speed depends on sigma?
+                displayTime = (vizTime / 1000) * 0.1; // Slow down time perception
+            }
+
+            ctx.clearRect(0, 0, width, height);
+
+            // --- 1. VISUALIZATION (Top) ---
+            const vizY = 30;
+            const vizH = 80; // Taller blocks like image
+
+            // Block Drawing Function
+            const drawBlocks = () => {
+
+                // --- HOT BLOCK (Left) ---
+                const leftBlockW = (width / 2) - (separation / 2) - 20; // 20px padding
+                const leftBlockX = (width / 2) - (separation / 2) - leftBlockW;
+
+                // Glow Effect
+                const gradHot = ctx.createRadialGradient(
+                    leftBlockX + leftBlockW / 2, vizY + vizH / 2, 10,
+                    leftBlockX + leftBlockW / 2, vizY + vizH / 2, leftBlockW
+                );
+                gradHot.addColorStop(0, '#fff1f2'); // Bright White-Pink Center
+                gradHot.addColorStop(0.4, '#fb7185'); // Soft Red
+                gradHot.addColorStop(1, '#9f1239'); // Dark Red Edge
+
+                // Or linear gradient like the image (looks like light source is left?)
+                // Image: Bright white rectangle with red glow surround.
+
+                // Let's do a solid white/pink block with heavy shadow/glow
+                ctx.save();
+                ctx.shadowBlur = 25;
+                ctx.shadowColor = '#f43f5e'; // Red Glow
+                ctx.fillStyle = '#ffe4e6'; // Very pale pink/white
+
+                if (phase === 'diffuse') {
+                    // It will be drawn pixel-by-pixel later, so we only draw this in approach?
+                    // No, "Separated" blocks implies Phase 1.
+                    if (separation > 1) {
+                        ctx.fillRect(leftBlockX, vizY, leftBlockW, vizH);
+                    }
+                } else {
+                    ctx.fillRect(leftBlockX, vizY, leftBlockW, vizH);
+                }
+                ctx.restore();
+
+                // --- COLD BLOCK (Right) ---
+                const rightBlockX = (width / 2) + (separation / 2);
+                const rightBlockW = leftBlockW;
+
+                ctx.save();
+                ctx.fillStyle = '#1e40af'; // Blue texture
+                // Simple gradient to make it look 3D?
+                const gradCold = ctx.createLinearGradient(rightBlockX, vizY, rightBlockX + rightBlockW, vizY);
+                gradCold.addColorStop(0, '#1d4ed8');
+                gradCold.addColorStop(1, '#172554');
+                ctx.fillStyle = gradCold;
+
+                if (phase === 'diffuse') {
+                    if (separation > 1) {
+                        ctx.fillRect(rightBlockX, vizY, rightBlockW, vizH);
+                    }
+                } else {
+                    ctx.fillRect(rightBlockX, vizY, rightBlockW, vizH);
+                }
+                ctx.restore();
+
+                // Labels
+                if (phase === 'approach') {
+                    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+                    ctx.font = 'bold 14px sans-serif';
+                    ctx.fillText("HOT", leftBlockX + leftBlockW / 2 - 15, vizY + vizH / 2 + 5);
+                    ctx.fillText("COLD", rightBlockX + rightBlockW / 2 - 20, vizY + vizH / 2 + 5);
+                }
+            };
+
+            drawBlocks();
+
+            // --- DIFFUSION RENDERING ---
+            if (phase === 'diffuse') {
+                // We draw the mixing region over the blocks?
+                // Or rather, we completely redraw the rect with the gradient.
+
+                const sigmaVal = Math.max(0.1, sigma);
+                const widthParam = Math.sqrt(displayTime) * sigmaVal * 4; // visual scaler
+                const scaleX = 100;
+
+                // Iterate across the whole dual-block width
+                const leftBlockW = (width / 2) - 20;
+                const startX = 20;
+                const endX = width - 20;
+
+                for (let x = startX; x < endX; x += 2) {
+                    const dist = (x - centerX) / scaleX;
+
+                    // Temp 1 (Hot) -> 0 (Cold)
+                    let temp = 0;
+                    if (widthParam < 0.001) temp = x < centerX ? 1 : 0;
+                    else temp = 1 / (1 + Math.exp(dist / (widthParam * 0.4))); // Logistic
+
+                    // Color Interpolation
+                    // Hot: 255, 228, 230 (White/Pink)
+                    // Cold: 30, 64, 175 (Blue)
+                    // Midpoint: Need a smooth purple/mix?
+
+                    let r, g, b;
+
+                    // Simple Linear Interpolation (Lerp)
+                    // Hot Color
+                    const hR = 255, hG = 228, hB = 230;
+                    // Cold Color
+                    const cR = 30, cG = 64, cB = 175;
+
+                    r = hR * temp + cR * (1 - temp);
+                    g = hG * temp + cG * (1 - temp);
+                    b = hB * temp + cB * (1 - temp);
+
+                    ctx.fillStyle = `rgb(${Math.round(r)},${Math.round(g)},${Math.round(b)})`;
+                    ctx.fillRect(x, vizY, 2, vizH);
+                }
+
+                // Add Glow overlay for the "Hot" side that fades
+                // The "Hot" side should retain its glow?
+            }
+
+            // --- 2. GRAPH (Bottom) ---
+            const graphY = 130;
+            const graphH = 60;
+            const graphBottom = graphY + graphH;
+
+            // Axis
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(20, graphBottom);
+            ctx.lineTo(width - 20, graphBottom);
+            ctx.stroke();
+
+            // Graph Curve
+            ctx.beginPath();
+            ctx.lineWidth = 3;
+            // Gradient Stroke?
+            const gradStroke = ctx.createLinearGradient(20, 0, width - 20, 0);
+            gradStroke.addColorStop(0, '#f43f5e');
+            gradStroke.addColorStop(1, '#3b82f6');
+            ctx.strokeStyle = gradStroke;
+
+            const startX = 20;
+            const endX = width - 20;
+
+            if (phase === 'approach') {
+                // Step Function
+                ctx.moveTo(startX, graphY);
+                ctx.lineTo(centerX, graphY); // High
+                ctx.lineTo(centerX, graphBottom); // Drop
+                ctx.lineTo(endX, graphBottom); // Low
+            } else {
+                // S-Curve
+                const sigmaVal = Math.max(0.1, sigma);
+                const widthParam = Math.sqrt(displayTime) * sigmaVal * 4;
+                const scaleX = 100;
+
+                for (let x = startX; x <= endX; x += 5) {
+                    const dist = (x - centerX) / scaleX;
+                    let val = 0;
+                    if (widthParam < 0.001) val = x < centerX ? 1 : 0;
+                    else val = 1 / (1 + Math.exp(dist / (widthParam * 0.4)));
+
+                    const y = graphBottom - (val * graphH);
+                    if (x === startX) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = '#64748b';
+            ctx.font = '12px sans-serif';
+            ctx.fillText("Probability / Temp", 20, graphBottom + 20);
+
+            animationFrameId = requestAnimationFrame(loop);
+        };
+        animationFrameId = requestAnimationFrame(loop);
+
+        return () => cancelAnimationFrame(animationFrameId);
+    }, [sigma, timeToMaturity]);
+
+    return (
+        <div style={{
+            background: '#0f172a',
+            borderRadius: '12px',
+            padding: '1.5rem',
+            border: '1px solid var(--color-surface-hover)',
+            marginTop: '1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
+            <canvas ref={canvasRef} width={500} height={220} />
+            <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.5rem', textAlign: 'center' }}>
+                Top: Hot metal (Probability=1) mixing with Cold (Probability=0).<br />
+                Bottom: The resulting probability curve (Option Delta).<br />
+                <strong>Higher Volatility = Faster Mixing.</strong>
+            </p>
         </div>
     );
 };
