@@ -261,7 +261,206 @@ export const timelineEvents = [
     year: "NOW",
     title: "What's Happening Now?",
     physicist: "Current Researchers",
-    physicsConnection: "Quantum, Complexity, AI",
+    physicsConnection: (
+      <div style={{ lineHeight: '1.6' }}>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>Final Physics Behind Quantum Computers</h2>
+
+        <p style={{ marginBottom: '1rem' }}>
+          In classical computers bit are defined as the most basic unit of data represented by a single digit of 1 or 0. In quantum computers, this is represented by the quantum state of an electron.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          This new representation is called a qubit and uses quantum mechanics to redefine the binary digits of 0 or 1.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          Qubits are two quantum state systems. There are several physical objects which can be used as qubits such as, atomic nuclei, a photon and electrons.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          In electrons, their spin can be used to defined these two quantum states, spin up and spin down.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          By applying an external magnetic field to the electron, we can align it into its spin down state analogous to digit 0 in regular bits.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          Energy can then be provided to change quantum state to spin up.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          These two states spin up and down provide the basis of our 2 dimensional complex Hilbert space and are defined using the bra and ket notation.
+        </p>
+
+        <MathDisplay math="|0\rangle, |1\rangle" />
+
+        <MathDisplay math="|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          By the principle of superposition, the electron can be described as a linear combination of these basis wavefunctions.
+        </p>
+
+        <MathDisplay math="\psi = \alpha|0\rangle + \beta|1\rangle" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          Where <MathDisplay math="|\alpha|^2 + |\beta|^2 = 1" inline={true} />
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          The <MathDisplay math="\alpha" inline={true} /> and <MathDisplay math="\beta" inline={true} /> represent the associated amplitudes of the basis wavevectors.
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          The probability of finding the electron in either state is found by taking the magnitude squared of these amplitudes.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>The Bloch Sphere</h3>
+
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}bloch_sphere.png`}
+            alt="The Bloch Sphere representation of a qubit state"
+            style={{ maxWidth: '100%', borderRadius: '8px', border: '1px solid var(--color-surface-hover)' }}
+          />
+        </div>
+
+        <p style={{ marginBottom: '1rem' }}>
+          We can think of a single qubit as a 3D vector on the Bloch Sphere
+        </p>
+
+        <MathDisplay math="\psi = \cos(\frac{\theta}{2})|0\rangle + e^{i\phi}\sin(\frac{\theta}{2})|1\rangle" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          Where <MathDisplay math="\cos\frac{\theta}{2} = \alpha" inline={true} /> and <MathDisplay math="e^{i\phi}\sin\frac{\theta}{2} = \beta" inline={true} />
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          When we consider two interacting qubits the power of quantum computing becomes clearer. Writing the possible basis states, we get
+        </p>
+
+        <MathDisplay math="|00\rangle, |01\rangle, |10\rangle, |11\rangle" />
+
+        <MathDisplay math="|00\rangle = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, |01\rangle = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, |10\rangle = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}, |11\rangle = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          And the wavefunction becomes
+        </p>
+
+        <MathDisplay math="\psi = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          This means we require 4 amplitudes to define the wavefunction for a 2 qubit system.
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          This continues to scale exponentially as we need <MathDisplay math="2^N" inline={true} /> different amplitudes to describe N number of qubits.
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          This can be mathematically described using tensor products.
+        </p>
+
+        <MathDisplay math="\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          Tensor products allow us to combine two different 2-dimensional Hilbert Spaces into one 4 dimensional one.
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          E.g
+        </p>
+
+        <MathDisplay math="|0\rangle \otimes |1\rangle = |01\rangle" />
+
+        <MathDisplay math="|a\rangle = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}, \quad |b\rangle = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}" />
+
+        <MathDisplay math="a \otimes b = \begin{pmatrix} a_1b_1 \\ a_1b_2 \\ a_2b_1 \\ a_2b_2 \end{pmatrix}" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          However, in quantum computing we must have entangled states. Entanglement of quantum particles is where two or more particles become linked in such a way that the state of one particle instantaneously determines the state of another.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>SIMULATION?</h3>
+
+        <p style={{ marginBottom: '1rem' }}>
+          In quantum computing an entangled state is a special type of multi cubit state in which individual qubits do not have independent values.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          Instead, their states are linked meaning measuring one qubit instantly reveals information about the others.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          This allows algorithms to change the amplitudes of many states, creating constructive interference of some states and destructive for others.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          Over time this creates a global property which drastically increases the probability the wavefunction collapsing to the desired answer.
+        </p>
+
+        <p style={{ marginBottom: '1rem' }}>
+          Mathematically entanglement is a property of using tensor products.
+        </p>
+
+        <MathDisplay math="\psi_a \otimes \psi_b \neq \psi" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          When we create a two-qubit system there is no individual state for qubit a or qubit b, only the combined 4D system.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          This means the associated amplitudes cannot be factorised back into the two separated states.
+        </p>
+
+        <MathDisplay math="\psi_a = a|0\rangle + b|1\rangle, \quad \psi_b = c|0\rangle + d|1\rangle" />
+        <MathDisplay math="\psi_{ab} \neq ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle" />
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>Application of Quantum Computers</h3>
+
+        <p style={{ marginBottom: '1rem' }}>
+          How we solve problems using quantum computers involves applying quantum gates to the quantum system.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          A quantum gate is a controlled period of time which allows the system to evolve under a chosen Hamiltonian H.
+        </p>
+
+        <MathDisplay math="U = e^{-iHt/\hbar}" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          Where U is the time evolution operator
+        </p>
+
+        <MathDisplay math="\psi_{out} = U\psi_{in}" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          This operation must be unitary to not change the total probability.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          Also due to the postulates of quantum mechanics this operator must be reversible
+        </p>
+
+        <MathDisplay math="U^{-1} = U^\dagger" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          And linear
+        </p>
+
+        <MathDisplay math="U(\alpha|0\rangle + \beta|1\rangle) = \alpha U|0\rangle + \beta U|1\rangle" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          When we design algorithms for quantum computers, we use a sequence of quantum gates to evolve the system.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          By associating a possible answer to each amplitude of the basis vectors, we can apply a series of these quantum gates to change each given amplitude.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          By having the system constructively interfere with correct answers and destructively interfere with incorrect answers, we can change the probability of the wavefunction collapsing to the correct answer incredibly likely.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>Limitations of Quantum Computers.</h3>
+
+        <p style={{ marginBottom: '1rem' }}>
+          Quantum computers are limited by the type of problems they can solve by the properties of quantum mechanics.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          In quantum mechanics the wavefunction always collapses to only one state.
+        </p>
+        <p style={{ marginBottom: '1rem' }}>
+          This means all other information is lost and makes quantum computers only useful for specific types of problems.
+        </p>
+      </div >
+    ),
     context: "The frontier of physics and finance is merging with advanced computing and AI.",
     math: "|\\psi\\rangle = \\sum c_i |\\phi_i\\rangle",
     impact: "Exploring quantum algorithms for optimization and detecting systemic risk in complex networks.",
@@ -272,6 +471,24 @@ export const timelineEvents = [
       { id: "network", title: "Network Physics", desc: "Modeling systemic risk and contagion in banking networks." },
       { id: "complexity", title: "Complex Systems", desc: "Understanding market crashes as phase transitions." },
       { id: "ai", title: "AI & Stat Mech", desc: "Using Boltzmann machines and thermodynamics in ML." }
-    ]
+    ],
+    customContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          Quantum Computing in Finance
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Quantum computing represents a paradigm shift in how we approach financial modeling. By validly simulating quantum mechanical systems, we can solve optimization problems that are currently intractable for classical computers.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Potential applications include:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li><strong>Portfolio Optimization:</strong> Finding the absolute optimal portfolio from a vast number of assets.</li>
+          <li><strong>Option Pricing:</strong> Rapidly pricing complex derivatives using quantum amplitude estimation.</li>
+          <li><strong>Risk Analysis:</strong> analyzing distinct risk factors in near real-time.</li>
+        </ul>
+      </div>
+    )
   }
 ];

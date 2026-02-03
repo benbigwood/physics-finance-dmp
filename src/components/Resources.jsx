@@ -43,6 +43,7 @@ const Resources = ({ isOpen, onClose }) => {
                             overflowY: 'auto'
                         }}
                     >
+
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
                             <div style={{ display: 'flex', gap: '1rem' }}>
                                 <button

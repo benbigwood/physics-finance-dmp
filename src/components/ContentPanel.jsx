@@ -15,7 +15,7 @@ const ExplanationView = ({ activeEvent }) => (
 
         <div style={{ marginBottom: 'var(--spacing-md)' }}>
             <h4 style={{ color: 'var(--color-accent)', marginBottom: '0.5rem' }}>The Physics Connection</h4>
-            <p style={{ fontSize: '1.1rem' }}>{activeEvent.physicsConnection}</p>
+            <div style={{ fontSize: '1.1rem' }}>{activeEvent.physicsConnection}</div>
         </div>
 
         <div style={{ marginBottom: 'var(--spacing-md)' }}>
@@ -185,7 +185,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                 transition: 'all 0.3s ease'
                                             }}
                                         >
-                                            {tab === 'explanation' ? 'Physics-Finance' : tab}
+                                            {tab === 'explanation' ? 'Physics-Finance' : (tab === 'story' && activeEvent.id === 'now' ? 'Quantum Computing' : tab)}
                                         </button>
                                     ))}
                                 </div>
