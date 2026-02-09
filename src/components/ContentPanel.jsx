@@ -13,28 +13,12 @@ const ExplanationView = ({ activeEvent }) => (
             {activeEvent.title} <span style={{ color: 'var(--color-accent)', fontSize: '1.5rem' }}>({activeEvent.year})</span>
         </h2>
 
-        <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <h4 style={{ color: 'var(--color-accent)', marginBottom: '0.5rem' }}>The Physics Connection</h4>
-            <div style={{ fontSize: '1.1rem' }}>{activeEvent.physicsConnection}</div>
-        </div>
-
-        <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <p><strong>Context:</strong> {activeEvent.context}</p>
-        </div>
-
-        <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <h4 style={{ color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>The Mathematics</h4>
-            <MathDisplay math={activeEvent.math || ""} />
-        </div>
-
-        <div style={{
-            padding: 'var(--spacing-sm)',
-            background: 'rgba(56, 189, 248, 0.1)',
-            borderLeft: '4px solid var(--color-accent)',
-            borderRadius: '0 8px 8px 0'
-        }}>
-            <p><strong>Real-World Impact:</strong> {activeEvent.impact}</p>
-        </div>
+        {/* Derivation Content Merged Here */}
+        {activeEvent.derivationContent && (
+            <div style={{ marginTop: 'var(--spacing-md)', borderTop: '1px solid var(--color-surface-hover)', paddingTop: 'var(--spacing-md)' }}>
+                {activeEvent.derivationContent}
+            </div>
+        )}
 
         {/* Sub-paths for "What's Happening Now?" - Included in Explanation View */}
         {activeEvent.subPaths && (
@@ -76,6 +60,13 @@ const ContentPanel = ({ activeEvent, onClose }) => {
     if (!activeEvent) return null;
 
     const hasTabs = !!activeEvent.customContent;
+
+    const scrollToReferences = () => {
+        const refSection = document.getElementById('reference-section');
+        if (refSection) {
+            refSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <AnimatePresence mode="wait">
@@ -146,8 +137,70 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                 </div>
                             )}
                         </div>
+                        {activeEvent.sourceLink && (
+                            <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-sm)' }}>
+                                <button
+                                    onClick={scrollToReferences}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        fontSize: '0.8rem',
+                                        color: 'var(--color-text-secondary)',
+                                        textDecoration: 'underline',
+                                        cursor: 'pointer',
+                                        padding: 0
+                                    }}
+                                >
+                                    [Source]
+                                </button>
+                            </div>
+                        )}
                         <h4 style={{ color: 'var(--color-highlight)' }}>{activeEvent.physicist}</h4>
                         <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Key Figure</p>
+
+                        {/* Side Images for Citations/References */}
+                        {activeEvent.sideImages && (
+                            <div style={{ marginTop: 'var(--spacing-md)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                {activeEvent.sideImages.map((img, index) => (
+                                    <div key={index} style={{ textAlign: 'center' }}>
+                                        <div style={{
+                                            width: '100%',
+                                            height: '250px',
+                                            borderRadius: '8px',
+                                            overflow: 'hidden',
+                                            margin: '0 auto',
+                                            border: '2px solid var(--color-surface-hover)'
+                                        }}>
+                                            <img
+                                                src={`${import.meta.env.BASE_URL}${img.src}`}
+                                                alt={img.caption}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </div>
+                                        <p style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                                            {img.caption}
+                                            {img.sourceLink && (
+                                                <button
+                                                    onClick={scrollToReferences}
+                                                    style={{
+                                                        background: 'none',
+                                                        border: 'none',
+                                                        display: 'block',
+                                                        color: 'var(--color-accent)',
+                                                        textDecoration: 'underline',
+                                                        margin: '0 auto',
+                                                        cursor: 'pointer',
+                                                        padding: 0
+                                                    }}
+                                                >
+                                                    [Source]
+                                                </button>
+                                            )}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
 
 
                         {/* Simulation Tab Hint moved here or just kept in tabs */}
@@ -169,10 +222,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                     borderBottom: '1px solid var(--color-surface-hover)',
                                     marginBottom: 'var(--spacing-md)'
                                 }}>
-                                    {['story', 'explanation', 'simulation', 'derivation'].filter(tab => {
-                                        if (tab === 'derivation' && !activeEvent.derivationContent) return false;
-                                        return true;
-                                    }).map(tab => (
+                                    {['story', 'explanation', 'simulation'].map(tab => (
                                         <button
                                             key={tab}
                                             onClick={() => setActiveTab(tab)}
@@ -189,8 +239,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                             }}
                                         >
                                             {tab === 'explanation' ? 'Physics-Finance' :
-                                                (tab === 'story' && activeEvent.id === 'now' ? 'Quantum Computing' :
-                                                    (tab === 'derivation' ? 'Derivation' : tab))}
+                                                (tab === 'story' && activeEvent.id === 'now' ? 'Quantum Computing' : tab)}
                                         </button>
                                     ))}
                                 </div>
@@ -203,11 +252,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                         </div>
                                     </div>
 
-                                    <div style={{ display: activeTab === 'derivation' ? 'block' : 'none' }}>
-                                        <div className="custom-content fade-in">
-                                            {activeEvent.derivationContent}
-                                        </div>
-                                    </div>
+                                    {/* Derivation Tab Removed - Merged into Explanation */}
 
                                     <div style={{ display: activeTab === 'explanation' ? 'block' : 'none' }}>
                                         <ExplanationView activeEvent={activeEvent} />
@@ -246,6 +291,33 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                             /* No Tabs - Standard View */
                             <ExplanationView activeEvent={activeEvent} />
                         )}
+
+                        {/* References Section */}
+                        <div id="reference-section" style={{
+                            marginTop: '3rem',
+                            paddingTop: '1rem',
+                            borderTop: '1px solid var(--color-surface-hover)',
+                            color: 'var(--color-text-secondary)',
+                            fontSize: '0.9rem'
+
+                        }}>
+                            <h4 style={{ marginBottom: '0.5rem', color: 'var(--color-text-primary)' }}>References & Sources</h4>
+                            <ul style={{ listStyle: 'none', padding: 0 }}>
+                                {activeEvent.sourceLink && (
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Main Image:</strong> <a href={activeEvent.sourceLink} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)' }}>{activeEvent.sourceLink}</a>
+                                    </li>
+                                )}
+                                {activeEvent.sideImages && activeEvent.sideImages.map((img, i) => (
+                                    img.sourceLink && (
+                                        <li key={i} style={{ marginBottom: '0.5rem' }}>
+                                            <strong>{img.caption}:</strong> <a href={img.sourceLink} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)' }}>{img.sourceLink}</a>
+                                        </li>
+                                    )
+                                ))}
+                                {/* Add logic to extract sources from text if needed, but for now this covers the explicit props */}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </motion.div>

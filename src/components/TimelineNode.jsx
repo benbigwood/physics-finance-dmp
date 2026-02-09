@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
-const TimelineNode = ({ event, isActive, onClick, isLast }) => {
+const TimelineNode = ({ event, isActive, onClick, isLast, style }) => {
     return (
         <div
             className="timeline-node-container"
@@ -10,7 +10,9 @@ const TimelineNode = ({ event, isActive, onClick, isLast }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 minWidth: '120px',
-                position: 'relative'
+                position: 'absolute', // Changed to absolute for graph positioning
+                transform: 'translate(-50%, -50%)', // Center the node on the coordinate
+                ...style // Merge passed style (left, top)
             }}
         >
             {/* Date Label */}
@@ -82,7 +84,8 @@ TimelineNode.propTypes = {
     event: PropTypes.object.isRequired,
     isActive: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    isLast: PropTypes.bool
+    isLast: PropTypes.bool,
+    style: PropTypes.object
 };
 
 export default TimelineNode;

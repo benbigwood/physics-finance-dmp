@@ -1,4 +1,6 @@
 import MathDisplay from '../components/MathDisplay';
+import VolatilityGraph from '../components/VolatilityGraph';
+
 
 export const timelineEvents = [
   {
@@ -7,12 +9,13 @@ export const timelineEvents = [
     title: "Speculation Theory",
     physicist: "Louis Bachelier",
     physicsConnection: "Brownian Motion",
-    image: "bachelier.jpg",
+    image: "Louis bachelier.png",
     visualType: "brownian",
+    sourceLink: "https://x.com/ExanteData/status/1679788970262102020",
     customContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          John Bachelier, Financial Physics notes:
+          Speculation and a Beginning from Louis Bachelier
         </h2>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
@@ -183,7 +186,7 @@ export const timelineEvents = [
     derivationContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          Derivations section:
+          Speculation Theory Derivation
         </h2>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
@@ -378,7 +381,8 @@ export const timelineEvents = [
     math: "\\sigma_p^2 = \\sum \\sum w_i w_j \\sigma_{ij}",
     impact: "Transformed portfolio management from qualitative stock picking to quantitative risk/return optimization.",
     image: "markowitz.jpg",
-    visualType: "distribution"
+    visualType: "distribution",
+    sourceLink: "https://www.investopedia.com/terms/m/modernportfoliotheory.asp"
   },
   {
     id: "1960",
@@ -391,55 +395,35 @@ export const timelineEvents = [
     impact: "Challenged the Efficient Market Hypothesis and introduced the idea of roughness in financial data.",
     image: "mandelbrot.jpg",
     visualType: "fractal",
+    sourceLink: "https://users.math.yale.edu/mandelbrot/",
     customContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
           The Man Who Measured the Roughness
         </h2>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act I: The Cotton Ghost
-        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In the 1960s, <strong>Benoit Mandelbrot</strong>, a Polish-born French-American mathematician, was working as a Fellow at IBM. While his colleagues were focused on computing power, Mandelbrot was obsessed with "monsters"—mathematical shapes that were considered too irregular to be studied.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          He turned his attention to a century of data on cotton prices. According to the standard physics of the time (modeled by Bachelier and later Black-Scholes), price changes should follow a Gaussian (Bell) Curve. This model assumes that extreme events are astronomically rare.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          But when Mandelbrot fed the cotton data into the IBM computers, the "monsters" appeared. He found that price jumps were not smooth. The data showed violent spikes that the Bell Curve said shouldn't exist. If the standard model were true, a specific crash he observed should have happened only once every 7,000 years. In reality, these crashes were happening every 3 to 4 years.
+          Educated at the École Polytechnique and California Institute of Technology, mathematician Benoit Mandelbrot was not drawn to the elegance and simplicity that many of his peers sought after in their mathematical solution. Later, as a Professor of Mathematics at Yale University and IBM Fellow Emeritus, Mandelbrot had the freedom to pursue unconventional problems. The seemingly irregular, messy, disordered and noisy problems that refused to be smoothed out and simplified captivated him.
         </p>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act II: The Fractal Lens
-        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mandelbrot realized that the "laws" of economics were ignoring the physical reality of roughness. He developed a new type of mathematics called <strong>Fractal Geometry</strong> to describe shapes that are "self-similar"—meaning they look the same from far away as they do up close.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Think of a cauliflower. If you break off a floret, it looks like a miniature version of the whole vegetable. If you break a piece off that floret, it looks like a tiny vegetable again. Mandelbrot saw this same pattern in the stock market.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          He looked at a chart of stock prices over a decade.<br />
-          He looked at a chart over a day.<br />
-          He looked at a chart over an hour.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          They were geometrically indistinguishable. The "jaggedness" or volatility didn't smooth out over time; it scaled. This meant that the market wasn't a "random walk" (like a drunk stumbling home); it was a <em>Lévy Flight</em>—a walk punctuated by sudden, massive leaps.
+          Where many mathematicians saw error and uncertainty, Mandelbrot believed there was an order within randomness and an underlying structure, waiting to be understood. Benoit had questions about the shapes of clouds, trees mountains and coastlines structures mathematics struggled to described. Why does a coastline grow longer and longer the more precisely it’s measured? Why does the structure of a tree repeat itself as you zoom in? His questions about the structure of nature would soon lead him to redefine the mathematics of financial phenomena.
         </p>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act III: The Power Law
-        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mandelbrot presented a terrifying conclusion to the financial world. He argued that market returns do not follow a Normal Distribution, but rather a Power Law (specifically, a Pareto-Lévy distribution).
+          Mandelbrot’s description of these structural phenomena was named ‘fractals’: shapes that repeated themselves endlessly with self-similarity and a fractal dimension that exists between integer topological dimensions to define a shapes complexity. His ideas were collected in the “Fractal Geometry of Nature”, showing that irregularity was not a defect but an intrinsic property of nature itself.
         </p>
-        <MathDisplay math="P(X > x) \sim x^{-\alpha}" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In a Gaussian world (Black-Scholes), risk is finite and manageable. In Mandelbrot’s world, the variance (risk) could be infinite. He identified a phenomenon called <strong>Volatility Clustering</strong>: large price changes are usually followed by more large changes, and calm periods by more calm periods. This mimics turbulent flow in fluids rather than simple heat diffusion.
+          Mandelbrot turned his focus to the financial world drawing parallels with markets and the roughness he saw in nature. A price chart showed similar patterns irrespective of the time scale, whether it be measured over days, weeks or years. Extreme events repeated and the same patterns re-emerged time after time.
         </p>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Although Eugene Fama (the father of the Efficient Market Hypothesis) empirically confirmed Mandelbrot's findings, the financial industry largely ignored Mandelbrot for decades. His math was too messy; it didn't offer a clean, solvable equation like Black-Scholes did. It wasn't until the crashes of 1987 and 2008 that the world accepted what Mandelbrot had proven 40 years prior: the "tails" of the market are fat, and the monsters are real.
+          Mandelbrot argued that markets were fractal, exhibiting the same order beneath their jagged and seemingly unexplainable nature. Markets were not governed by smooth equilibrium but by a hidden structure beneath their unpredictable behaviour. Mandelbrot challenged the basics of traditional financial theory and reconsidered the ideas of risk, stability and uncertainty. Price changes did not follow the Gaussian distribution they were believed to by the current financial model. Mandelbrot argued they followed power laws and large price changes occurred far more frequently than traditional theory predicted. Jumps greater than five standard deviations were occurring every few years in market data rather than after thousands of years like the traditional theory predicted. Eugene Fama later confirmed stock returns showed much fatter tails than the normal distribution would account for. Mandelbrot then challenged the notion of a gaussian distribution, arguing that smooth Brownian motion was insufficient to describe a markets turbulence and that it was better described by anomalous diffusion which was like turbulent systems in statistical physics. Characterised by volatility clustering, like turbulence in fluids, large changes follow large changes and small changes follow small changes.
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Although the work of Mandelbrot would not allow prices to be predicted it did hold great value elsewhere. He showed instability was inherent to financial systems and crashes were structurally inevitable which challenged the foundations of the Efficient Market Hypothesis and highlighted the limitations of standard risk measures.
         </p>
       </div>
     )
@@ -452,6 +436,11 @@ export const timelineEvents = [
     physicsConnection: "Heat Diffusion Equation",
     image: "black-scholes.png",
     visualType: "heat-equation",
+    sourceLink: "https://greeksoftinstitute.wordpress.com/2016/08/09/what-is-the-black-scholes-model-in-laymans-terms/",
+    sideImages: [
+      { src: "Robert_Merton.png", caption: "Robert Merton", sourceLink: "https://en.wikipedia.org/wiki/Robert_C._Merton" },
+      { src: "Ed_thorp.png", caption: "Ed Thorp", sourceLink: "http://www.edwardothorp.com/" }
+    ],
     customContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
@@ -469,14 +458,6 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Thorp published his findings in <em>Beat the Dealer</em>, causing a panic in the casino industry. They got wise, changed the rules, added multiple decks, and eventually banned him. Having "solved" gambling, Thorp took his winnings and turned his eyes toward the “world’s biggest casino: the stock market”.
         </p>
-
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
-          <img
-            src={`${import.meta.env.BASE_URL}Ed_thorp.png`}
-            alt="Ed Thorp"
-            style={{ borderRadius: '8px', maxWidth: '100%', maxHeight: '300px', border: '1px solid var(--color-surface-hover)' }}
-          />
-        </div>
 
         <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-surface-hover)' }} />
 
@@ -523,7 +504,6 @@ export const timelineEvents = [
         </p>
 
         <div style={{ margin: '1.5rem 0', padding: '1rem', background: 'var(--color-bg)', borderRadius: '8px', overflowX: 'auto' }}>
-          {/* Math display using simple text or maybe integrate a Math component if imported, but safely just text with some styling for now */}
           <div style={{ fontFamily: 'Times New Roman, serif', fontSize: '1.2rem', textAlign: 'center' }}>
             <p>The solution allows traders to input observable parameters to output the explicit "fair price" of an option.</p>
           </div>
@@ -533,31 +513,110 @@ export const timelineEvents = [
           It was the quickest adoption of a theoretical model in the history of economics. Within two years, Texas Instruments calculators came pre-programmed with the Black-Scholes formula and all traders used or at least knew of the Black-Scholes equation. Traders abandoned gut feeling for physics-based precision. This equation didn't just describe the market; it built the modern multi-trillion dollar derivatives industry, proving that the same laws governing heat transfer could also govern the flow of capital.
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
-          <img
-            src={`${import.meta.env.BASE_URL}Robert_Merton.png`}
-            alt="Robert Merton"
-            style={{ borderRadius: '8px', maxWidth: '100%', maxHeight: '300px', border: '1px solid var(--color-surface-hover)' }}
-          />
-        </div>
-
         <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', marginTop: '2rem' }}>
           * Robert Merton independently also solved this problem at the same time (but using applied stochastic calculus instead).
         </p>
       </div>
+    ),
+    derivationContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          Black-Scholes Equation Proof
+        </h2>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          <MathDisplay math="S \leftarrow" inline={true} /> Current Stock Price<br />
+          <MathDisplay math="X \leftarrow" inline={true} /> Strike/Exercise price (price to buy the share/option at said later date)<br />
+          <MathDisplay math="T \in" inline={true} /> Time to expiration<br />
+          <MathDisplay math="P \in" inline={true} /> Premium (purchasing of the contract).<br />
+          <MathDisplay math="r \leftarrow" inline={true} /> Risk-free interest rate (theoretical concept of interest rate on "risk-free" asset. Uses government bonds as closest proxy).<br />
+          <MathDisplay math="\sigma \leftarrow" inline={true} /> Standard deviation of log returns (volatility).
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          Price vs Time Graph
+        </h3>
+
+        <VolatilityGraph />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          <MathDisplay math="C \leftarrow" inline={true} /> Call price (at its fairest).<br />
+          <MathDisplay math="\Pi \leftarrow" inline={true} /> Portfolio.<br />
+          <MathDisplay math="V(S,t) \leftarrow" inline={true} /> Option
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          Easy Proof.
+        </h3>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Start with your portfolio value
+        </p>
+        <MathDisplay math="\Pi = V(S,t) - \Delta S" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          We want to know how <MathDisplay math="\Pi" inline={true} /> changes over time. This is
+        </p>
+        <MathDisplay math="d\Pi = dV - \Delta dS" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Using Brownian motion,
+        </p>
+        <MathDisplay math="dS = \mu S dt + \sigma S dW" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          <MathDisplay math="\mu S dt \rightarrow" inline={true} /> General Stock drift<br />
+          <MathDisplay math="\sigma S dW \rightarrow" inline={true} /> The volatility / The uncertainty in <MathDisplay math="dS" inline={true} /> from Brownian motion
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Using Ito's Lemma because <MathDisplay math="V" inline={true} /> is a function of the stochastic process <MathDisplay math="S" inline={true} />, i.e.
+        </p>
+        <MathDisplay math="dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\frac{\partial^{2}V}{\partial S^{2}}dS^{2}" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          To Simplify by eliminating the <MathDisplay math="dS^{2}" inline={true} /> use 1. to form
+        </p>
+        <MathDisplay math="dS^{2} = \mu^{2}S^{2}dt^{2} + 2\mu\sigma S^{2}dtdW + \sigma^{2}S^{2}dW^{2}" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In Stochastic calculus <MathDisplay math="dt^{2}=0" inline={true} />, <MathDisplay math="dtdW=0" inline={true} /> and <MathDisplay math="dWdW=dt" inline={true} />. So Hence,
+        </p>
+        <MathDisplay math="dS^{2} = \sigma^{2}S^{2}dt" />
+
+        <MathDisplay math="dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}}dt" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Substitute <MathDisplay math="dV" inline={true} /> into <MathDisplay math="d\Pi" inline={true} />.
+        </p>
+        <MathDisplay math="d\Pi = \left( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \right)dt + \left( \frac{\partial V}{\partial S} - \Delta \right)dS" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Set
+        </p>
+        <MathDisplay math="\Delta = \frac{\partial V}{\partial S}" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Thus
+        </p>
+        <MathDisplay math="d\Pi = \left( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \right)dt" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The portfolio is now just a <MathDisplay math="dt" inline={true} /> term so it's deterministic. It carries no risk So, it yields a risk free rate <MathDisplay math="r" inline={true} /> So,
+        </p>
+        <MathDisplay math="d\Pi = r\Pi dt" />
+        <MathDisplay math="= r(V - \Delta S)dt" />
+
+        <MathDisplay math="d\Pi = \left( rV - rS\frac{\partial V}{\partial S} \right)dt" />
+
+        <MathDisplay math="rV - rS\frac{\partial V}{\partial S} = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}}" />
+
+        <MathDisplay math="\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} - rV = 0" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The Black-Scholes equation.
+        </p>
+      </div>
     )
-  },
-  {
-    id: "1990",
-    year: "1990s",
-    title: "Econophysics",
-    physicist: "Eugene Stanley & others",
-    physicsConnection: "Statistical Mechanics",
-    context: "Physicists began applying concepts from phase transitions and critical phenomena to economic systems.",
-    math: "H = -\\sum J_{ij} S_i S_j",
-    impact: "Established a dedicated field for applying physical laws to social and economic dynamics.",
-    image: "stanley.jpg",
-    visualType: "network"
   },
   {
     id: "2000",
@@ -569,7 +628,8 @@ export const timelineEvents = [
     math: "E[f(X)] \\approx \\frac{1}{N} \\sum_{i=1}^N f(X_i)",
     impact: "Enabled high-frequency trading and pricing of exotic instruments.",
     image: "computer.jpg",
-    visualType: "simulation"
+    visualType: "simulation",
+    sourceLink: "https://commons.wikimedia.org/wiki/File:COMPUTATIONAL_FINANCE.jpg"
   },
   {
     id: "now",
@@ -621,18 +681,37 @@ export const timelineEvents = [
         </p>
 
         <p style={{ marginBottom: '1rem' }}>
+          These amplitudes are complex numbers and define the probability of measuring the electron in either the spin up or spin down state.
+        </p>
+
+        <MathDisplay math="P(0) = |\alpha|^2, \quad P(1) = |\beta|^2" />
+
+        <p style={{ marginBottom: '1rem' }}>
+          This can be visualised on the Bloch sphere (Figure 1).
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}Bloch_sphere.png`}
+            alt="Bloch Sphere Representation of a Qubit"
+            style={{ maxWidth: '100%', borderRadius: '8px', border: '1px solid var(--color-surface-hover)' }}
+          />
+          <a
+            href="https://en.wikipedia.org/wiki/Bloch_sphere"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}
+          >
+            [Image Source: Wikipedia]
+          </a>
+        </div>
+
+
+        <p style={{ marginBottom: '1rem' }}>
           The probability of finding the electron in either state is found by taking the magnitude squared of these amplitudes.
         </p>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>The Bloch Sphere</h3>
 
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
-          <img
-            src={`${import.meta.env.BASE_URL}bloch_sphere.png`}
-            alt="The Bloch Sphere representation of a qubit state"
-            style={{ maxWidth: '100%', borderRadius: '8px', border: '1px solid var(--color-surface-hover)' }}
-          />
-        </div>
 
         <p style={{ marginBottom: '1rem' }}>
           We can think of a single qubit as a 3D vector on the Bloch Sphere
@@ -774,13 +853,14 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem' }}>
           This means all other information is lost and makes quantum computers only useful for specific types of problems.
         </p>
-      </div >
+      </div>
     ),
     context: "The frontier of physics and finance is merging with advanced computing and AI.",
     math: "|\\psi\\rangle = \\sum c_i |\\phi_i\\rangle",
     impact: "Exploring quantum algorithms for optimization and detecting systemic risk in complex networks.",
     image: "future.jpg",
     visualType: "interactive-list",
+    sourceLink: "https://stock.adobe.com/search?k=quantum+computer",
     subPaths: [
       { id: "quantum", title: "Quantum Computing", desc: "Portfolio optimization using quantum annealing." },
       { id: "network", title: "Network Physics", desc: "Modeling systemic risk and contagion in banking networks." },
@@ -790,19 +870,32 @@ export const timelineEvents = [
     customContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          Quantum Computing in Finance
+          Quantum Finance: The Next Frontier
         </h2>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Quantum computing represents a paradigm shift in how we approach financial modeling. By validly simulating quantum mechanical systems, we can solve optimization problems that are currently intractable for classical computers.
+          Quantum computing is the major development in financial modelling and optimisation, with the potential to solve computational problems which currently push classical computing to its limits. By using the principles of superposition and entanglement, quantum computers could significantly improve areas in finance such as advanced risk profiling, modelling of market dynamics and optimising portfolios.
         </p>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Potential applications include:
+          When managing risk, banks currently use Monte Carlo simulations to predict how markets may respond to economic shocks such as a sudden rise in interest rates or a spike in oil prices. These simulations require a huge amount of computational resources and time making them extremely expensive. As a result, financial institutions running these simulations must compromise on the complexity of these calculations.
         </p>
-        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
-          <li><strong>Portfolio Optimization:</strong> Finding the absolute optimal portfolio from a vast number of assets.</li>
-          <li><strong>Option Pricing:</strong> Rapidly pricing complex derivatives using quantum amplitude estimation.</li>
-          <li><strong>Risk Analysis:</strong> analyzing distinct risk factors in near real-time.</li>
-        </ul>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          However, quantum computers can run many possible simulation outcomes simultaneously. By generating a probability distribution of all possible outcomes, including those which classical may discard, quantum computing allows for more accurate assessments of risk.
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Another potential application of this technology is in modelling contagion effects, where the behaviour of one actor in an interconnected system influences others. Classical models struggle to model such dynamics at a large scale. Quantum computing is inherently designed to represent interacting particles and are well suited to model this type of behaviour. How?
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In financial markets this approach can be used to model panic driven behaviour where investor selloff triggers others to follow.
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Portfolio optimisation is another application of this technology in finance. Investment firms aim to maximise returns for a given level of risk, but this is an extremely complex problem. Balancing real life constraints such as market volatility and liquidity into these portfolios increases complexity further. Classical computing limits how quickly firms can rebalance portfolios in response to changing market conditions. Quantum computers can use their ability to identify optimal solutions from a large number of possible combinations could improve portfolio optimisation. This includes better diversification, faster responses to market volatility and portfolios more aligned with individual investor preferences.
+        </p>
       </div>
     )
   }
