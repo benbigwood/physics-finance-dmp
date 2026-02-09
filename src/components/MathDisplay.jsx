@@ -3,24 +3,27 @@ import katex from 'katex';
 import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const MathDisplay = ({ math }) => {
+const MathDisplay = ({ math, inline = false }) => {
     const containerRef = useRef(null);
     useEffect(() => {
         if (containerRef.current) {
             try {
                 katex.render(math, containerRef.current, {
                     throwOnError: false,
-                    displayMode: true,
+                    displayMode: !inline,
                     output: 'html' // Use HTML output
                 });
             } catch {
                 containerRef.current.innerText = math;
             }
         }
-    }, [math]);
-    return <div ref={containerRef} className="math-display" />;
+    }, [math, inline]);
+    return <span ref={containerRef} className={inline ? "math-inline" : "math-display"} />;
 };
 
-MathDisplay.propTypes = { math: PropTypes.string.isRequired };
+MathDisplay.propTypes = {
+    math: PropTypes.string.isRequired,
+    inline: PropTypes.bool
+};
 
 export default MathDisplay;

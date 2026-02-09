@@ -169,7 +169,10 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                     borderBottom: '1px solid var(--color-surface-hover)',
                                     marginBottom: 'var(--spacing-md)'
                                 }}>
-                                    {['story', 'explanation', 'simulation'].map(tab => (
+                                    {['story', 'explanation', 'simulation', 'derivation'].filter(tab => {
+                                        if (tab === 'derivation' && !activeEvent.derivationContent) return false;
+                                        return true;
+                                    }).map(tab => (
                                         <button
                                             key={tab}
                                             onClick={() => setActiveTab(tab)}
@@ -185,7 +188,9 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                 transition: 'all 0.3s ease'
                                             }}
                                         >
-                                            {tab === 'explanation' ? 'Physics-Finance' : (tab === 'story' && activeEvent.id === 'now' ? 'Quantum Computing' : tab)}
+                                            {tab === 'explanation' ? 'Physics-Finance' :
+                                                (tab === 'story' && activeEvent.id === 'now' ? 'Quantum Computing' :
+                                                    (tab === 'derivation' ? 'Derivation' : tab))}
                                         </button>
                                     ))}
                                 </div>
@@ -195,6 +200,12 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                     <div style={{ display: activeTab === 'story' ? 'block' : 'none' }}>
                                         <div className="custom-content fade-in">
                                             {activeEvent.customContent}
+                                        </div>
+                                    </div>
+
+                                    <div style={{ display: activeTab === 'derivation' ? 'block' : 'none' }}>
+                                        <div className="custom-content fade-in">
+                                            {activeEvent.derivationContent}
                                         </div>
                                     </div>
 

@@ -55,9 +55,7 @@ h6 {
 }
 
 .math-display {
-  padding: var(--spacing-sm);
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  display: block;
   overflow-x: auto;
   margin: var(--spacing-sm) 0;
   color: var(--color-accent);

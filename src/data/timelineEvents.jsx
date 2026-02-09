@@ -12,60 +12,359 @@ export const timelineEvents = [
     customContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          The Forgotten Physicist of the Bourse
+          John Bachelier, Financial Physics notes:
         </h2>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act I: The Illusion of Cause
+          Act I: The Illusion of cause.
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Paris, 1900. The turn of the century. At the Paris Bourse (stock exchange), the prevailing wisdom was that the market was a deterministic machine. Traders believed that if you understood the "causes"—wars, harvest reports, political scandals—you could predict the "effects" (price changes). In this worldview, randomness was merely a symptom of ignorance; a "noisy" signal that skilled traders could filter out to find the trend.
+          Before the 20th Century, prices were generally thought to move because of identifiable, explainable causes (news, harvest, wars ect).
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Enter <strong>Louis Bachelier</strong>, a student of the legendary mathematician Henri Poincaré. While others were trying to predict why prices moved, Bachelier asked a radical question: <em>What if the movement itself is fundamentally random?</em>
+          It was widely thought that skilled traders could analyse trends/cycles and make a profit in the financial markets.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The notion of randomness was just considered to be an acute lack of information with price fluctuations generally thought to be noisy however deterministic if a trader was provided with all the information associated with the stock.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Inherent randomness was yet to be conceptualised and hence no rigorous mathematical framework was in place for financial markets of the time.
+        </p>
+
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          The role of Louis Bachelier.
+        </h4>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Enter Louis Bachelier. Studying mathematics under Henri Poincare, Bachelier published his PHD thesis ‘ Theorie de la Speculation’ which was highly unconventional for the time.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Rather than addressing a classical problem in pure mathematics, he examined the mathematical structure of financial markets, specifically price fluctuations on the Paris Bourse.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          It should be said Louis Bachelier&apos;s contributions to option pricing and financial mathematics were disregarded at the time and not rediscovered until 50 years later.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Meanwhile Bachelier drew many conceptual parallels from the world of physics to finance intentionally.
         </p>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act II: The Drunken Walk
+          Act II:
         </h3>
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          The drunken walk:
+        </h4>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In his doctoral thesis, <em>Théorie de la Spéculation</em> (1900), Bachelier proposed a shocking idea: the market is in a state of "Statistical Equilibrium". He argued that at any given moment, the market has already priced in all available information—the "news" traders were so obsessed with was already stale. Therefore, the expected gain for a speculator is exactly zero.
+          Bachelier suggested the financial markets evolve randomly over time – an efficient market is one at statistical equilibrium (probabilistically, no one should be able to predict an efficient market).
+        </p>
+        <MathDisplay math="S_t = S_0 + \sigma W_t" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Similarly:
+        </p>
+        <MathDisplay math="dS_t = \sigma W_t" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          <MathDisplay math="S_t" inline={true} /> : price of asset at time <MathDisplay math="t" inline={true} />
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          To model this, Bachelier didn't use economics; he used the mathematics of heat and chaos. He modeled asset prices ($x_t$) as evolving randomly over time, governed by the equation:
-        </p>
-        <MathDisplay math="dx_t = \sigma dW_t" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Where $\sigma$ is volatility and $W_t$ represents a standard Wiener process.
+          <MathDisplay math="S_0" inline={true} /> : price of asset at <MathDisplay math="t = 0" inline={true} />
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          This was a historic moment in physics. Bachelier had mathematically described <strong>Brownian Motion</strong>—the random jittering of particles—five years before Albert Einstein would publish his famous 1905 paper on the subject.
+          <MathDisplay math="\sigma" inline={true} /> : volatility parameter ( Scale of price fluctuations)
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          <MathDisplay math="W_t" inline={true} /> : the Wiener process
+        </p>
+
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Key Mathematical Properties
+        </h4>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Exact distribution at every time:
+        </p>
+        <MathDisplay math="W_t \sim \mathcal{N}(0,t)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Variance grows linearly in time:
+        </p>
+        <MathDisplay math="\mathbb{E}[W_t^2] = t" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Square-root scaling law:
+        </p>
+        <MathDisplay math="W_{ct} \stackrel{d}{=} \sqrt{c} W_t" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Diffusion spreads proportionally to <MathDisplay math="\sqrt{t}" inline={true} />.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In a symmetric random walk, the position at the next step equals the current position plus a random increment that is equally likely to be positive or negative.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The expected position therefore, remains constant,
+        </p>
+        <MathDisplay math="\mathbb{E} [ X_n ]= X_0" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          while the variance grows linearly with the number of steps,
+        </p>
+        <MathDisplay math="\text{Var}( X_n )= n (\Delta x )^2" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Thus the process does not drift on average, but the uncertainty spreads over time, with the typical displacement increasing proportionally to root (n).
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          This linear growth of variance is the fundamental mechanism underlying diffusion in physics and volatility growth in Bachelier’s financial model.
         </p>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act III: The First Option Pricing Model
+          Act III: First Options pricing model:
+        </h3>
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Bachelier and the Heat Equation
+        </h4>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In 1900, Louis Bachelier applied the mathematical structure of Fourier’s heat equation to financial markets.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Fourier had shown that the distribution of heat in a solid evolves according to the diffusion equation,
+        </p>
+        <MathDisplay math="\partial_t u = \kappa \partial_{xx} u" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          which describes how temperature spreads smoothly over time. Bachelier recognised that the probability distribution of prices evolves in the same way.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In his model, the density of possible future prices satisfies
+        </p>
+        <MathDisplay math="\partial_t p  = \frac{\sigma ^2}{2} \partial_{xx} p" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          the same diffusion (heat) equation, with volatility playing the role of thermal diffusivity.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Just as heat spreads out from a hot spot, probability spreads out from the current price.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The centre remains unchanged on average, but uncertainty increases.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          When applied to option pricing, the equation appears in backward form:
+        </p>
+        <MathDisplay math="\partial_t V  + \frac{\sigma ^2}{2} \partial_{S} V  = 0" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          After a change of variables, this becomes the standard heat equation.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The option price evolves exactly like temperature diffusing through space.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          A payoff function at maturity is “smoothed” over time by Gaussian diffusion.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Inherently we can therefor take away that:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li>Market dynamics are diffusive: Information disperses like heat.</li>
+          <li>Volatility is a diffusion constant: It controls how fast uncertainty spreads</li>
+        </ul>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Naturally, the solution to the PDE is found to be:
+        </p>
+        <MathDisplay math="p(x,t \mid x_0, 0) = \frac{1}{\sqrt{2\pi\sigma^2t}} \exp \left( - \frac{(x-x_0)^2}{2\sigma^2t} \right)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The fundamental solution of the heat equation is the Gaussian distribution.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In Bachelier’s model, this means that conditional on today’s price, future prices are normally distributed with variance <MathDisplay math="\sigma^2( T - t )" inline={true} />.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The mean remains at the current price (in the zero-drift case), and volatility acts as the diffusion constant determining how quickly the distribution widens over time.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          This result was revolutionary because it provided an explicit probabilistic law for price movements and made option pricing analytically solvable.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          By identifying the market’s uncertainty with the Gaussian solution of the heat equation, Bachelier showed that financial fluctuations obey a precise diffusion structure — transforming speculation into a problem of mathematical analysis and establishing the first continuous-time pricing framework.
+        </p>
+      </div>
+    ),
+    derivationContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          Derivations section:
+        </h2>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          1. Discrete random walk and diffusive scaling
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Bachelier didn't just describe the randomness; he solved it. He derived the probability density function for price changes, recognizing it as a Gaussian (Normal) distribution that spreads out over time like a diffusing gas cloud:
+          Let <MathDisplay math="\Delta t > 0" inline={true} /> and <MathDisplay math="\Delta x > 0" inline={true} />. Define a discrete-time process <MathDisplay math="\{X_n\}_{n\ge0}" inline={true} /> by
         </p>
-        <MathDisplay math="p(x,t) = \frac{1}{\sqrt{2\pi\sigma^2 t}} \exp\left(-\frac{x^2}{2\sigma^2 t}\right)" />
+        <MathDisplay math="X_{n+1} = X_n + \xi_{n+1}, \quad X_0 = x_0," />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Using this, he derived the world's first Option Pricing Formula to value European call and put options. His formula expressed the price of a call ($C$) as a function of volatility and time:
+          where <MathDisplay math="\{\xi_n\}" inline={true} /> are i.i.d. with
         </p>
-        <MathDisplay math="C = \sigma \sqrt{T} \phi(d) + (x_0 - k)\Phi(d)" />
+        <MathDisplay math="\mathbb{P}(\xi_n = +\Delta x) = \mathbb{P}(\xi_n = -\Delta x) = \frac{1}{2}." />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Where $\phi(d)$ is the standard normal density and $\Phi(d)$ is the cumulative distribution.
+          (Interpretation: <MathDisplay math="X_n" inline={true} /> is particle position or “price displacement”; <MathDisplay math="\xi_n" inline={true} /> is collision impulse or price tick.)
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Let <MathDisplay math="t = n\Delta t" inline={true} /> and write <MathDisplay math="X(t) := X_n" inline={true} />.
+        </p>
+
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Lemma 1 (first two moments).
+        </h4>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          For <MathDisplay math="n \ge 0" inline={true} />,
+        </p>
+        <MathDisplay math="\mathbb{E}[X_n] = x_0, \quad \text{Var}(X_n) = n(\Delta x)^2." />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Proof. Since <MathDisplay math="\mathbb{E}[\xi_n] = 0" inline={true} />, <MathDisplay math="\mathbb{E}[X_n] = x_0 + \sum_{k=1}^n \mathbb{E}[\xi_k] = x_0" inline={true} />. Also <MathDisplay math="\text{Var}(\xi_n) = (\Delta x)^2" inline={true} /> and independence gives <MathDisplay math="\text{Var}(X_n) = \sum_{k=1}^n \text{Var}(\xi_k) = n(\Delta x)^2" inline={true} />. <MathDisplay math="\square" inline={true} />
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Define the diffusive scaling parameter
+        </p>
+        <MathDisplay math="\sigma^2 := \frac{(\Delta x)^2}{\Delta t}," />
+        <MathDisplay math="\text{Var}(X(t)) = \sigma^2 t." />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          (Physics notation often uses <MathDisplay math="2D" inline={true} /> in place of <MathDisplay math="\sigma^2" inline={true} />, i.e. <MathDisplay math="\sigma^2 = 2D" inline={true} />.)
         </p>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          The Legacy: The "Arithmetic" Flaw
+          2. Continuum limit: diffusion (heat) equation for the transition density
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Despite his brilliance, Bachelier's work was largely disregarded for over 50 years. His model had a physical flaw: it assumed <em>Arithmetic Brownian Motion</em> rather than Geometric. This meant that in Bachelier's model, if stock prices diffused long enough, they could mathematically become negative.
+          Let <MathDisplay math="p(x, t)" inline={true} /> denote the probability density (or, in discrete form, mass function) for <MathDisplay math="X(t)" inline={true} />.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          It wasn't until the 1950s that economists "rediscovered" his work. They fixed the flaw by switching to geometric logs (preventing negative prices), eventually leading to the Black-Scholes model you will cover next. But make no mistake: <strong>Louis Bachelier is the true founder of financial physics.</strong>
+          For one step of the walk,
         </p>
+        <MathDisplay math="p(x, t + \Delta t) = \frac{1}{2} p(x - \Delta x, t) + \frac{1}{2} p(x + \Delta x, t). \quad (2.1)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Assume <MathDisplay math="p" inline={true} /> is smooth enough for Taylor expansion. Expand (2.1) about <MathDisplay math="(x, t)" inline={true} />:
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Left-hand side:
+        </p>
+        <MathDisplay math="p(x, t + \Delta t) = p(x, t) + \Delta t \, \partial_t p(x, t) + O(\Delta t^2). \quad (2.2)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Right-hand side:
+        </p>
+        <MathDisplay math="p(x \pm \Delta x, t) = p(x, t) \pm \Delta x \, \partial_x p(x, t) + \frac{\Delta x^2}{2} \partial_{xx} p(x, t) + O(\Delta x^3). \quad (2.3)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Averaging the <MathDisplay math="\pm" inline={true} /> expansions cancels the odd term:
+        </p>
+        <MathDisplay math="\frac{1}{2} (p(x - \Delta x, t) + p(x + \Delta x, t)) = p(x, t) + \frac{\Delta x^2}{2} \partial_{xx} p(x, t) + O(\Delta x^4). \quad (2.4)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Substituting (2.2) and (2.4) into (2.1), cancelling <MathDisplay math="p(x, t)" inline={true} />, dividing by <MathDisplay math="\Delta t" inline={true} />, and taking the scaling limit <MathDisplay math="\Delta x^2 / \Delta t \to \sigma^2" inline={true} /> yields:
+        </p>
+
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Proposition 2 (diffusion/heat equation).
+        </h4>
+        <MathDisplay math="\partial_t p(x, t) = \frac{\sigma^2}{2} \partial_{xx} p(x, t). \quad (2.5)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          (Physics: heat/diffusion equation for a particle ensemble. Finance: diffusion equation for the distribution of price displacements.)
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          3. Fundamental solution (Gaussian/heat kernel)
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Consider the initial condition
+        </p>
+        <MathDisplay math="p(x, 0) = \delta(x - x_0). \quad (3.1)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Then the solution of (2.5)–(3.1) is the heat kernel:
+        </p>
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Proposition 3 (Gaussian transition density).
+        </h4>
+        <MathDisplay math="p(x, t \mid x_0, 0) = \frac{1}{\sqrt{2\pi\sigma^2 t}} \exp\left( - \frac{(x - x_0)^2}{2\sigma^2 t} \right). \quad (3.2)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          This has mean <MathDisplay math="x_0" inline={true} /> and variance <MathDisplay math="\sigma^2 t" inline={true} />, matching Lemma 1 in the scaling limit.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          4. Bachelier dynamics and the backward pricing PDE
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Assume the continuous-time limit of the random walk is the diffusion
+        </p>
+        <MathDisplay math="dX_t = \sigma dW_t, \quad (4.1)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="W_t" inline={true} /> is standard Brownian motion.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          (Physics: Brownian particle; Finance: Bachelier arithmetic Brownian model for price/forward-price displacement.)
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Let <MathDisplay math="V(x, t)" inline={true} /> be the value of a contingent claim written on <MathDisplay math="X_t" inline={true} /> with maturity <MathDisplay math="T" inline={true} /> and payoff
+        </p>
+        <MathDisplay math="V(x, T) = \Phi(x). \quad (4.2)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Apply Itô’s formula to <MathDisplay math="V(X_t, t)" inline={true} />:
+        </p>
+        <MathDisplay math="dV = \partial_t V dt + \partial_x V dX_t + \frac{1}{2} \partial_{xx} V (dX_t)^2. \quad (4.3)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Using (4.1), <MathDisplay math="(dX_t)^2 = \sigma^2 dt" inline={true} />, hence
+        </p>
+        <MathDisplay math="dV = \left( \partial_t V + \frac{\sigma^2}{2} \partial_{xx} V \right) dt + \sigma \partial_x V dW_t. \quad (4.4)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Define the self-financing hedged portfolio
+        </p>
+        <MathDisplay math="\Pi_t := V(X_t, t) - \Delta_t X_t, \quad \Delta_t := \partial_x V(X_t, t). \quad (4.5)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Then
+        </p>
+        <MathDisplay math="d\Pi_t = dV - \Delta_t dX_t = \left( \partial_t V + \frac{\sigma^2}{2} \partial_{xx} V \right) dt. \quad (4.6)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In Bachelier’s classical (forward/undiscounted) setting, the riskless drift is taken to vanish (equivalently, work in discounted units). The no-arbitrage condition requires the locally riskless portfolio to have zero drift:
+        </p>
+        <MathDisplay math="d\Pi_t = 0. \quad (4.7)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Therefore:
+        </p>
+
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Proposition 4 (Bachelier backward PDE).
+        </h4>
+        <MathDisplay math="\partial_t V(x, t) + \frac{\sigma^2}{2} \partial_{xx} V(x, t) = 0, \quad V(x, T) = \Phi(x). \quad (4.8)" />
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          5. Change of variables to the (forward) heat equation
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Introduce time-to-maturity
+        </p>
+        <MathDisplay math="\tau := T - t. \quad (5.1)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Then <MathDisplay math="\partial_t = -\partial_\tau" inline={true} />, and (4.8) becomes:
+        </p>
+        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+          Corollary 5 (heat equation form).
+        </h4>
+        <MathDisplay math="\partial_\tau V(x, \tau) = \frac{\sigma^2}{2} \partial_{xx} V(x, \tau), \quad V(x, 0) = \Phi(x). \quad (5.2)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Thus the pricing function satisfies the standard 1D heat equation in <MathDisplay math="\tau" inline={true} />.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          6. Solution of the pricing PDE (Gaussian convolution)
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          By the heat kernel representation, the solution of (5.2) is
+        </p>
+        <MathDisplay math="V(x, \tau) = \int_{-\infty}^{\infty} \Phi(y) \frac{1}{\sqrt{2\pi\sigma^2 \tau}} \exp\left( - \frac{(x - y)^2}{2\sigma^2 \tau} \right) dy. \quad (6.1)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Equivalently, using the Gaussian transition law (3.2),
+        </p>
+        <MathDisplay math="V(x, t) = \mathbb{E}[\Phi(X_T) \mid X_t = x], \quad X_T \mid X_t = x \sim \mathcal{N}(x, \sigma^2(T - t)). \quad (6.2)" />
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          7. Identification with the 1D heat equation
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The canonical 1D heat equation is
+        </p>
+        <MathDisplay math="\partial_t u = \kappa \partial_{xx} u. \quad (7.1)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Comparing (2.5) and (5.2) gives the identification
+        </p>
+        <MathDisplay math="\kappa = \frac{\sigma^2}{2}. \quad (7.2)" />
       </div>
     )
   },
@@ -149,7 +448,7 @@ export const timelineEvents = [
     id: "1973",
     year: "1973",
     title: "Black-Scholes Model",
-    physicist: "Ed Thorp, Fisher Black, Myron Scholes, Robert Merton",
+    physicist: "Fischer Black and Myron Scholes",
     physicsConnection: "Heat Diffusion Equation",
     image: "black-scholes.png",
     visualType: "heat-equation",
@@ -170,6 +469,14 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Thorp published his findings in <em>Beat the Dealer</em>, causing a panic in the casino industry. They got wise, changed the rules, added multiple decks, and eventually banned him. Having "solved" gambling, Thorp took his winnings and turned his eyes toward the “world’s biggest casino: the stock market”.
         </p>
+
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}Ed_thorp.png`}
+            alt="Ed Thorp"
+            style={{ borderRadius: '8px', maxWidth: '100%', maxHeight: '300px', border: '1px solid var(--color-surface-hover)' }}
+          />
+        </div>
 
         <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-surface-hover)' }} />
 
@@ -225,6 +532,14 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           It was the quickest adoption of a theoretical model in the history of economics. Within two years, Texas Instruments calculators came pre-programmed with the Black-Scholes formula and all traders used or at least knew of the Black-Scholes equation. Traders abandoned gut feeling for physics-based precision. This equation didn't just describe the market; it built the modern multi-trillion dollar derivatives industry, proving that the same laws governing heat transfer could also govern the flow of capital.
         </p>
+
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}Robert_Merton.png`}
+            alt="Robert Merton"
+            style={{ borderRadius: '8px', maxWidth: '100%', maxHeight: '300px', border: '1px solid var(--color-surface-hover)' }}
+          />
+        </div>
 
         <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', marginTop: '2rem' }}>
           * Robert Merton independently also solved this problem at the same time (but using applied stochastic calculus instead).
