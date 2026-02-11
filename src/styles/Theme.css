@@ -1,95 +1,157 @@
 :root {
-  /* Default to Light Mode Colors */
-  --color-bg: #f8fafc; /* Slate 50 */
-  --color-surface: #ffffff; /* White */
-  --color-surface-hover: #e2e8f0; /* Slate 200 */
-  --color-text-primary: #0f172a; /* Slate 900 */
-  --color-text-secondary: #64748b; /* Slate 500 */
-  
-  --color-accent: #0ea5e9; /* Sky 500 */
-  --color-accent-glow: rgba(14, 165, 233, 0.2);
-  
-  --color-finance: #475569; /* Slate 600 */
-  --color-highlight: #d97706; /* Amber 600 */
+  /* 
+   * Apple-Inspired Design System 
+   * Clean, High Contrast, Sophisticated
+   */
 
-  --gradient-main: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  /* Light Mode (Default) */
+  --color-bg: #fbfbfd; /* Off-white, slightly warm/grey */
+  --color-surface: rgba(255, 255, 255, 0.8); /* Translucent white */
+  --color-surface-hover: rgba(0, 0, 0, 0.05);
+  --color-border: rgba(0, 0, 0, 0.1);
   
+  --color-text-primary: #1d1d1f; /* Almost black */
+  --color-text-secondary: #86868b; /* Apple grey */
+  --color-text-tertiary: #6e6e73;
+  
+  --color-accent: #0071e3; /* Apple Blue */
+  --color-accent-hover: #0077ed;
+  --color-accent-glow: rgba(0, 113, 227, 0.3);
+  
+  --color-destructive: #ff3b30;
+  --color-success: #34c759;
+  --color-warning: #ff9500;
+
+  /* Finance specific accents - keep sophisticated */
+  --color-finance: #5e5ce6; /* Indigo */
+  --color-highlight: #bf5af2; /* Purple */
+
+  --gradient-main: #fbfbfd; /* Solid background is cleaner for Apple style */
+  --gradient-header: rgba(251, 251, 253, 0.8);
+
   /* Timeline */
-  --timeline-line-color: #cbd5e1; /* Slate 300 */
-  --timeline-node-size: 20px;
-  --timeline-node-hover-size: 30px;
+  --timeline-line-color: #d2d2d7;
+  --timeline-node-bg: #ffffff;
+  --timeline-node-border: #86868b;
 
   /* Typography */
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', sans-serif;
+  --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
 
   /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+  --spacing-xxl: 120px;
 
-  /* Transitions */
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08); /* Soft drop */
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.1); /* Deep depth */
+  
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px; /* Big rounded corners */
+  --radius-full: 9999px;
+
+  /* Effects */
+  --backdrop-blur: blur(20px) saturate(180%);
   --transition-fast: 0.2s ease;
-  --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* Ease-out-quad-ish */
+  --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* System Dark Mode Preference */
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0f172a;
-    --color-surface: #1e293b;
-    --color-surface-hover: #334155;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #94a3b8;
+    --color-bg: #000000; /* Deep black */
+    --color-surface: rgba(28, 28, 30, 0.8); /* Dark grey, translucent */
+    --color-surface-hover: rgba(255, 255, 255, 0.1);
+    --color-border: rgba(255, 255, 255, 0.15);
     
-    --color-accent: #38bdf8;
-    --color-accent-glow: rgba(56, 189, 248, 0.3);
+    --color-text-primary: #f5f5f7; /* Off-white */
+    --color-text-secondary: #86868b;
+    --color-text-tertiary: #6e6e73;
     
-    --color-finance: #cbd5e1;
-    --color-highlight: #f59e0b;
+    --color-accent: #2997ff; /* Lighter Blue */
+    --color-accent-hover: #409cff;
+    --color-accent-glow: rgba(41, 151, 255, 0.4);
 
-    --gradient-main: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --color-finance: #ac8e68; /* Goldish/Earthy for finance in dark mode */
+    --color-highlight: #ffcc00; /* Yellow */
+
+    --gradient-main: #000000;
+    --gradient-header: rgba(0, 0, 0, 0.8);
     
-    --timeline-line-color: #475569;
+    --timeline-line-color: #424245;
+    --timeline-node-bg: #1c1c1e;
+    --timeline-node-border: #6e6e73;
+    
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.5);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.6);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.7);
   }
 }
 
-/* Manual Dark Mode Override */
+/* Manual Overrides follow the same logic */
 [data-theme="dark"] {
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-hover: #334155;
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  
-  --color-accent: #38bdf8;
-  --color-accent-glow: rgba(56, 189, 248, 0.3);
-  
-  --color-finance: #cbd5e1;
-  --color-highlight: #f59e0b;
+    --color-bg: #000000;
+    --color-surface: rgba(28, 28, 30, 0.8);
+    --color-surface-hover: rgba(255, 255, 255, 0.1);
+    --color-border: rgba(255, 255, 255, 0.15);
+    
+    --color-text-primary: #f5f5f7;
+    --color-text-secondary: #86868b;
+    --color-text-tertiary: #6e6e73;
+    
+    --color-accent: #2997ff;
+    --color-accent-hover: #409cff;
+    --color-accent-glow: rgba(41, 151, 255, 0.4);
 
-  --gradient-main: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  
-  --timeline-line-color: #475569;
+    --color-finance: #ac8e68;
+    --color-highlight: #ffcc00;
+
+    --gradient-main: #000000;
+    --gradient-header: rgba(0, 0, 0, 0.8);
+    
+    --timeline-line-color: #424245;
+    --timeline-node-bg: #1c1c1e;
+    --timeline-node-border: #6e6e73;
+    
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.5);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.6);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.7);
 }
 
-/* Manual Light Mode Override */
 [data-theme="light"] {
-  --color-bg: #f8fafc;
-  --color-surface: #ffffff;
-  --color-surface-hover: #e2e8f0;
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #64748b;
-  
-  --color-accent: #0ea5e9;
-  --color-accent-glow: rgba(14, 165, 233, 0.2);
-  
-  --color-finance: #475569;
-  --color-highlight: #d97706;
+    --color-bg: #fbfbfd;
+    --color-surface: rgba(255, 255, 255, 0.8);
+    --color-surface-hover: rgba(0, 0, 0, 0.05);
+    --color-border: rgba(0, 0, 0, 0.1);
+    
+    --color-text-primary: #1d1d1f;
+    --color-text-secondary: #86868b;
+    --color-text-tertiary: #6e6e73;
+    
+    --color-accent: #0071e3;
+    --color-accent-hover: #0077ed;
+    --color-accent-glow: rgba(0, 113, 227, 0.3);
+    
+    --color-finance: #5e5ce6;
+    --color-highlight: #bf5af2;
 
-  --gradient-main: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  
-  --timeline-line-color: #cbd5e1;
+    --gradient-main: #fbfbfd;
+    --gradient-header: rgba(251, 251, 253, 0.8); /* Solid background is cleaner for Apple style */
+    
+    --timeline-line-color: #d2d2d7;
+    --timeline-node-bg: #ffffff;
+    --timeline-node-border: #86868b;
+
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
 }

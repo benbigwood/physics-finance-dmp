@@ -1,10 +1,9 @@
 import { useRef } from 'react';
-
 import TimelineNode from './TimelineNode';
 import PropTypes from 'prop-types';
 
 const Timeline = ({ events, activeEvent, onEventSelect }) => {
-    const scrollRef = useRef((null)); // Double parens to ensure valid JSX just in case, though null is fine.
+    const scrollRef = useRef(null);
 
     // Manual "Stock Market" Data Points (0-100 scale, where 100 is top)
     // Simulating a volatile but upward trend
@@ -18,46 +17,48 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
         95  // Future - Quantum leap
     ];
 
-    // Calculate coordinates
+    // Calculate coordinates using full width (0% to 100%)
     const points = events.map((event, index) => {
-        const x = (index / (events.length - 1)) * 100; // 0 to 100%
+        const x = (index / (events.length - 1)) * 100; // Map 0-1 to range
         const y = 100 - (marketData[index] || 50); // Invert for CSS/SVG (0 is top)
         return { x, y, id: event.id };
     });
 
     // Generate SVG Path
-    // M x0 y0 L x1 y1 ...
-    // We need to convert % to a coordinate system for SVG.
-    // Use viewBox="0 0 100 100" and preserveAspectRatio="none" to stretch.
     const pathD = points.map((p, i) => (
         `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`
     )).join(' ');
 
     // Area fill path (close the loop to the bottom)
+    // Area fill path (close the loop to the bottom)
     const areaPathD = `${pathD} L 100 100 L 0 100 Z`;
 
     return (
-        <div style={{ width: '100%', padding: '0 var(--spacing-md)', overflowX: 'auto', overflowY: 'hidden' }}>
-            <h2 style={{
+        <div style={{ width: '100%', padding: '0', overflow: 'visible' }}>
+            <div style={{
                 textAlign: 'center',
                 marginBottom: 'var(--spacing-lg)',
-                color: 'var(--color-accent)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                fontSize: '1rem'
             }}>
-                Evolution of Physics in Finance
-            </h2>
+                <h2 style={{
+                    color: 'var(--color-text-secondary)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    margin: 0
+                }}>
+                    Timeline Progression
+                </h2>
+            </div>
 
             <div
                 ref={scrollRef}
                 style={{
                     position: 'relative',
                     width: '100%',
-                    minWidth: '800px', // Ensure enough width for the graph
-                    height: '400px',
+                    height: '220px', // Slightly shorter for cleaner look
                     margin: '0 auto',
-                    maxWidth: '1200px',
+                    // maxWidth removed to ensure full width
                     padding: '20px 0' // Space for labels
                 }}
             >
@@ -72,9 +73,13 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
                     {/* Gradient Definition */}
                     <defs>
                         <linearGradient id="graphGradient" x1="0" x2="0" y1="0" y2="1">
-                            <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.2" />
+                            <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.15" />
                             <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
                         </linearGradient>
+                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="1" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
                     </defs>
 
                     {/* Area Fill */}
@@ -89,9 +94,13 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
                         d={pathD}
                         fill="none"
                         stroke="var(--color-accent)"
-                        strokeWidth="0.5" // Relative to 100x100 coord system
                         vectorEffect="non-scaling-stroke" // Keeps line width constant despite scaling
-                        style={{ strokeWidth: '2px' }} // CSS override for consistent thickness
+                        style={{
+                            strokeWidth: '2px',
+                            strokeLinecap: 'round',
+                            strokeLinejoin: 'round',
+                            filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))'
+                        }}
                     />
                 </svg>
 
@@ -104,6 +113,7 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
                             event={event}
                             isActive={activeEvent && activeEvent.id === event.id}
                             onClick={onEventSelect}
+                            isFirst={index === 0}
                             isLast={index === events.length - 1}
                             style={{
                                 left: `${point.x}%`,

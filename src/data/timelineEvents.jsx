@@ -382,7 +382,65 @@ export const timelineEvents = [
     impact: "Transformed portfolio management from qualitative stock picking to quantitative risk/return optimization.",
     image: "markowitz.jpg",
     visualType: "distribution",
-    sourceLink: "https://www.investopedia.com/terms/m/modernportfoliotheory.asp"
+    sourceLink: "https://www.investopedia.com/terms/m/modernportfoliotheory.asp",
+    customContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          The Birth of Modern Portfolio Theory
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Before 1952, there was no "theory" of investment. There was only stock picking. Benjamin Graham taught investors to look for undervalued companies, but nobody had mathematically defined the relationship between risk and return.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Harry Markowitz, a young graduate student at the University of Chicago, had a realization that would change finance forever: risk is not just about losing money on a single stock; it's about how stocks move together. By combining assets that don't move in perfect sync (low covariance), an investor could reduce their overall risk without sacrificing return.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          This was the "Free Lunch" of diversification. Markowitz didn't just write an essay; he wrote a mathematical proof. He treated a portfolio like a system of particles, using statistical variance to quantify "risk" and covariance to quantify "relationship."
+        </p>
+        <div style={{ margin: '2rem 0', padding: '1.5rem', background: 'var(--color-surface-hover)', borderRadius: '8px', borderLeft: '4px solid var(--color-accent)' }}>
+          <p style={{ fontStyle: 'italic', margin: 0 }}>
+            "A good portfolio is more than a long list of good stocks and bonds. It is a balanced whole, providing the investor with protections and opportunities with respect to a wide range of contingencies."
+            <br />
+            <span style={{ fontSize: '0.9rem', display: 'block', marginTop: '0.5rem', fontWeight: 600 }}>— Harry Markowitz</span>
+          </p>
+        </div>
+      </div>
+    ),
+    derivationContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          The Mathematics of Diversification
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Markowitz formulated the portfolio selection problem as a quadratic optimization problem.
+        </p>
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          Portfolio Return
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The expected return of a portfolio <MathDisplay math="E(R_p)" inline={true} /> is simply the weighted average of the individual assets' returns:
+        </p>
+        <MathDisplay math="E(R_p) = \sum_{i} w_i E(R_i)" />
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          Portfolio Variance (Risk)
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Crucially, the risk is <strong>not</strong> just the weighted average of individual risks. It includes the interaction terms (covariance):
+        </p>
+        <MathDisplay math="\sigma_p^2 = \sum_{i} \sum_{j} w_i w_j \sigma_{ij}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Where <MathDisplay math="\sigma_{ij}" inline={true} /> is the covariance between asset <MathDisplay math="i" inline={true} /> and asset <MathDisplay math="j" inline={true} />.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Using vector notation, with <MathDisplay math="\mathbf{w}" inline={true} /> as the weight vector and <MathDisplay math="\mathbf{\Sigma}" inline={true} /> as the covariance matrix:
+        </p>
+        <MathDisplay math="\sigma_p^2 = \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          This concise quadratic form is standard in physics for calculating energy or tensor properties in a system.
+        </p>
+      </div>
+    )
   },
   {
     id: "1960",
@@ -424,6 +482,63 @@ export const timelineEvents = [
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Although the work of Mandelbrot would not allow prices to be predicted it did hold great value elsewhere. He showed instability was inherent to financial systems and crashes were structurally inevitable which challenged the foundations of the Efficient Market Hypothesis and highlighted the limitations of standard risk measures.
+        </p>
+      </div>
+    ),
+    derivationContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          Self-Similarity and the Hurst Exponent
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          A non-trivial stochastic process <MathDisplay math="X=(X_t, t \ge 0)" inline={true} /> on <MathDisplay math="\mathbb{R}" inline={true} /> is said to be self-similar if for any <MathDisplay math="a > 0" inline={true} /> there exists a <MathDisplay math="H > 0" inline={true} /> such that
+        </p>
+        <MathDisplay math="(X_{at}, t > 0) \stackrel{d}{=} (a^H X_t, t > 0) \quad \text{(1)}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="\stackrel{d}{=}" inline={true} /> means equal in distribution. The Hurst exponent is used as a measure of long term memory of time series. Equation (1) is the mathematical foundation of a fractal time series which exhibits self-similarity. This is in the financial world because price series are fractal. i.e. the statistical properties of price fluctuations are the same after rescaling the time axis.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Defining the return over lagtime <MathDisplay math="\Delta t" inline={true} /> to be
+        </p>
+        <MathDisplay math="r_{\Delta t}(t) = X(t + \Delta t) - X(t) \quad \text{(2)}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Using the self-similarity of price equation (1) we obtain
+        </p>
+        <MathDisplay math="r_{a\tau} \stackrel{d}{=} a^H r_{\tau}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="\tau" inline={true} /> is the basic time unit measured (e.g 1 day, 1 week, etc). Let us consider <MathDisplay math="r_{a\tau} \stackrel{d}{=} a^H r_{\tau}" inline={true} />. Assuming stationary increments
+        </p>
+        <MathDisplay math="X(t + a\tau) - X(t) \stackrel{d}{=} X(a\tau) - X(0) \stackrel{d}{=} a^H(X(\tau) - X(0))" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Squaring LHS AND RHS
+        </p>
+        <MathDisplay math="(\Delta_{a\tau} X(t))^2 = a^{2H} (\Delta_{\tau} X(t))^2" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Taking expectations
+        </p>
+        <MathDisplay math="E[|\Delta_{a\tau} X(t)|^2] = a^{2H} E[|\Delta_{\tau} X(t)|^2]" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Hence
+        </p>
+        <MathDisplay math="E[\Delta X^2] \propto \Delta t^{2H} \quad \text{(3)}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Which is analogous to diffusion in physics. The Hurst Exponent shows:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li><MathDisplay math="H > 0.5" inline={true} />, roughly shows a trending market.</li>
+          <li><MathDisplay math="H < 0.5" inline={true} />, roughly shows sideways market.</li>
+          <li><MathDisplay math="H = 0.5" inline={true} /> indicates a random walk where prediction cannot be based on past data.</li>
+        </ul>
+        
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          Power Laws
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Fractals described how the market looks the same at all scales, it has no characteristic scale and has the same statistical structure at different scales. Mandelbrot proposed that the distribution of price changes had fat tails which were described by Power laws where the probability of a large price change <MathDisplay math="|r|" inline={true} /> is given by
+        </p>
+        <MathDisplay math="P(|r| > x) \sim x^{-\alpha} \quad \text{(4)}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="x" inline={true} /> is large. This was consistent with scale invariant fractal behavior.
         </p>
       </div>
     )
@@ -629,7 +744,50 @@ export const timelineEvents = [
     impact: "Enabled high-frequency trading and pricing of exotic instruments.",
     image: "computer.jpg",
     visualType: "simulation",
-    sourceLink: "https://commons.wikimedia.org/wiki/File:COMPUTATIONAL_FINANCE.jpg"
+    sourceLink: "https://commons.wikimedia.org/wiki/File:COMPUTATIONAL_FINANCE.jpg",
+    customContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          The Rise of Algorithms
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          As financial markets grew in complexity, the elegant analytical solutions of Black, Scholes, and Merton were no longer enough. Banks began creating "Exotic Options"—derivatives with complex features like path-dependence (Asian options) or knock-out barriers.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          These instruments couldn't be priced with a simple formula. They required <strong>numerical methods</strong>. Financial engineers turned to the same tool physicists used to model nuclear shielding and galaxy formation: the computer.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The 2000s saw the explosion of "Quants"—physicists and mathematicians flooding into Wall Street, armed with C++ code and Monte Carlo simulations. The trading floor ceased to be a place of shouting men in jackets and became a silent room of humming server racks.
+        </p>
+      </div>
+    ),
+    derivationContent: (
+      <div>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+          Monte Carlo Methods in Finance
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          When an exact solution to a differential equation is impossible, we simulate.
+        </p>
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          The Law of Large Numbers
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          To price an option, we simulate thousands (or millions) of possible future paths for the stock price, calculate the payoff for each path, and average them back to the present.
+        </p>
+        <MathDisplay math="V_0 = e^{-rT} \mathbb{E}[\text{Payoff}] \approx e^{-rT} \frac{1}{N} \sum_{i=1}^N \text{Payoff}(S_T^{(i)})" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Where <MathDisplay math="S_T^{(i)}" inline={true} /> is the <MathDisplay math="i" inline={true} />-th simulated price path.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Each path is generated by discretizing the Geometric Brownian Motion:
+        </p>
+        <MathDisplay math="S_{t+\Delta t} = S_t \exp\left( (\mu - \frac{\sigma^2}{2})\Delta t + \sigma \sqrt{\Delta t} Z \right)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Where <MathDisplay math="Z \sim \mathcal{N}(0,1)" inline={true} /> is a random draw from a standard normal distribution. This is the computational equivalent of solving the Feynman-Kac formula.
+        </p>
+      </div>
+    )
   },
   {
     id: "now",

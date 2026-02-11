@@ -4,16 +4,16 @@ const VolatilityGraph = () => {
     // Generate two paths: one low volatility, one high volatility
     // We'll use a simple random walk logic but pre-calculated for consistency or just hardcoded SVG path commands for smoothness
 
-    // Low Volatility Path (S1) - Steady growth, small noise
-    const pathS1 = "M 50 250 L 100 240 L 150 230 L 200 220 L 250 200 L 300 180 L 350 160 L 400 150 L 450 140";
+    // Low Volatility Path (S1) - Horizontal trend, small noise
+    const pathS1 = "M 50 150 L 100 145 L 150 155 L 200 148 L 250 152 L 300 147 L 350 153 L 400 149 L 450 150";
 
-    // High Volatility Path (S2) - Wild swings but similar trend
-    const pathS2 = "M 50 250 L 80 280 L 120 180 L 150 220 L 180 150 L 220 260 L 280 120 L 320 200 L 380 100 L 450 140";
+    // High Volatility Path (S2) - Horizontal trend, large swings
+    const pathS2 = "M 50 150 L 80 100 L 120 200 L 160 80 L 200 220 L 250 90 L 300 210 L 360 80 L 400 180 L 450 150";
 
     return (
         <div style={{
             width: '100%',
-            maxWidth: '500px',
+            maxWidth: '600px', // Slightly wider for better view
             margin: '2rem auto',
             padding: '1rem',
             background: 'var(--color-bg)',
@@ -30,6 +30,9 @@ const VolatilityGraph = () => {
                 <text x="460" y="255" fill="var(--color-text-secondary)" fontSize="12">Time</text>
                 <text x="40" y="40" fill="var(--color-text-secondary)" fontSize="12" textAnchor="end">Price</text>
 
+                {/* Reference Line (Mean) */}
+                <line x1="50" y1="150" x2="450" y2="150" stroke="var(--color-border)" strokeWidth="1" strokeDasharray="5,5" />
+
                 {/* S1 Path - Low Volatility */}
                 <motion.path
                     d={pathS1}
@@ -40,7 +43,7 @@ const VolatilityGraph = () => {
                     animate={{ pathLength: 1 }}
                     transition={{ duration: 2, ease: "easeInOut" }}
                 />
-                <text x="250" y="190" fill="#4ade80" fontSize="14" fontWeight="bold">S₁ (Low Vol)</text>
+                <text x="405" y="135" fill="#4ade80" fontSize="14" fontWeight="bold">Low Vol (σ₁)</text>
 
                 {/* S2 Path - High Volatility */}
                 <motion.path
@@ -52,7 +55,7 @@ const VolatilityGraph = () => {
                     animate={{ pathLength: 1 }}
                     transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
                 />
-                <text x="280" y="110" fill="#f43f5e" fontSize="14" fontWeight="bold">S₂ (High Vol)</text>
+                <text x="360" y="70" fill="#f43f5e" fontSize="14" fontWeight="bold">High Vol (σ₂)</text>
 
                 {/* Annotation arrow pointing to S2 */}
                 <defs>
@@ -60,8 +63,8 @@ const VolatilityGraph = () => {
                         <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-text-primary)" />
                     </marker>
                 </defs>
-                <line x1="380" y1="50" x2="380" y2="90" stroke="var(--color-text-primary)" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                <text x="380" y="40" fill="var(--color-text-primary)" fontSize="12" textAnchor="middle">S₂ clearly has higher volatility</text>
+                <line x1="200" y1="50" x2="200" y2="75" stroke="var(--color-text-primary)" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                <text x="200" y="40" fill="var(--color-text-primary)" fontSize="12" textAnchor="middle">Volatility = Spread around the mean</text>
 
             </svg>
             <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>

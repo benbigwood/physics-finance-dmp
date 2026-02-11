@@ -4,13 +4,16 @@ import ContentPanel from './components/ContentPanel';
 import Glossary from './components/Glossary';
 import Resources from './components/Resources';
 import { timelineEvents } from './data/timelineEvents.jsx';
+import HeroSection from './components/HeroSection';
+import './App.css';
 
 function App() {
   const [activeEvent, setActiveEvent] = useState(null);
   const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [filterType, setFilterType] = useState('All');
-  const [theme, setTheme] = useState('system'); // 'system', 'light', 'dark'
+  const [theme, setTheme] = useState('system');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Apply Theme
   useEffect(() => {
@@ -22,6 +25,24 @@ function App() {
     }
   }, [theme]);
 
+  // Scroll Listener with Hysteresis to prevent flickering
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Scrolled down past 200px -> Compact mode
+      if (scrollY > 200 && !isScrolled) {
+        setIsScrolled(true);
+      }
+      // Scrolled back up past 150px -> Expanded mode
+      // Using a lower threshold for expanding ensures clarity when nearly at top
+      else if (scrollY < 150 && isScrolled) {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isScrolled]);
+
   // Toggle function
   const toggleTheme = () => {
     setTheme(prev => {
@@ -31,15 +52,13 @@ function App() {
     });
   };
 
-  // const physicstypes = ['All', ...new Set(timelineEvents.map(e => e.visualType))];
-
   const filteredEvents = filterType === 'All'
     ? timelineEvents
     : timelineEvents.filter(e => e.visualType === filterType || (filterType === 'interactive-list' && e.id === 'now'));
 
   const handleEventSelect = (event) => {
     if (activeEvent && activeEvent.id === event.id) {
-      // Optional toggle logic
+      // Optional toggle off logic
     }
     setActiveEvent(event);
   };
@@ -50,109 +69,125 @@ function App() {
 
   return (
     <div style={{
-      maxWidth: '1440px',
+      width: '100%', // Fix: Ensure full width despite margin: 0 auto
+      maxWidth: '100%',
       margin: '0 auto',
-      padding: 'var(--spacing-md)',
       minHeight: '100vh',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      background: 'var(--color-bg)'
     }}>
-      <header style={{
-        textAlign: 'center',
-        marginBottom: 'var(--spacing-lg)',
-        paddingTop: 'var(--spacing-lg)',
-        position: 'relative'
+      {/* Sticky Glass Header */}
+      <header className="glass-header" style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        padding: '0.75rem 2rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, border-bottom 0.4s ease',
+        background: isScrolled ? 'var(--gradient-header)' : 'transparent',
+        backdropFilter: isScrolled ? 'var(--backdrop-blur)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'var(--backdrop-blur)' : 'none',
+        boxShadow: isScrolled ? 'var(--shadow-md)' : 'none',
+        borderBottom: isScrolled ? '1px solid var(--color-border)' : '1px solid transparent'
       }}>
-        <div style={{ position: 'absolute', top: 0, right: 0, display: 'flex', gap: '0.5rem' }}>
-          <button
-            onClick={toggleTheme}
-            style={{
-              padding: '0.5rem 1rem',
-              background: 'transparent',
-              border: '1px solid var(--color-accent)',
-              color: 'var(--color-accent)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.9rem',
-              minWidth: '80px'
-            }}
-          >
-            {theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark'}
-          </button>
-          <button
-            onClick={() => setIsResourcesOpen(true)}
-            style={{
-              padding: '0.5rem 1rem',
-              background: 'transparent',
-              border: '1px solid var(--color-accent)',
-              color: 'var(--color-accent)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.9rem'
-            }}
-          >
-            Resources
-          </button>
-          <button
-            onClick={() => setIsGlossaryOpen(true)}
-            style={{
-              padding: '0.5rem 1rem',
-              background: 'transparent',
-              border: '1px solid var(--color-accent)',
-              color: 'var(--color-accent)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.9rem'
-            }}
-          >
-            Glossary
-          </button>
-        </div>
 
-        <h1 style={{
-          fontSize: '3rem',
-          marginBottom: 'var(--spacing-xs)',
-          background: 'linear-gradient(to right, #f1f5f9, #94a3b8)',
-          display: 'inline-block',
-          backgroundClip: 'text',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          color: 'white'
+        {/* Top Utility Bar */}
+        <div style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}>
-          PHYSICS IN FINANCE
-        </h1>
-        <p style={{ color: 'var(--color-accent)', letterSpacing: '2px', textTransform: 'uppercase' }}>
-          From Speculation to Simulation
-        </p>
+          <div style={{
+            fontWeight: 600,
+            fontSize: '0.9rem',
+            color: 'var(--color-text-tertiary)',
+            opacity: isScrolled ? 0 : 1, // Fade out logo text on scroll
+            width: isScrolled ? 0 : 'auto',
+            overflow: 'hidden',
+            transition: 'opacity 0.3s ease, width 0.4s ease'
+          }}>
+            PiS DMP
+          </div>
 
-        {/* Filter Controls */}
-        <div style={{ marginTop: 'var(--spacing-md)', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-          <select
-            value={filterType}
-            onChange={(e) => setFilterType(e.target.value)}
-            style={{
-              padding: '0.5rem',
-              borderRadius: '4px',
-              background: 'var(--color-surface)',
-              color: 'var(--color-text-primary)',
-              border: '1px solid var(--color-surface-hover)'
-            }}
-          >
-            <option value="All">All Concepts</option>
-            {/* We can map unique physicsConnections or visualTypes */}
-            {Array.from(new Set(timelineEvents.map(e => e.visualType))).map(type => (
-              <option key={type} value={type}>
-                {type.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
-              </option>
-            ))}
-          </select>
+          {/* Center Title - Appears when Scrolled */}
+          <div style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontWeight: 600,
+            fontSize: '1.2rem',
+            color: 'var(--color-text-primary)',
+            fontFamily: 'var(--font-display)',
+            opacity: isScrolled ? 1 : 0,
+            pointerEvents: isScrolled ? 'auto' : 'none',
+            transition: 'opacity 0.4s ease'
+          }}>
+            Physics in Finance
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', marginLeft: 'auto' }}>
+            <button
+              onClick={toggleTheme}
+              style={{
+                padding: '0.4rem 0.8rem',
+                background: 'var(--color-surface-hover)',
+                border: 'none',
+                borderRadius: 'var(--radius-full)',
+                color: 'var(--color-text-secondary)',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                transition: 'all 0.2s ease',
+                minWidth: '60px'
+              }}
+            >
+              {theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark'}
+            </button>
+            <button
+              onClick={() => setIsResourcesOpen(true)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--color-text-secondary)',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 500
+              }}
+            >
+              Resources
+            </button>
+            <button
+              onClick={() => setIsGlossaryOpen(true)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--color-text-secondary)',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 500
+              }}
+            >
+              Glossary
+            </button>
+          </div>
         </div>
-      </header>
+      </header >
 
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <HeroSection filterType={filterType} setFilterType={setFilterType} />
+
+      <main style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        maxWidth: '100%', // Full width
+        margin: '0 auto',
+        padding: '2rem'
+      }}>
+
         <Timeline
           events={filteredEvents}
           activeEvent={activeEvent}
@@ -167,11 +202,11 @@ function App() {
         {!activeEvent && (
           <div style={{
             textAlign: 'center',
-            marginTop: 'var(--spacing-xl)',
-            color: 'var(--color-text-secondary)',
-            opacity: 0.5
+            marginTop: '6rem',
+            color: 'var(--color-text-tertiary)',
+            opacity: 0.6
           }}>
-            <p>Select a node on the timeline to explore.</p>
+            <p style={{ fontSize: '1.2rem', fontWeight: 300 }}>Select a timeline node to explore the physics behind financial history.</p>
           </div>
         )}
       </main>
@@ -181,14 +216,15 @@ function App() {
 
       <footer style={{
         textAlign: 'center',
-        marginTop: 'var(--spacing-lg)',
-        color: 'var(--color-text-secondary)',
-        fontSize: '0.8rem',
-        padding: 'var(--spacing-md)'
+        marginTop: '6rem',
+        borderTop: '1px solid var(--color-border)',
+        padding: '3rem',
+        color: 'var(--color-text-tertiary)',
+        fontSize: '0.85rem'
       }}>
         <p>© {new Date().getFullYear()} Physics in Finance Educational Project</p>
       </footer>
-    </div>
+    </div >
   );
 }
 
