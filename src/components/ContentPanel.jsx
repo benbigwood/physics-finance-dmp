@@ -5,6 +5,7 @@ import BlackScholesSimulation from './BlackScholesSimulation';
 import BrownianMotionSimulation from './BrownianMotionSimulation';
 import FractalMarketSimulation from './FractalMarketSimulation';
 import FractalTreeComparison from './FractalTreeComparison';
+import BachelierSimulation from './BachelierSimulation';
 
 const ExplanationView = ({ activeEvent }) => (
     <div className="explanation-view" style={{ animation: 'fadeIn 0.5s ease' }}>
@@ -121,109 +122,103 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                     &times;
                 </button>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '350px 1fr', gap: 'var(--spacing-xl)', width: '100%' }}>
-                    {/* Left Column: Image & Figures */}
-                    <div>
-                        <div style={{
-                            width: '100%',
-                            aspectRatio: '4/3',
-                            background: 'var(--color-surface-hover)',
-                            borderRadius: 'var(--radius-lg)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            overflow: 'hidden',
-                            marginBottom: 'var(--spacing-md)',
-                            boxShadow: 'var(--shadow-md)'
-                        }}>
-                            {/* Image Display */}
-                            {activeEvent.image ? (
-                                <img
-                                    src={`${import.meta.env.BASE_URL}${activeEvent.image}`}
-                                    alt={activeEvent.title}
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover'
-                                    }}
-                                />
-                            ) : (
-                                <div style={{ textAlign: 'center', color: 'var(--color-text-tertiary)' }}>
-                                    No Image Available
-                                    <br />
-                                    <small style={{ opacity: 0.7 }}>Visual: {activeEvent.visualType}</small>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: (activeTab.includes('simulation') ? '1fr' : '350px 1fr'),
+                    gap: 'var(--spacing-xl)',
+                    width: '100%'
+                }}>
+                    {/* Left Column: Image & Figures - Hide on Simulation Tabs */}
+                    {!activeTab.includes('simulation') && (
+                        <div>
+                            <div style={{
+                                width: '100%',
+                                aspectRatio: '4/3',
+                                background: 'var(--color-surface-hover)',
+                                borderRadius: 'var(--radius-lg)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                overflow: 'hidden',
+                                marginBottom: 'var(--spacing-md)',
+                                boxShadow: 'var(--shadow-md)'
+                            }}>
+                                {/* Image Display */}
+                                {activeEvent.image ? (
+                                    <img
+                                        src={`${import.meta.env.BASE_URL}${activeEvent.image}`}
+                                        alt={activeEvent.title}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                ) : (
+                                    <div style={{ textAlign: 'center', color: 'var(--color-text-tertiary)' }}>
+                                        No Image Available
+                                        <br />
+                                        <small style={{ opacity: 0.7 }}>Visual: {activeEvent.visualType}</small>
+                                    </div>
+                                )}
+                            </div>
+
+                            {activeEvent.sourceLink && (
+                                <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-md)' }}>
+                                    <button
+                                        onClick={scrollToReferences}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            fontSize: '0.8rem',
+                                            color: 'var(--color-text-tertiary)',
+                                            cursor: 'pointer',
+                                            padding: 0
+                                        }}
+                                    >
+                                        Source
+                                    </button>
+                                </div>
+                            )}
+
+                            <div style={{ padding: '0 var(--spacing-xs)' }}>
+                                <h4 style={{
+                                    color: 'var(--color-text-primary)',
+                                    marginBottom: '0.2rem',
+                                    fontSize: '1.2rem'
+                                }}>
+                                    {activeEvent.physicist}
+                                </h4>
+                                <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Key Figure</p>
+                            </div>
+
+                            {/* Side Images */}
+                            {activeEvent.sideImages && (
+                                <div style={{ marginTop: 'var(--spacing-lg)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                    {activeEvent.sideImages.map((img, index) => (
+                                        <div key={index}>
+                                            <div style={{
+                                                width: '100%',
+                                                borderRadius: 'var(--radius-md)',
+                                                overflow: 'hidden',
+                                                border: '1px solid var(--color-border)',
+                                                boxShadow: 'var(--shadow-sm)'
+                                            }}>
+                                                <img
+                                                    src={`${import.meta.env.BASE_URL}${img.src}`}
+                                                    alt={img.caption}
+                                                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                                                />
+                                            </div>
+                                            <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', color: 'var(--color-text-secondary)' }}>
+                                                {img.caption}
+                                            </p>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
                         </div>
-
-                        {activeEvent.sourceLink && (
-                            <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-md)' }}>
-                                <button
-                                    onClick={scrollToReferences}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        fontSize: '0.8rem',
-                                        color: 'var(--color-text-tertiary)',
-                                        cursor: 'pointer',
-                                        padding: 0
-                                    }}
-                                >
-                                    Source
-                                </button>
-                            </div>
-                        )}
-
-                        <div style={{ padding: '0 var(--spacing-xs)' }}>
-                            <h4 style={{
-                                color: 'var(--color-text-primary)',
-                                marginBottom: '0.2rem',
-                                fontSize: '1.2rem'
-                            }}>
-                                {activeEvent.physicist}
-                            </h4>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Key Figure</p>
-                        </div>
-
-                        {/* Side Images */}
-                        {activeEvent.sideImages && (
-                            <div style={{ marginTop: 'var(--spacing-lg)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                {activeEvent.sideImages.map((img, index) => (
-                                    <div key={index}>
-                                        <div style={{
-                                            width: '100%',
-                                            borderRadius: 'var(--radius-md)',
-                                            overflow: 'hidden',
-                                            border: '1px solid var(--color-border)',
-                                            boxShadow: 'var(--shadow-sm)'
-                                        }}>
-                                            <img
-                                                src={`${import.meta.env.BASE_URL}${img.src}`}
-                                                alt={img.caption}
-                                                style={{ width: '100%', height: 'auto', display: 'block' }}
-                                            />
-                                        </div>
-                                        <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', color: 'var(--color-text-secondary)' }}>
-                                            {img.caption}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-
-                        {hasTabs && activeTab === 'simulation' && (
-                            <div style={{
-                                marginTop: '2rem',
-                                padding: '1rem',
-                                background: 'var(--color-surface-hover)',
-                                borderRadius: 'var(--radius-md)',
-                                color: 'var(--color-accent)',
-                                textAlign: 'center'
-                            }}>
-                                <small>Interactive Controls</small>
-                            </div>
-                        )}
-                    </div>
+                    )}
 
                     {/* Right Column: Content */}
                     <div>
@@ -237,7 +232,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                     borderRadius: 'var(--radius-md)',
                                     marginBottom: 'var(--spacing-lg)'
                                 }}>
-                                    {['story', 'explanation', 'simulation'].map(tab => (
+                                    {(activeEvent.id === '1900' ? ['story', 'explanation', 'simulation', 'simulation 2'] : ['story', 'explanation', 'simulation']).map(tab => (
                                         <button
                                             key={tab}
                                             onClick={() => setActiveTab(tab)}
@@ -262,44 +257,62 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                 </div>
 
                                 {/* Tab Content */}
-                                <div className="tab-content" style={{ minHeight: '400px' }}>
+                                <div className="tab-content" style={{ minHeight: '400px', position: 'relative' }}>
+
+                                    {/* Story Tab */}
                                     <div style={{ display: activeTab === 'story' ? 'block' : 'none' }}>
                                         <div className="custom-content fade-in">
                                             {activeEvent.customContent}
                                         </div>
                                     </div>
 
+                                    {/* Explanation Tab */}
                                     <div style={{ display: activeTab === 'explanation' ? 'block' : 'none' }}>
-                                        <ExplanationView activeEvent={activeEvent} />
+                                        <div className="fade-in">
+                                            <ExplanationView activeEvent={activeEvent} />
+                                        </div>
                                     </div>
 
-                                    <div style={{ display: activeTab === 'simulation' ? 'block' : 'none' }}>
-                                        {activeEvent.id === '1973' ? (
-                                            <BlackScholesSimulation />
-                                        ) : activeEvent.id === '1900' ? (
-                                            <BrownianMotionSimulation />
-                                        ) : activeEvent.id === '1960' ? (
-                                            <>
-                                                <FractalMarketSimulation />
-                                                <FractalTreeComparison />
-                                            </>
-                                        ) : (
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                height: '400px',
-                                                background: 'var(--color-surface-hover)',
-                                                borderRadius: 'var(--radius-md)',
-                                                color: 'var(--color-text-secondary)'
-                                            }}>
-                                                <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.3 }}>⚛️</span>
-                                                <h3>Interactive Simulation</h3>
-                                                <p>Coming Soon...</p>
-                                            </div>
-                                        )}
+                                    {/* Simulation Tab */}
+                                    <div style={{ display: activeTab === 'simulation' ? 'block' : 'none', height: '100%' }}>
+                                        <div className="fade-in" style={{ height: '100%' }}>
+                                            {activeEvent.id === '1973' ? (
+                                                <BlackScholesSimulation />
+                                            ) : activeEvent.id === '1900' ? (
+                                                <BrownianMotionSimulation />
+                                            ) : activeEvent.id === '1960' ? (
+                                                <>
+                                                    <FractalMarketSimulation />
+                                                    <FractalTreeComparison />
+                                                </>
+                                            ) : (
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    height: '400px',
+                                                    background: 'var(--color-surface-hover)',
+                                                    borderRadius: 'var(--radius-md)',
+                                                    color: 'var(--color-text-secondary)'
+                                                }}>
+                                                    <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.3 }}>⚛️</span>
+                                                    <h3>Interactive Simulation</h3>
+                                                    <p>Coming Soon...</p>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
+
+                                    {/* Bachelier Simulation Tab (Specific to 1900/Bachelier) */}
+                                    {activeEvent.id === '1900' && (
+                                        <div style={{ display: activeTab === 'simulation 2' ? 'block' : 'none', height: '100%', minHeight: '600px' }}>
+                                            <div className="fade-in" style={{ height: '100%' }}>
+                                                <BachelierSimulation />
+                                            </div>
+                                        </div>
+                                    )}
+
                                 </div>
                             </>
                         ) : (

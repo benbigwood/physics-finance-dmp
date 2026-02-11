@@ -176,7 +176,7 @@ function App() {
         </div>
       </header >
 
-      <HeroSection filterType={filterType} setFilterType={setFilterType} />
+      <HeroSection />
 
       <main style={{
         flex: 1,
@@ -189,9 +189,11 @@ function App() {
       }}>
 
         <Timeline
-          events={filteredEvents}
+          events={timelineEvents}
           activeEvent={activeEvent}
           onEventSelect={handleEventSelect}
+          filterType={filterType}
+          setFilterType={setFilterType}
         />
 
         <ContentPanel
@@ -222,7 +224,7 @@ function App() {
         color: 'var(--color-text-tertiary)',
         fontSize: '0.85rem'
       }}>
-        <p>© {new Date().getFullYear()} Physics in Finance Educational Project</p>
+        <p>© {new Date().getFullYear()} Physics in Finance Digital Media Project by Alicia Lamplugh, Ben Bigwood, Will Kitching, Will Murray, and Alex Wilkinson</p>
       </footer>
     </div >
   );

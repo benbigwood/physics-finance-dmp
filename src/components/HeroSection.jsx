@@ -1,11 +1,11 @@
 import React from 'react';
 import { timelineEvents } from '../data/timelineEvents';
 
-const HeroSection = ({ filterType, setFilterType }) => {
+const HeroSection = () => {
     return (
         <div style={{
             textAlign: 'center',
-            padding: '4rem 2rem',
+            padding: '4rem 2rem 2rem 2rem',
             width: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -29,46 +29,20 @@ const HeroSection = ({ filterType, setFilterType }) => {
                 From Speculation to Simulation
             </p>
 
-            {/* Filter Controls (Segmented Control Style) */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <div style={{
-                    background: 'var(--color-surface-hover)',
-                    padding: '4px',
-                    borderRadius: 'var(--radius-md)',
-                    display: 'inline-flex',
-                    alignItems: 'center'
-                }}>
-                    <span style={{
-                        fontSize: '0.85rem',
-                        color: 'var(--color-text-tertiary)',
-                        padding: '0 10px',
-                        marginRight: '4px'
-                    }}>
-                        Explore:
-                    </span>
-                    <select
-                        value={filterType}
-                        onChange={(e) => setFilterType(e.target.value)}
-                        style={{
-                            padding: '6px 12px',
-                            borderRadius: '8px',
-                            background: 'transparent',
-                            color: 'var(--color-text-primary)',
-                            border: 'none',
-                            outline: 'none',
-                            fontSize: '0.95rem',
-                            fontWeight: 500,
-                            cursor: 'pointer'
-                        }}
-                    >
-                        <option value="All">All Concepts</option>
-                        {Array.from(new Set(timelineEvents.map(e => e.visualType))).map(type => (
-                            <option key={type} value={type}>
-                                {type.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+            <div style={{
+                maxWidth: '800px',
+                margin: '0 auto 0 auto',
+                color: 'var(--color-text-secondary)',
+                lineHeight: '1.6',
+                fontSize: '1rem',
+                textAlign: 'center'
+            }}>
+                <p style={{ marginBottom: '1rem' }}>
+                    This platform is engineered for university physics students to bridge the gap between theoretical physics and financial modelling. It elucidates how physical principles—from Brownian motion to Quantum mechanics—have evolved to describe market dynamics, offering a rigorous insight into the 'Physics of Finance'. Ultimately, this serves to highlight the versatility of physics, demonstrating how its models can be adapted to unravel complexity in fields far beyond the natural sciences.
+                </p>
+                <p>
+                    <strong>Navigating the Timeline:</strong> The interactive graph below represents the chronological evolution of these models. Select any node to explore the historical context, the mathematical derivations linking physics to finance, and interactive simulations that visualize these theories in real-time.
+                </p>
             </div>
         </div>
     );

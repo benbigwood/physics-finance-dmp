@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import TimelineNode from './TimelineNode';
 import PropTypes from 'prop-types';
+import { timelineEvents } from '../data/timelineEvents';
 
-const Timeline = ({ events, activeEvent, onEventSelect }) => {
+const Timeline = ({ events, activeEvent, onEventSelect, filterType, setFilterType }) => {
     const scrollRef = useRef(null);
 
     // Manual "Stock Market" Data Points (0-100 scale, where 100 is top)
@@ -17,10 +18,12 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
         95  // Future - Quantum leap
     ];
 
-    // Calculate coordinates using full width (0% to 100%)
+    // Calculate coordinates using padded width (5% to 95%) to prevent clipping
+    const PADDING_X = 5;
     const points = events.map((event, index) => {
-        const x = (index / (events.length - 1)) * 100; // Map 0-1 to range
-        const y = 100 - (marketData[index] || 50); // Invert for CSS/SVG (0 is top)
+        const xRaw = (index / (events.length - 1));
+        const x = PADDING_X + xRaw * (100 - 2 * PADDING_X); // Map 0-1 to 5-95%
+        const y = 100 - (marketData[index] || 50);
         return { x, y, id: event.id };
     });
 
@@ -29,15 +32,27 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
         `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`
     )).join(' ');
 
-    // Area fill path (close the loop to the bottom)
-    // Area fill path (close the loop to the bottom)
-    const areaPathD = `${pathD} L 100 100 L 0 100 Z`;
+    // Area fill path (drop down to bottom, close loop)
+    const areaPathD = `${pathD} L ${points[points.length - 1].x} 100 L ${points[0].x} 100 Z`;
+
+    // Mapping for user-friendly labels in the Explore dropdown
+    const typeLabels = {
+        'brownian': 'Brownian Motion',
+        'distribution': 'Modern Portfolio Theory',
+        'fractal': 'Fractal Markets',
+        'heat-equation': 'Black-Scholes Model',
+        'simulation': 'Computational Finance',
+        'interactive-list': 'Quantum & Future Finance'
+    };
 
     return (
         <div style={{ width: '100%', padding: '0', overflow: 'visible' }}>
             <div style={{
-                textAlign: 'center',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'baseline',
                 marginBottom: 'var(--spacing-lg)',
+                padding: '0 10px'
             }}>
                 <h2 style={{
                     color: 'var(--color-text-secondary)',
@@ -49,6 +64,47 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
                 }}>
                     Timeline Progression
                 </h2>
+
+                {/* Compact Filter Controls */}
+                <div style={{
+                    background: 'var(--color-surface-hover)',
+                    padding: '2px 4px',
+                    borderRadius: 'var(--radius-md)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    transform: 'translateY(4px)' // Small alignment adjustment
+                }}>
+                    <span style={{
+                        fontSize: '0.75rem',
+                        color: 'var(--color-text-tertiary)',
+                        padding: '0 6px',
+                        fontWeight: 500
+                    }}>
+                        Explore:
+                    </span>
+                    <select
+                        value={filterType}
+                        onChange={(e) => setFilterType(e.target.value)}
+                        style={{
+                            padding: '4px 8px',
+                            borderRadius: '4px',
+                            background: 'transparent',
+                            color: 'var(--color-text-primary)',
+                            border: 'none',
+                            outline: 'none',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            cursor: 'pointer'
+                        }}
+                    >
+                        <option value="All">All Concepts</option>
+                        {Array.from(new Set(timelineEvents.map(e => e.visualType))).map(type => (
+                            <option key={type} value={type}>
+                                {typeLabels[type] || type.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <div
@@ -107,11 +163,14 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
                 {/* Nodes */}
                 {events.map((event, index) => {
                     const point = points[index];
+                    const isRelevant = filterType === 'All' || event.visualType === filterType;
+
                     return (
                         <TimelineNode
                             key={event.id}
                             event={event}
                             isActive={activeEvent && activeEvent.id === event.id}
+                            isDimmed={!isRelevant}
                             onClick={onEventSelect}
                             isFirst={index === 0}
                             isLast={index === events.length - 1}
@@ -130,7 +189,9 @@ const Timeline = ({ events, activeEvent, onEventSelect }) => {
 Timeline.propTypes = {
     events: PropTypes.array.isRequired,
     activeEvent: PropTypes.object,
-    onEventSelect: PropTypes.func.isRequired
+    onEventSelect: PropTypes.func.isRequired,
+    filterType: PropTypes.string,
+    setFilterType: PropTypes.func
 };
 
 export default Timeline;

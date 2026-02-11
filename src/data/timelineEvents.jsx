@@ -529,7 +529,7 @@ export const timelineEvents = [
           <li><MathDisplay math="H < 0.5" inline={true} />, roughly shows sideways market.</li>
           <li><MathDisplay math="H = 0.5" inline={true} /> indicates a random walk where prediction cannot be based on past data.</li>
         </ul>
-        
+
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
           Power Laws
         </h3>
@@ -642,8 +642,8 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           <MathDisplay math="S \leftarrow" inline={true} /> Current Stock Price<br />
           <MathDisplay math="X \leftarrow" inline={true} /> Strike/Exercise price (price to buy the share/option at said later date)<br />
-          <MathDisplay math="T \in" inline={true} /> Time to expiration<br />
-          <MathDisplay math="P \in" inline={true} /> Premium (purchasing of the contract).<br />
+          <MathDisplay math="T \leftarrow" inline={true} /> Time to expiration<br />
+          <MathDisplay math="P \leftarrow" inline={true} /> Premium (purchasing of the contract).<br />
           <MathDisplay math="r \leftarrow" inline={true} /> Risk-free interest rate (theoretical concept of interest rate on "risk-free" asset. Uses government bonds as closest proxy).<br />
           <MathDisplay math="\sigma \leftarrow" inline={true} /> Standard deviation of log returns (volatility).
         </p>
@@ -667,17 +667,17 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Start with your portfolio value
         </p>
-        <MathDisplay math="\Pi = V(S,t) - \Delta S" />
+        <MathDisplay math="\Pi = V(S,t) - \Delta S \quad (1)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           We want to know how <MathDisplay math="\Pi" inline={true} /> changes over time. This is
         </p>
-        <MathDisplay math="d\Pi = dV - \Delta dS" />
+        <MathDisplay math="d\Pi = dV - \Delta dS \quad (2)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Using Brownian motion,
         </p>
-        <MathDisplay math="dS = \mu S dt + \sigma S dW" />
+        <MathDisplay math="dS = \mu S dt + \sigma S dW \quad (3)." />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           <MathDisplay math="\mu S dt \rightarrow" inline={true} /> General Stock drift<br />
           <MathDisplay math="\sigma S dW \rightarrow" inline={true} /> The volatility / The uncertainty in <MathDisplay math="dS" inline={true} /> from Brownian motion
@@ -686,49 +686,49 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Using Ito's Lemma because <MathDisplay math="V" inline={true} /> is a function of the stochastic process <MathDisplay math="S" inline={true} />, i.e.
         </p>
-        <MathDisplay math="dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\frac{\partial^{2}V}{\partial S^{2}}dS^{2}" />
+        <MathDisplay math="dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\frac{\partial^{2}V}{\partial S^{2}}dS^{2} \quad (4)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          To Simplify by eliminating the <MathDisplay math="dS^{2}" inline={true} /> use 1. to form
+          To simplify, we square equation (3) to find <MathDisplay math="dS^{2}" inline={true} />:
         </p>
-        <MathDisplay math="dS^{2} = \mu^{2}S^{2}dt^{2} + 2\mu\sigma S^{2}dtdW + \sigma^{2}S^{2}dW^{2}" />
+        <MathDisplay math="dS^{2} = \mu^{2}S^{2}dt^{2} + 2\mu\sigma S^{2}dtdW + \sigma^{2}S^{2}dW^{2} \quad (5)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           In Stochastic calculus <MathDisplay math="dt^{2}=0" inline={true} />, <MathDisplay math="dtdW=0" inline={true} /> and <MathDisplay math="dWdW=dt" inline={true} />. So Hence,
         </p>
-        <MathDisplay math="dS^{2} = \sigma^{2}S^{2}dt" />
+        <MathDisplay math="dS^{2} = \sigma^{2}S^{2}dt \quad (6)." />
 
-        <MathDisplay math="dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}}dt" />
+        <MathDisplay math="dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}}dt \quad (7)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Substitute <MathDisplay math="dV" inline={true} /> into <MathDisplay math="d\Pi" inline={true} />.
         </p>
-        <MathDisplay math="d\Pi = \left( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \right)dt + \left( \frac{\partial V}{\partial S} - \Delta \right)dS" />
+        <MathDisplay math="d\Pi = \left( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \right)dt + \left( \frac{\partial V}{\partial S} - \Delta \right)dS \quad (8)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Set
         </p>
-        <MathDisplay math="\Delta = \frac{\partial V}{\partial S}" />
+        <MathDisplay math="\Delta = \frac{\partial V}{\partial S} \quad (9)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Thus
         </p>
-        <MathDisplay math="d\Pi = \left( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \right)dt" />
+        <MathDisplay math="d\Pi = \left( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \right)dt \quad (10)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           The portfolio is now just a <MathDisplay math="dt" inline={true} /> term so it's deterministic. It carries no risk So, it yields a risk free rate <MathDisplay math="r" inline={true} /> So,
         </p>
-        <MathDisplay math="d\Pi = r\Pi dt" />
+        <MathDisplay math="d\Pi = r\Pi dt \quad (11)" />
         <MathDisplay math="= r(V - \Delta S)dt" />
 
-        <MathDisplay math="d\Pi = \left( rV - rS\frac{\partial V}{\partial S} \right)dt" />
+        <MathDisplay math="d\Pi = \left( rV - rS\frac{\partial V}{\partial S} \right)dt \quad (12)." />
 
-        <MathDisplay math="rV - rS\frac{\partial V}{\partial S} = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}}" />
+        <MathDisplay math="rV - rS\frac{\partial V}{\partial S} = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} \quad (13)." />
 
-        <MathDisplay math="\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} - rV = 0" />
+        <MathDisplay math="\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} - rV = 0 \quad (14)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The Black-Scholes equation.
+          This is the Black-Scholes equation.
         </p>
       </div>
     )
@@ -792,7 +792,7 @@ export const timelineEvents = [
   {
     id: "now",
     year: "NOW",
-    title: "What's Happening Now?",
+    title: "What's happening next?",
     physicist: "Current Researchers",
     physicsConnection: (
       <div style={{ lineHeight: '1.6' }}>

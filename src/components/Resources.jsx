@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { resourcesData } from '../data/resourcesData';
 
 const Resources = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('library');
@@ -16,7 +17,7 @@ const Resources = ({ isOpen, onClose }) => {
                         onClick={onClose}
                         style={{
                             position: 'fixed',
-                            top: 0, 0: 0,
+                            top: 0,
                             left: 0,
                             right: 0,
                             bottom: 0,
@@ -90,26 +91,41 @@ const Resources = ({ isOpen, onClose }) => {
                         </div>
 
                         {activeTab === 'library' && (
-                            <div style={{ display: 'grid', gap: '1rem' }}>
-                                <div style={{ padding: '1rem', border: '1px solid var(--color-surface-hover)', borderRadius: '8px' }}>
-                                    <h3 style={{ color: 'var(--color-text-primary)' }}>Seminal Papers</h3>
-                                    <ul style={{ listStyle: 'none', marginTop: '0.5rem', paddingLeft: 0 }}>
-                                        <li style={{ marginBottom: '0.5rem' }}>
-                                            <a href="#" style={{ color: 'var(--color-accent)', textDecoration: 'none' }}>L. Bachelier (1900). "Théorie de la spéculation"</a>
-                                            <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>The first mathematical model of Brownian motion.</p>
-                                        </li>
-                                        <li style={{ marginBottom: '0.5rem' }}>
-                                            <a href="#" style={{ color: 'var(--color-accent)', textDecoration: 'none' }}>Black, F., & Scholes, M. (1973). "The Pricing of Options and Corporate Liabilities"</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div style={{ padding: '1rem', border: '1px solid var(--color-surface-hover)', borderRadius: '8px' }}>
-                                    <h3 style={{ color: 'var(--color-text-primary)' }}>Books & Further Reading</h3>
-                                    <ul style={{ listStyle: 'none', marginTop: '0.5rem', paddingLeft: 0 }}>
-                                        <li style={{ marginBottom: '0.5rem' }}><em>The Physics of Wall Street</em> by James Owen Weatherall</li>
-                                        <li style={{ marginBottom: '0.5rem' }}><em>My Life as a Quant</em> by Emanuel Derman</li>
-                                    </ul>
-                                </div>
+                            <div style={{ display: 'grid', gap: '2rem' }}>
+                                {resourcesData.map((category, index) => (
+                                    <div key={index} style={{ padding: '1.5rem', border: '1px solid var(--color-surface-hover)', borderRadius: '12px', background: 'rgba(255,255,255,0.03)' }}>
+                                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', marginBottom: '1rem', borderBottom: '1px solid var(--color-accent)', paddingBottom: '0.5rem', display: 'inline-block' }}>
+                                            {category.category}
+                                        </h3>
+                                        <ul style={{ listStyle: 'none', paddingLeft: 0, marginTop: '1rem' }}>
+                                            {category.items.map((item, idx) => (
+                                                <li key={idx} style={{ marginBottom: '1.5rem', paddingLeft: '1rem', borderLeft: '2px solid var(--color-surface-hover)' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                                        <a
+                                                            href={item.link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            style={{
+                                                                color: 'var(--color-accent)',
+                                                                textDecoration: 'none',
+                                                                fontWeight: 600,
+                                                                fontSize: '1.1rem',
+                                                                transition: 'color 0.2s ease'
+                                                            }}
+                                                            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-highlight)'}
+                                                            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
+                                                        >
+                                                            {item.title}
+                                                        </a>
+                                                        {item.year && <span style={{ fontSize: '0.9rem', color: 'var(--color-text-tertiary)' }}>({item.year})</span>}
+                                                    </div>
+                                                    <p style={{ margin: '0.2rem 0', color: 'var(--color-text-secondary)', fontWeight: 500 }}>{item.author}</p>
+                                                    <p style={{ margin: '0.2rem 0', fontSize: '0.9rem', color: 'var(--color-text-tertiary)', lineHeight: '1.4' }}>{item.description}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
                             </div>
                         )}
 

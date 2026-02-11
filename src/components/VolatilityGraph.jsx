@@ -13,8 +13,8 @@ const VolatilityGraph = () => {
     return (
         <div style={{
             width: '100%',
-            maxWidth: '600px', // Slightly wider for better view
-            margin: '2rem auto',
+            maxWidth: '400px', // Reduced size
+            margin: '1.5rem auto', // Slightly reduced margin
             padding: '1rem',
             background: 'var(--color-bg)',
             borderRadius: '8px',
@@ -67,9 +67,6 @@ const VolatilityGraph = () => {
                 <text x="200" y="40" fill="var(--color-text-primary)" fontSize="12" textAnchor="middle">Volatility = Spread around the mean</text>
 
             </svg>
-            <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
-                Figure 1: Visual representation of Volatility (<span style={{ fontFamily: 'KaTeX_Main, Times New Roman, serif' }}>σ</span>)
-            </p>
         </div>
     );
 };
