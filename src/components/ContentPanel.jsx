@@ -4,55 +4,118 @@ import PropTypes from 'prop-types';
 import BlackScholesSimulation from './BlackScholesSimulation';
 import BrownianMotionSimulation from './BrownianMotionSimulation';
 import FractalMarketSimulation from './FractalMarketSimulation';
-import FractalTreeComparison from './FractalTreeComparison';
+import ModernPortfolioSimulation from './ModernPortfolioSimulation';
+
 import BachelierSimulation from './BachelierSimulation';
+import DiffusionSimulation from './DiffusionSimulation';
 
-const ExplanationView = ({ activeEvent }) => (
-    <div className="explanation-view" style={{ animation: 'fadeIn 0.5s ease' }}>
-        <h2 style={{
-            fontSize: '2.5rem',
-            marginBottom: 'var(--spacing-sm)',
-            color: 'var(--color-text-primary)'
-        }}>
-            {activeEvent.title} <span style={{ color: 'var(--color-text-tertiary)', fontWeight: 400 }}>{activeEvent.year}</span>
-        </h2>
+const ExplanationView = ({ activeEvent }) => {
+    const [activeSubTab, setActiveSubTab] = useState(activeEvent.subPaths ? activeEvent.subPaths[0].id : null);
 
-        {/* Derivation Content Merged Here */}
-        {activeEvent.derivationContent && (
-            <div style={{
-                marginTop: 'var(--spacing-md)',
-                paddingTop: 'var(--spacing-md)',
-                borderTop: '1px solid var(--color-border)'
+    useEffect(() => {
+        if (activeEvent.subPaths && activeEvent.subPaths.length > 0) {
+            setActiveSubTab(activeEvent.subPaths[0].id);
+        }
+    }, [activeEvent.id]); // Reset when event ID changes
+
+    const currentSubPath = activeEvent.subPaths?.find(p => p.id === activeSubTab);
+
+    return (
+        <div className="explanation-view" style={{ animation: 'fadeIn 0.5s ease' }}>
+            <h2 style={{
+                fontSize: '2.5rem',
+                marginBottom: 'var(--spacing-sm)',
+                color: 'var(--color-text-primary)'
             }}>
-                {activeEvent.derivationContent}
-            </div>
-        )}
+                {activeEvent.title} {activeEvent.year !== 'NOW' && <span style={{ color: 'var(--color-text-tertiary)', fontWeight: 400 }}>{activeEvent.year}</span>}
+            </h2>
 
-        {/* Sub-paths for "What's Happening Now?" */}
-        {activeEvent.subPaths && (
-            <div style={{ marginTop: 'var(--spacing-lg)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                {activeEvent.subPaths.map(path => (
-                    <motion.div
-                        key={path.id}
-                        whileHover={{ scale: 1.02, backgroundColor: 'var(--color-surface-hover)' }}
-                        style={{
-                            padding: '1.5rem',
-                            background: 'var(--color-surface)',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: 'var(--radius-md)',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease',
-                            boxShadow: 'var(--shadow-sm)'
-                        }}
-                    >
-                        <h5 style={{ color: 'var(--color-accent)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>{path.title}</h5>
-                        <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', margin: 0 }}>{path.desc}</p>
-                    </motion.div>
-                ))}
-            </div>
-        )}
-    </div>
-);
+            {/* Derivation Content / Intro */}
+            {activeEvent.derivationContent && (
+                <div style={{
+                    marginTop: 'var(--spacing-md)',
+                    paddingTop: 'var(--spacing-md)',
+                    borderTop: '1px solid var(--color-border)'
+                }}>
+                    {activeEvent.derivationContent}
+                </div>
+            )}
+
+            {/* Interactive Sub-tabs */}
+            {activeEvent.subPaths && (
+                <div style={{ marginTop: 'var(--spacing-lg)' }}>
+                    {/* Sub-tab Navigation */}
+                    <div style={{
+                        display: 'flex',
+                        gap: '0.5rem',
+                        marginBottom: '1.5rem',
+                        flexWrap: 'wrap'
+                    }}>
+                        {activeEvent.subPaths.map((path, index) => (
+                            <button
+                                key={path.id}
+                                onClick={() => setActiveSubTab(path.id)}
+                                style={{
+                                    padding: '0.8rem 1.5rem',
+                                    background: activeSubTab === path.id ? 'var(--color-accent)' : 'var(--color-surface)',
+                                    color: activeSubTab === path.id ? '#fff' : 'var(--color-text-secondary)',
+                                    border: activeSubTab === path.id ? 'none' : '1px solid var(--color-border)',
+                                    borderRadius: '8px', // More rectangular
+                                    cursor: 'pointer',
+                                    fontSize: '1rem',
+                                    fontWeight: 600,
+                                    transition: 'all 0.2s ease',
+                                    whiteSpace: 'nowrap',
+                                    boxShadow: activeSubTab === path.id ? '0 2px 8px rgba(0,0,0,0.1)' : 'none',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem'
+                                }}
+                            >
+                                <span style={{
+                                    opacity: activeSubTab === path.id ? 1 : 0.7,
+                                    fontSize: '0.9em',
+                                    fontWeight: activeSubTab === path.id ? 700 : 500
+                                }}>
+                                    {index + 1}.
+                                </span>
+                                {path.title}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Sub-tab Content */}
+                    <div style={{ animation: 'fadeIn 0.3s ease' }}>
+                        {currentSubPath?.content || (
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: '1fr 1fr',
+                                gap: '1rem'
+                            }}>
+                                {/* Fallback to old grid view if no content property */}
+                                {activeEvent.subPaths.map(path => (
+                                    <motion.div
+                                        key={path.id}
+                                        whileHover={{ scale: 1.02, backgroundColor: 'var(--color-surface-hover)' }}
+                                        style={{
+                                            padding: '1.5rem',
+                                            background: 'var(--color-surface)',
+                                            border: '1px solid var(--color-border)',
+                                            borderRadius: 'var(--radius-md)',
+                                        }}
+                                    >
+                                        <h5 style={{ color: 'var(--color-accent)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>{path.title}</h5>
+                                        <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', margin: 0 }}>{path.desc}</p>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
 ExplanationView.propTypes = { activeEvent: PropTypes.object.isRequired };
 
@@ -124,12 +187,12 @@ const ContentPanel = ({ activeEvent, onClose }) => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: (activeTab.includes('simulation') ? '1fr' : '350px 1fr'),
+                    gridTemplateColumns: (activeTab.includes('simulation') || activeTab === 'calculator' ? '1fr' : '350px 1fr'),
                     gap: 'var(--spacing-xl)',
                     width: '100%'
                 }}>
-                    {/* Left Column: Image & Figures - Hide on Simulation Tabs */}
-                    {!activeTab.includes('simulation') && (
+                    {/* Left Column: Image & Figures - Hide on Simulation/Calculator Tabs */}
+                    {!activeTab.includes('simulation') && activeTab !== 'calculator' && (
                         <div>
                             <div style={{
                                 width: '100%',
@@ -155,42 +218,64 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                         }}
                                     />
                                 ) : (
-                                    <div style={{ textAlign: 'center', color: 'var(--color-text-tertiary)' }}>
-                                        No Image Available
-                                        <br />
-                                        <small style={{ opacity: 0.7 }}>Visual: {activeEvent.visualType}</small>
+                                    <div style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: '100%',
+                                        height: '100%',
+                                        background: 'radial-gradient(circle, rgba(var(--color-accent-rgb, 99,102,241), 0.15) 0%, transparent 70%)'
+                                    }}>
+                                        <span style={{
+                                            fontSize: '8rem',
+                                            fontWeight: 700,
+                                            color: 'var(--color-accent)',
+                                            textShadow: '0 0 30px rgba(var(--color-accent-rgb, 99,102,241), 0.4)',
+                                            lineHeight: 1,
+                                            opacity: 0.85
+                                        }}>?</span>
                                     </div>
                                 )}
                             </div>
 
-                            {activeEvent.sourceLink && (
-                                <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-md)' }}>
-                                    <button
-                                        onClick={scrollToReferences}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            fontSize: '0.8rem',
-                                            color: 'var(--color-text-tertiary)',
-                                            cursor: 'pointer',
-                                            padding: 0
-                                        }}
-                                    >
-                                        Source
-                                    </button>
-                                </div>
+
+
+                            {activeEvent.imageCaption && (
+                                <p style={{
+                                    fontSize: '0.85rem',
+                                    marginTop: '0.5rem',
+                                    color: 'var(--color-accent)',
+                                    fontStyle: 'italic',
+                                    textAlign: 'center',
+                                    fontWeight: 500
+                                }}>
+                                    {activeEvent.imageCaption}
+                                </p>
                             )}
 
-                            <div style={{ padding: '0 var(--spacing-xs)' }}>
-                                <h4 style={{
-                                    color: 'var(--color-text-primary)',
-                                    marginBottom: '0.2rem',
-                                    fontSize: '1.2rem'
-                                }}>
-                                    {activeEvent.physicist}
-                                </h4>
-                                <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Key Figure</p>
-                            </div>
+                            <p
+                                onClick={scrollToReferences}
+                                style={{
+                                    fontSize: '0.8rem',
+                                    marginTop: '0.5rem',
+                                    color: 'var(--color-text-secondary)',
+                                    cursor: 'pointer',
+                                    textDecoration: 'underline',
+                                    textDecorationColor: 'transparent',
+                                    transition: 'all 0.2s ease'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.color = 'var(--color-accent)';
+                                    e.target.style.textDecorationColor = 'var(--color-accent)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.color = 'var(--color-text-secondary)';
+                                    e.target.style.textDecorationColor = 'transparent';
+                                }}
+                            >
+                                {activeEvent.physicist}
+                            </p>
 
                             {/* Side Images */}
                             {activeEvent.sideImages && (
@@ -210,7 +295,26 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                     style={{ width: '100%', height: 'auto', display: 'block' }}
                                                 />
                                             </div>
-                                            <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', color: 'var(--color-text-secondary)' }}>
+                                            <p
+                                                onClick={scrollToReferences}
+                                                style={{
+                                                    fontSize: '0.8rem',
+                                                    marginTop: '0.5rem',
+                                                    color: 'var(--color-text-secondary)',
+                                                    cursor: 'pointer',
+                                                    textDecoration: 'underline',
+                                                    textDecorationColor: 'transparent',
+                                                    transition: 'all 0.2s ease'
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.target.style.color = 'var(--color-accent)';
+                                                    e.target.style.textDecorationColor = 'var(--color-accent)';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.target.style.color = 'var(--color-text-secondary)';
+                                                    e.target.style.textDecorationColor = 'transparent';
+                                                }}
+                                            >
                                                 {img.caption}
                                             </p>
                                         </div>
@@ -232,7 +336,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                     borderRadius: 'var(--radius-md)',
                                     marginBottom: 'var(--spacing-lg)'
                                 }}>
-                                    {(activeEvent.id === '1900' ? ['story', 'explanation', 'simulation', 'simulation 2'] : ['story', 'explanation', 'simulation']).map(tab => (
+                                    {(activeEvent.id === '1973' ? ['story', 'explanation', 'calculator', 'diffusion'] : ['story', 'explanation', 'simulation']).map(tab => (
                                         <button
                                             key={tab}
                                             onClick={() => setActiveTab(tab)}
@@ -251,7 +355,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                             }}
                                         >
                                             {tab === 'explanation' ? 'Physics-Finance' :
-                                                (tab === 'story' && activeEvent.id === 'now' ? 'Quantum Computing' : tab)}
+                                                (tab === 'story' && activeEvent.id === 'now' ? 'Modern Finance' : tab)}
                                         </button>
                                     ))}
                                 </div>
@@ -273,18 +377,62 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                         </div>
                                     </div>
 
-                                    {/* Simulation Tab */}
-                                    <div style={{ display: activeTab === 'simulation' ? 'block' : 'none', height: '100%' }}>
+                                    {/* Simulation / Calculator Tab */}
+                                    <div style={{ display: activeTab === 'calculator' || activeTab === 'simulation' ? 'block' : 'none', height: '100%' }}>
                                         <div className="fade-in" style={{ height: '100%' }}>
                                             {activeEvent.id === '1973' ? (
                                                 <BlackScholesSimulation />
                                             ) : activeEvent.id === '1900' ? (
-                                                <BrownianMotionSimulation />
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+                                                    {/* Simulation 1: Brownian Motion */}
+                                                    <div>
+                                                        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+                                                            1. The Physics: Brownian Motion
+                                                        </h3>
+                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
+                                                            In 1827, botanist Robert Brown observed pollen grains jiggling erratically in water. This "Brownian motion" was later explained by Einstein as the result of invisible water molecules colliding with the pollen. In this simulation, the large particle represents the price (or pollen), and the smaller particles represent the random market orders (or water molecules) kicking it around.
+                                                        </p>
+                                                        <BrownianMotionSimulation />
+                                                    </div>
+
+                                                    {/* Simulation 2: Bachelier Model */}
+                                                    <div>
+                                                        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '2rem' }}>
+                                                            2. The Finance: Bachelier's Diffusion
+                                                        </h3>
+                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
+                                                            Louis Bachelier took this physical concept and applied it to finance. He realized that if prices are driven by countless independent shocks (like the collisions above), their probability distribution spreads out over time exactly like heat diffusing through a metal rod.
+                                                        </p>
+                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
+                                                            Unlike the single particle above, this simulation generates thousands of potential price paths to visualize the market's "risk envelope". The bell curve on the right shows the Normal (Gaussian) distribution of possible future prices, widening as time (volatility) increases.
+                                                        </p>
+                                                        <BachelierSimulation />
+                                                    </div>
+                                                </div>
                                             ) : activeEvent.id === '1960' ? (
                                                 <>
                                                     <FractalMarketSimulation />
-                                                    <FractalTreeComparison />
                                                 </>
+                                            ) : activeEvent.id === '1952' ? (
+                                                <ModernPortfolioSimulation />
+                                            ) : activeEvent.id === 'now' ? (
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    height: '400px',
+                                                    background: 'var(--color-surface-hover)',
+                                                    borderRadius: 'var(--radius-md)',
+                                                    color: 'var(--color-text-secondary)',
+                                                    textAlign: 'center',
+                                                    padding: '2rem'
+                                                }}>
+                                                    <span style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔮</span>
+                                                    <p style={{ fontSize: '1.2rem', fontStyle: 'italic' }}>
+                                                        "Well if we had a real simulation, we’d be quite successful! - see in the physics-finance simulation for simulations of some of the concepts."
+                                                    </p>
+                                                </div>
                                             ) : (
                                                 <div style={{
                                                     display: 'flex',
@@ -304,14 +452,12 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                         </div>
                                     </div>
 
-                                    {/* Bachelier Simulation Tab (Specific to 1900/Bachelier) */}
-                                    {activeEvent.id === '1900' && (
-                                        <div style={{ display: activeTab === 'simulation 2' ? 'block' : 'none', height: '100%', minHeight: '600px' }}>
-                                            <div className="fade-in" style={{ height: '100%' }}>
-                                                <BachelierSimulation />
-                                            </div>
+                                    {/* Diffusion Tab */}
+                                    <div style={{ display: activeTab === 'diffusion' ? 'block' : 'none', height: '100%' }}>
+                                        <div className="fade-in" style={{ height: '100%' }}>
+                                            <DiffusionSimulation />
                                         </div>
-                                    )}
+                                    </div>
 
                                 </div>
                             </>
@@ -322,27 +468,136 @@ const ContentPanel = ({ activeEvent, onClose }) => {
 
                         {/* References Section */}
                         <div id="reference-section" style={{
-                            marginTop: '4rem',
-                            paddingTop: '2rem',
-                            borderTop: '1px solid var(--color-border)',
+                            marginTop: '3rem',
+                            padding: '1.5rem',
+                            background: 'var(--color-surface-hover)',
+                            borderRadius: 'var(--radius-md)',
                             color: 'var(--color-text-secondary)',
-                            fontSize: '0.85rem'
+                            fontSize: '0.8rem',
+                            border: '1px solid var(--color-border)'
                         }}>
-                            <h4 style={{ marginBottom: '1rem', color: 'var(--color-text-primary)' }}>References & Sources</h4>
+                            <h4 style={{
+                                marginBottom: '0.75rem',
+                                color: 'var(--color-text-primary)',
+                                fontSize: '0.9rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em',
+                                opacity: 0.8
+                            }}>
+                                References & Sources
+                            </h4>
                             <ul style={{ listStyle: 'none', padding: 0 }}>
                                 {activeEvent.sourceLink && (
-                                    <li style={{ marginBottom: '0.8rem' }}>
-                                        <strong style={{ color: 'var(--color-text-primary)' }}>Main Visual:</strong>
-                                        <a href={activeEvent.sourceLink} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '0.5rem', color: 'var(--color-accent)' }}>View Source</a>
+                                    <li style={{ marginBottom: '0.6rem' }}>
+                                        <strong style={{ color: 'var(--color-text-primary)' }}>
+                                            {activeEvent.imageCaption || "Main Visual"}
+                                        </strong>
+                                        <span style={{ color: 'var(--color-text-secondary)', margin: '0 0.5rem' }}>
+                                            from {activeEvent.imageSource || "Source"}
+                                        </span>
+                                        <div style={{ marginTop: '0.1rem' }}>
+                                            <a
+                                                href={activeEvent.sourceLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                style={{
+                                                    color: 'var(--color-finance)',
+                                                    fontSize: '0.9em',
+                                                    textDecoration: 'underline',
+                                                    textDecorationColor: 'var(--color-border)',
+                                                    wordBreak: 'break-all',
+                                                    transition: 'all 0.2s ease',
+                                                    opacity: 0.85
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.target.style.color = 'var(--color-finance)';
+                                                    e.target.style.textDecorationColor = 'var(--color-finance)';
+                                                    e.target.style.opacity = '1';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.target.style.color = 'var(--color-finance)';
+                                                    e.target.style.textDecorationColor = 'var(--color-border)';
+                                                    e.target.style.opacity = '0.85';
+                                                }}
+                                            >
+                                                {activeEvent.sourceLink}
+                                            </a>
+                                        </div>
                                     </li>
                                 )}
                                 {activeEvent.sideImages && activeEvent.sideImages.map((img, i) => (
                                     img.sourceLink && (
-                                        <li key={i} style={{ marginBottom: '0.8rem' }}>
+                                        <li key={i} style={{ marginBottom: '0.6rem' }}>
                                             <strong style={{ color: 'var(--color-text-primary)' }}>{img.caption}:</strong>
-                                            <a href={img.sourceLink} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '0.5rem', color: 'var(--color-accent)' }}>View Source</a>
+                                            <div style={{ marginTop: '0.1rem' }}>
+                                                <a
+                                                    href={img.sourceLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    style={{
+                                                        color: 'var(--color-finance)',
+                                                        fontSize: '0.85em',
+                                                        textDecoration: 'underline',
+                                                        textDecorationColor: 'var(--color-border)',
+                                                        wordBreak: 'break-all',
+                                                        transition: 'all 0.2s ease',
+                                                        opacity: 0.85
+                                                    }}
+                                                    onMouseEnter={(e) => {
+                                                        e.target.style.color = 'var(--color-finance)';
+                                                        e.target.style.textDecorationColor = 'var(--color-finance)';
+                                                        e.target.style.opacity = '1';
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        e.target.style.color = 'var(--color-finance)';
+                                                        e.target.style.textDecorationColor = 'var(--color-border)';
+                                                        e.target.style.opacity = '0.85';
+                                                    }}
+                                                >
+                                                    {img.sourceLink}
+                                                </a>
+                                            </div>
                                         </li>
                                     )
+                                ))}
+                                {activeEvent.references && activeEvent.references.map((ref, i) => (
+                                    <li key={`ref-${i}`} style={{ marginBottom: '0.8rem' }}>
+                                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                            <span style={{ color: 'var(--color-finance)', fontWeight: 600, minWidth: '20px', opacity: 0.9 }}>[{ref.id}]</span>
+                                            <div>
+                                                <strong style={{ color: 'var(--color-text-primary)', display: 'block', fontSize: '0.85rem' }}>{ref.title}</strong>
+                                                {ref.author && <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>{ref.author}</span>}
+                                                <div style={{ marginTop: '0.1rem' }}>
+                                                    <a
+                                                        href={ref.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        style={{
+                                                            color: 'var(--color-finance)',
+                                                            fontSize: '0.85em',
+                                                            textDecoration: 'underline',
+                                                            textDecorationColor: 'var(--color-border)',
+                                                            wordBreak: 'break-all',
+                                                            transition: 'all 0.2s ease',
+                                                            opacity: 0.85
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            e.target.style.color = 'var(--color-finance)';
+                                                            e.target.style.textDecorationColor = 'var(--color-finance)';
+                                                            e.target.style.opacity = '1';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.target.style.color = 'var(--color-finance)';
+                                                            e.target.style.textDecorationColor = 'var(--color-border)';
+                                                            e.target.style.opacity = '0.85';
+                                                        }}
+                                                    >
+                                                        {ref.link}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 ))}
                             </ul>
                         </div>

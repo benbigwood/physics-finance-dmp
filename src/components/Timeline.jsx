@@ -13,7 +13,7 @@ const Timeline = ({ events, activeEvent, onEventSelect, filterType, setFilterTyp
         45, // 1952 - Big jump (MPT)
         30, // 1960 - Drop (Fractals/Chaos)
         60, // 1973 - Steady rise (Black-Scholes)
-        80, // 2000 - Tech boom
+
         75, // Now - Slight correction/volatility
         95  // Future - Quantum leap
     ];
@@ -112,7 +112,7 @@ const Timeline = ({ events, activeEvent, onEventSelect, filterType, setFilterTyp
                 style={{
                     position: 'relative',
                     width: '100%',
-                    height: '220px', // Slightly shorter for cleaner look
+                    height: '320px', // Slightly shorter for cleaner look
                     margin: '0 auto',
                     // maxWidth removed to ensure full width
                     padding: '20px 0' // Space for labels

@@ -3,14 +3,21 @@ import Timeline from './components/Timeline';
 import ContentPanel from './components/ContentPanel';
 import Glossary from './components/Glossary';
 import Resources from './components/Resources';
+import ComparisonChart from './components/ComparisonChart';
 import { timelineEvents } from './data/timelineEvents.jsx';
 import HeroSection from './components/HeroSection';
+import About from './components/About';
+import Quiz from './components/Quiz';
 import './App.css';
 
 function App() {
   const [activeEvent, setActiveEvent] = useState(null);
   const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
+
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const [isComparisonOpen, setIsComparisonOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [filterType, setFilterType] = useState('All');
   const [theme, setTheme] = useState('system');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -82,7 +89,7 @@ function App() {
         position: 'sticky',
         top: 0,
         zIndex: 1000,
-        padding: '0.75rem 2rem',
+        padding: '0.5rem 1rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -147,7 +154,32 @@ function App() {
               {theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark'}
             </button>
             <button
-              onClick={() => setIsResourcesOpen(true)}
+              onClick={() => {
+                setIsComparisonOpen(true);
+                setIsResourcesOpen(false);
+                setIsGlossaryOpen(false);
+                setIsAboutOpen(false);
+                setIsQuizOpen(false);
+              }}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--color-text-secondary)',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 500
+              }}
+            >
+              Comparison
+            </button>
+            <button
+              onClick={() => {
+                setIsResourcesOpen(true);
+                setIsGlossaryOpen(false);
+                setIsComparisonOpen(false);
+                setIsAboutOpen(false);
+                setIsQuizOpen(false);
+              }}
               style={{
                 background: 'none',
                 border: 'none',
@@ -160,7 +192,13 @@ function App() {
               Resources
             </button>
             <button
-              onClick={() => setIsGlossaryOpen(true)}
+              onClick={() => {
+                setIsGlossaryOpen(true);
+                setIsResourcesOpen(false);
+                setIsComparisonOpen(false);
+                setIsAboutOpen(false);
+                setIsQuizOpen(false);
+              }}
               style={{
                 background: 'none',
                 border: 'none',
@@ -171,6 +209,57 @@ function App() {
               }}
             >
               Glossary
+            </button>
+            <button
+              onClick={() => {
+                setIsAboutOpen(true);
+                setIsResourcesOpen(false);
+                setIsGlossaryOpen(false);
+                setIsComparisonOpen(false);
+                setIsQuizOpen(false);
+              }}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--color-text-secondary)',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 500
+              }}
+            >
+              About
+            </button>
+            <button
+              onClick={() => {
+                setIsQuizOpen(true);
+                setIsAboutOpen(false);
+                setIsResourcesOpen(false);
+                setIsGlossaryOpen(false);
+                setIsComparisonOpen(false);
+              }}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid var(--color-accent)',
+                color: 'var(--color-accent)',
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                padding: '0.4rem 1rem',
+                borderRadius: '20px',
+                marginLeft: '1rem',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 0 10px var(--color-accent-glow)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.boxShadow = '0 0 15px var(--color-accent)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
+              }}
+            >
+              Curiosity Quiz 🧠
             </button>
           </div>
         </div>
@@ -188,18 +277,23 @@ function App() {
         padding: '2rem'
       }}>
 
-        <Timeline
-          events={timelineEvents}
-          activeEvent={activeEvent}
-          onEventSelect={handleEventSelect}
-          filterType={filterType}
-          setFilterType={setFilterType}
-        />
 
-        <ContentPanel
-          activeEvent={activeEvent}
-          onClose={handleClose}
-        />
+        <div id="timeline-section" style={{ scrollMarginTop: '100px' }}>
+          <Timeline
+            events={timelineEvents}
+            activeEvent={activeEvent}
+            onEventSelect={handleEventSelect}
+            filterType={filterType}
+            setFilterType={setFilterType}
+          />
+        </div>
+
+        <div id="content-panel-section">
+          <ContentPanel
+            activeEvent={activeEvent}
+            onClose={handleClose}
+          />
+        </div>
 
         {!activeEvent && (
           <div style={{
@@ -214,7 +308,90 @@ function App() {
       </main>
 
       <Glossary isOpen={isGlossaryOpen} onClose={() => setIsGlossaryOpen(false)} />
-      <Resources isOpen={isResourcesOpen} onClose={() => setIsResourcesOpen(false)} />
+      <About isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
+      <Quiz isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
+      <Resources
+        isOpen={isResourcesOpen}
+        onClose={() => setIsResourcesOpen(false)}
+        onNavigate={(eventId) => {
+          const event = timelineEvents.find(e => e.id === eventId);
+          if (event) {
+            setActiveEvent(event);
+            setIsResourcesOpen(false);
+            // Small timeout to allow modal to close first
+            setTimeout(() => {
+              const element = document.getElementById('content-panel-section');
+              if (element) {
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - (window.innerHeight * 0.15);
+
+                // Custom Smooth Scroll Function
+                const startPosition = window.scrollY;
+                const distance = offsetPosition - startPosition;
+                const duration = 1500; // 1.5 seconds for a slower, smoother feel
+                let start = null;
+
+                const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+                const step = (timestamp) => {
+                  if (!start) start = timestamp;
+                  const progress = timestamp - start;
+                  const percentage = Math.min(progress / duration, 1);
+
+                  window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
+
+                  if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                  }
+                };
+
+                window.requestAnimationFrame(step);
+              }
+            }, 100);
+          }
+        }}
+      />
+      <ComparisonChart
+        isOpen={isComparisonOpen}
+        onClose={() => setIsComparisonOpen(false)}
+        onNavigate={(eventId) => {
+          const event = timelineEvents.find(e => e.id === eventId);
+          if (event) {
+            setActiveEvent(event);
+            setIsComparisonOpen(false);
+            // Small timeout to allow modal to close first
+            setTimeout(() => {
+              const element = document.getElementById('content-panel-section');
+              if (element) {
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - (window.innerHeight * 0.15);
+
+                // Custom Smooth Scroll Function
+                const startPosition = window.scrollY;
+                const distance = offsetPosition - startPosition;
+                const duration = 1500; // 1.5 seconds for a slower, smoother feel
+                let start = null;
+
+                const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+                const step = (timestamp) => {
+                  if (!start) start = timestamp;
+                  const progress = timestamp - start;
+                  const percentage = Math.min(progress / duration, 1);
+
+                  window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
+
+                  if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                  }
+                };
+
+                window.requestAnimationFrame(step);
+              }
+            }, 100);
+          }
+        }}
+      />
 
       <footer style={{
         textAlign: 'center',

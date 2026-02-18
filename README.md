@@ -1,16 +1,66 @@
-# React + Vite
+# Physics in Finance: Diffusion - Heat Equation to Bachelier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a GitHub-ready interactive web simulation exploring the deep mathematical connection between physics and finance, specifically how the Heat Equation (Brownian Motion) provides the foundation for Asset Pricing (Bachelier Model).
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Side-by-Side Simulation**: Synchronized panels showing Heat Diffusion in a rod vs. Price Uncertainty in financial markets.
+- **Metal Rod Visual**: Dynamic temperature gradient animation reflecting the physics state.
+- **Interactive Controls**: Real-time adjustment of Volatility (σ), Drift (μ), and Time (t).
+- **Mathematical Insights**: Live updates of governing Equations (SDE/PDE) and Statistical Summaries.
+- **Monte Carlo Paths**: Optional overlay of arithmetic Brownian motion paths.
+- **Physics-Finance Mapping**: Detailed correspondence between physical and financial parameters.
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React + Vite**: Fast, modern frontend development.
+- **Vanilla CSS**: Premium dark neon aesthetic matching the project's design language.
+- **KaTeX**: High-performance LaTeX math rendering.
+- **Custom Canvas API**: Smooth 60fps physics animations and data visualization.
 
-## Expanding the ESLint configuration
+## 🛠️ Local Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build Core Project**:
+   ```bash
+   npm run build
+   ```
+
+## 📦 GitHub Pages Deployment
+
+To deploy this project to GitHub Pages:
+
+1. Ensure `vite.config.js` has the correct `base` path (e.g., `base: '/physics-finance-dmp/'`).
+2. Run the build command:
+   ```bash
+   npm run build
+   ```
+3. Use the `gh-pages` package to deploy the `dist` folder:
+   ```bash
+   npx gh-pages -d dist
+   ```
+
+Alternatively, set up a GitHub Action to deploy on push to the `main` branch.
+
+## 🧪 The Physics-Finance Analogy
+
+The same equation that describes how heat spreads through a metal rod also describes how uncertainty about a future asset price spreads through a market.
+
+| Physics Concept | Financial Equivalence |
+| :--- | :--- |
+| Particle Position $x(t)$ | Asset Price $S_t$ |
+| Diffusion Rate $D$ | Variance Rate $\sigma^2/2$ |
+| Heat Concentration $u(x,t)$ | Probability Density $p(S,t)$ |
+| Molecular Collisions | Order Flow / Market Shocks |
+
+---
+*Created as part of the Physics in Finance Digital Media Project.*
