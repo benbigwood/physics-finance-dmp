@@ -159,9 +159,9 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-surface-hover)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
-                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Quantum Information Theory ↗</td>
-                                        <td style={{ padding: '1rem' }}>Risk Profiling & Optimisation</td>
-                                        <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Hilbert Spaces</td>
+                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Quantum Mechanics & Computing ↗</td>
+                                        <td style={{ padding: '1rem' }}>Portfolio Optimisation & Market Simulation</td>
+                                        <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Hilbert Spaces & Tensor Products</td>
                                     </tr>
                                 </tbody>
                             </table>

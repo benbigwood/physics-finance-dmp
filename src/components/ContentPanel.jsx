@@ -43,7 +43,7 @@ const ExplanationView = ({ activeEvent }) => {
 
             {/* Interactive Sub-tabs */}
             {activeEvent.subPaths && (
-                <div style={{ marginTop: 'var(--spacing-lg)' }}>
+                <div id="subtabs-container" style={{ marginTop: 'var(--spacing-lg)' }}>
                     {/* Sub-tab Navigation */}
                     <div style={{
                         display: 'flex',
@@ -111,6 +111,49 @@ const ExplanationView = ({ activeEvent }) => {
                             </div>
                         )}
                     </div>
+
+                    {/* Next Sub-tab Button */}
+                    {activeEvent.subPaths && activeEvent.subPaths.length > 1 && (
+                        <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
+                            {(() => {
+                                const currentIndex = activeEvent.subPaths.findIndex(p => p.id === activeSubTab);
+                                if (currentIndex !== -1 && currentIndex < activeEvent.subPaths.length - 1) {
+                                    const nextTab = activeEvent.subPaths[currentIndex + 1];
+                                    return (
+                                        <button
+                                            onClick={() => {
+                                                setActiveSubTab(nextTab.id);
+                                                // Scroll to top of subtabs container with a slight delay to allow render
+                                                setTimeout(() => {
+                                                    document.getElementById('subtabs-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                }, 50);
+                                            }}
+                                            style={{
+                                                padding: '0.8rem 1.5rem',
+                                                background: 'var(--color-finance)',
+                                                color: '#fff',
+                                                border: 'none',
+                                                borderRadius: 'var(--radius-md)',
+                                                cursor: 'pointer',
+                                                fontSize: '1rem',
+                                                fontWeight: 600,
+                                                transition: 'all 0.2s ease',
+                                                boxShadow: 'var(--shadow-md)',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '0.5rem'
+                                            }}
+                                            onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
+                                            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+                                        >
+                                            Next: {nextTab.title} &rarr;
+                                        </button>
+                                    );
+                                }
+                                return null;
+                            })()}
+                        </div>
+                    )}
                 </div>
             )}
         </div>

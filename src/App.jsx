@@ -259,7 +259,7 @@ function App() {
                 e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent-glow)';
               }}
             >
-              Curiosity Quiz 🧠
+              Quiz 🧠
             </button>
           </div>
         </div>

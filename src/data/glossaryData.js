@@ -143,5 +143,30 @@ export const glossaryTerms = [
         term: "Monte Carlo Simulation",
         definition: "A mathematical technique that predicts possible outcomes of an uncertain event. In finance, it is used to model the probability of different outcomes in a process that cannot easily be predicted due to the intervention of random variables.",
         category: "Math"
+    },
+    {
+        term: "Grover's Algorithm",
+        definition: "A quantum algorithm used to accelerate database searching. It can find a unique item within an unsorted database with a quadratic speedup compared to classical algorithms.",
+        category: "Quantum"
+    },
+    {
+        term: "Decoherence",
+        definition: "The process by which a quantum system loses its quantum properties due to interactions with its environment, causing the superposition of states to collapse into classical states.",
+        category: "Quantum"
+    },
+    {
+        term: "Quantum Parallelism",
+        definition: "The ability of a quantum computer to evaluate a function across a combination of possible states simultaneously, acting upon 2^n inputs for n qubits.",
+        category: "Quantum"
+    },
+    {
+        term: "Hilbert Space",
+        definition: "A mathematical concept extending the methods of vector algebra and calculus from the two-dimensional Euclidean plane and three-dimensional space to spaces with any finite or infinite number of dimensions. It is the mathematical foundation for describing quantum states.",
+        category: "Math"
+    },
+    {
+        term: "Hermitian Operator",
+        definition: "A mathematical operator used in quantum mechanics to represent physical observables. The eigenvalues of this operator correspond to the possible outcomes of a measurement.",
+        category: "Physics"
     }
 ];

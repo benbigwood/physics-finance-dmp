@@ -105,7 +105,7 @@ const Quiz = ({ isOpen, onClose }) => {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                             <div>
                                 <h2 style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--color-text-primary)', margin: 0 }}>
-                                    Curiosity Check 🧠
+                                    Quiz 🧠
                                 </h2>
                                 {!showScore && (
                                     <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>

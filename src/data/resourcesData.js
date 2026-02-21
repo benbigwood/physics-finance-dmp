@@ -170,6 +170,48 @@ export const resourcesData = {
                     year: "2018",
                     description: "Foundational physics of quantum states.",
                     link: ""
+                },
+                {
+                    title: "Quantum Communication and Computing: Elevating the Banking Sector",
+                    author: "McKinsey & Company",
+                    year: "2020",
+                    description: "Report on quantum computing's potential in banking and finance.",
+                    link: "https://www.mckinsey.com/industries/financial-services/our-insights/quantum-communication-and-computing-elevating-the-banking-sector"
+                },
+                {
+                    title: "Quantum computing for finance",
+                    author: "Herman, D., Googin, C., Liu, X. et al.",
+                    year: "2023",
+                    description: "Overview of quantum algorithms and financial applications.",
+                    link: "https://doi.org/10.1038/s42254-023-00603-1"
+                },
+                {
+                    title: "Quantum Computing: an Applied Approach",
+                    author: "Hidary, Jack D.",
+                    year: "2019",
+                    description: "A comprehensive guide to practical quantum computing and its applications.",
+                    link: ""
+                },
+                {
+                    title: "On the Role of Hadamard Gates in Quantum Circuits",
+                    author: "Shepherd, D.J.",
+                    year: "2006",
+                    description: "Detailed analysis of Hadamard gates in quantum algorithms. Quantum Inf Process 5, 161–177.",
+                    link: "https://doi.org/10.1007/s11128-006-0023-4"
+                },
+                {
+                    title: "Quantum Computing",
+                    author: "Mehta, Nihal D.",
+                    year: "2020",
+                    description: "Foundational concepts and algorithms in quantum computing.",
+                    link: ""
+                },
+                {
+                    title: "Quantum Computing Explained",
+                    author: "McMahon, David",
+                    year: "2007",
+                    description: "A clear and accessible approach to understanding quantum mechanics and computing.",
+                    link: ""
                 }
             ]
         }
@@ -283,6 +325,12 @@ export const resourcesData = {
                     author: "Perfiliev Financial Training",
                     description: "A step-by-step derivation using delta hedging.",
                     link: "https://youtu.be/NHvQ5CSSgw0"
+                },
+                {
+                    title: "Grover's algorithm and quantum search",
+                    author: "3Blue1Brown",
+                    description: "A visual, geometric explanation of how Grover's algorithm achieves quadratic speedup.",
+                    link: "https://www.youtube.com/watch?v=RQWpF2Gb-gU&t=2s"
                 }
             ]
         }

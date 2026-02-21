@@ -1033,24 +1033,45 @@ export const timelineEvents = [
       { id: 1, title: "Principles Of Quantum Computation And Information - Volume I: Basic Concepts", author: "Giuliano, Benenti, et al. (2004)", link: "" },
       { id: 2, title: "An Introduction to Quantum Computing", author: "Kaye, Phillip, et al. (2007)", link: "" },
       { id: 3, title: "Fundamentals of Quantum Entanglement (Second Edition)", author: "Duarte, F. J. (2022)", link: "" },
-      { id: 4, title: "Quantum Mechanics", author: "Stefanovich, Eugene (2018)", link: "" }
+      { id: 4, title: "Quantum Mechanics", author: "Stefanovich, Eugene (2018)", link: "" },
+      { id: 5, title: "Quantum Communication and Computing: Elevating the Banking Sector", author: "McKinsey & Company (2020)", link: "https://www.mckinsey.com/industries/financial-services/our-insights/quantum-communication-and-computing-elevating-the-banking-sector" },
+      { id: 6, title: "Quantum computing for finance", author: "Herman, D., Googin, C., Liu, X. et al. (2023)", link: "https://doi.org/10.1038/s42254-023-00603-1" },
+      { id: 7, title: "Quantum Computing: an Applied Approach", author: "Hidary, Jack D. (2019)", link: "" },
+      { id: 8, title: "On the Role of Hadamard Gates in Quantum Circuits. Quantum Inf Process 5, 161–177", author: "Shepherd, D.J. (2006)", link: "https://doi.org/10.1007/s11128-006-0023-4" },
+      { id: 9, title: "Quantum Computing", author: "Mehta, Nihal D. (2020)", link: "" },
+      { id: 10, title: "Quantum Computing Explained", author: "McMahon, David (2007)", link: "" }
     ],
     derivationContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
           What is Quantum Computing
         </h2>
+
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+          <img
+            src={`${import.meta.env.BASE_URL}quatum computer.png`}
+            alt="Quantum Computer"
+            style={{
+              maxWidth: '200px',
+              width: '100%',
+              height: 'auto',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--color-border)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          />
+        </div>
+
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginBottom: '1rem' }}>
           Quantum computation as a physical theory of information
         </h3>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In classical computers bits are defined as the most basic unit of data represented by binary digits 0 or 1.
+          In classical computers bits are defined as the most basic unit of data represented by a single digit of 1 or 0. In quantum computers, this can be represented by the quantum state of an electron. This new representation is called a qubit and uses quantum mechanics to redefine the binary digits of 0 or 1.
         </p>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In quantum computers, this is represented by the quantum state of an electron. This new representation is called a qubit and uses quantum mechanics to redefine the binary digits of 0 or 1.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Qubits are two-level quantum systems described by a two-dimensional complex Hilbert space. There are several physical objects which can be used as qubits such as atomic nuclei, photons, and electrons.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup> In electrons, their spin can be used to define these two quantum states, spin up and spin down. By applying an external magnetic field to the electron, we can align it into its spin down state analogous to digit 0 in regular bits. Energy can then be provided to change quantum state to spin up.
+          Qubits are two level quantum systems described by a two-dimensional complex Hilbert space. There are several physical objects which can be used as qubits such as, atomic nuclei, a photon and electrons.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup> In electrons, their spin can be used to define these two quantum states, spin up and spin down. By applying an external magnetic field to the electron, we can align it into its spin down state analogous to digit 0 in regular bits. Energy can then be provided to change quantum state to spin up.
         </p>
       </div>
     ),
@@ -1085,7 +1106,7 @@ export const timelineEvents = [
             </p>
             <MathDisplay math="\psi = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\left(\frac{\theta}{2}\right)|1\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Where <MathDisplay math="\cos\left(\frac{\theta}{2}\right) = \alpha" inline={true} /> and <MathDisplay math="e^{i\phi}\sin\left(\frac{\theta}{2}\right) = \beta" inline={true} /><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
+              Where <MathDisplay math="\cos\left(\frac{\theta}{2}\right) = \alpha" inline={true} /> and <MathDisplay math="e^{i\phi}\sin\left(\frac{\theta}{2}\right) = \beta" inline={true} /><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup> and the phase of the qubit is represented by <MathDisplay math="\phi" inline={true} />.
             </p>
 
             <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '2rem', marginBottom: '0.5rem' }}>
@@ -1104,21 +1125,24 @@ export const timelineEvents = [
             </p>
             <MathDisplay math="\psi = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              This means we require 4 amplitudes to define the wavefunction for a 2-qubit system. This continues to scale exponentially as we need <MathDisplay math="2^N" inline={true} /> different amplitudes to describe N number of qubits. However, in quantum computing we must have entangled states. Entanglement of quantum particles is where two or more particles become linked in such a way that the state of one particle instantaneously determines the state of another.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup> This requires inter-qubit interactions i.e. a two-qubit gate. This can be mathematically described using tensor products.
+              This means we require 4 amplitudes to define the wavefunction for a 2-qubit system. This continues to scale exponentially as we need <MathDisplay math="2^N" inline={true} /> different amplitudes to describe N number of qubits.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup> However, in quantum computing we must have entangled states. Entanglement of quantum particles is where two or more particles become linked in such a way that the state of one particle instantaneously determines the state of another.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup> This requires inter qubit interactions i.e. a two-qubit gate. This can be mathematically described using tensor products.
             </p>
-            <MathDisplay math="\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B" />
+            <MathDisplay math="H_{AB} = H_A \otimes H_B" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Tensor products allow us to combine two different 2-dimensional Hilbert spaces into one 4-dimensional one. E.g
+              Tensor products allow us to combine two different 2-dimensional Hilbert Spaces into one 4 dimensional one. E.g
             </p>
             <MathDisplay math="|0\rangle \otimes |1\rangle = |01\rangle" />
             <MathDisplay math="|a\rangle = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix} \quad |b\rangle = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}" />
             <MathDisplay math="|a\rangle \otimes |b\rangle = \begin{pmatrix} a_1b_1 \\ a_1b_2 \\ a_2b_1 \\ a_2b_2 \end{pmatrix}" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              In quantum computing an entangled state is a special type of multi-qubit state in which individual qubits do not have independent values.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup> Instead, their states are linked, meaning measuring one qubit instantly reveals information about the others. This allows algorithms to change the amplitudes of many states, creating constructive interference of some states and destructive for others. Over time this creates a global property which drastically increases the probability of the wavefunction collapsing to the desired answer. Mathematically entanglement is a property of using tensor products.
+              In quantum computing an entangled state is a special type of multi-qubit state in which individual qubits do not have independent values.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup> Instead, their states are linked meaning measuring one qubit instantly reveals information about the others. This allows algorithms to change the amplitudes of many states, creating constructive interference for some states and destructive for others. Over time this creates a global property which drastically increases the probability of the wavefunction collapsing to the desired answer.
             </p>
-            <MathDisplay math="\psi_a \otimes \psi_b \neq \psi" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              When we create a two-qubit system there is no individual state for qubit a or qubit b, only the combined 4D system. This means the associated amplitudes cannot be factorized back into the two separated states – they are non-separable.
+              Mathematically entanglement is a property of using tensor products.
+            </p>
+            <MathDisplay math="\psi_a \otimes \psi_b \neq \psi_{ab}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              When we create a two-qubit system there is no individual state for qubit a or qubit b, only the combined 4D system. This means the associated amplitudes cannot be factorised back into the two separated states – they are non-separable.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup>
             </p>
             <MathDisplay math="\psi_a = a|0\rangle + b|1\rangle \quad \psi_b = c|0\rangle + d|1\rangle" />
             <MathDisplay math="\psi_{ab} \neq ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle" />
@@ -1127,11 +1151,11 @@ export const timelineEvents = [
               Measurement of Quantum Systems
             </h4>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              In classical systems, we assume that measuring a variable has no impact on the state of the system. However, in quantum mechanics the action of measuring the system alters its behavior. When we measure a wavefunction, it collapses from a superposition of many states into a single basis state. Mathematically, every physical property we want to measure, e.g. spin or position can be described by a Hermitian operator <MathDisplay math="\hat{O}" inline={true} /> called an observable. <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup> Where our measurement outcomes is given by the equation
+              In classical systems, we assume that measuring a variable has no impact on the state of the system. However, in quantum mechanics the action of measuring the system alters its behaviour. When we measure a wavefunction, it collapses from a superposition of many states into a single basis state. Mathematically, every physical property we want to measure, e.g. spin or position, can be described by a Hermitian operator <MathDisplay math="O" inline={true} /> called an observable. Where our measurement outcome is given by the equation
             </p>
-            <MathDisplay math="\hat{O} |\phi_n\rangle = \lambda_n |\phi_n\rangle" />
+            <MathDisplay math="O|\phi_n\rangle = \lambda_n|\phi_n\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Where <MathDisplay math="\phi_n" inline={true} /> are the eigenstates and <MathDisplay math="\lambda_n" inline={true} /> the eigenvalues corresponding to the eigenstates. The Born Rule determines the probability of the system collapsing to a specific eigenstate
+              Where <MathDisplay math="\phi_n" inline={true} /> are the eigenstates and <MathDisplay math="\lambda_n" inline={true} /> the eigenvalues corresponding to the eigenstates.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup> The Born Rule determines the probability of the system collapsing to a specific eigenstate
             </p>
             <MathDisplay math="\psi = \alpha|0\rangle + \beta|1\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -1139,7 +1163,7 @@ export const timelineEvents = [
             </p>
             <MathDisplay math="P_{\lambda_n} = |\langle\phi_n|\psi\rangle|^2" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              When we measure multi-qubit systems the non-separable nature of entangled particles means applying a measurement operator to one qubit affects the state of the entire system. This means, for example, if we measure the first qubit to collapse to the <MathDisplay math="0" inline={true} /> state, the other is guaranteed to also be <MathDisplay math="0" inline={true} />.
+              <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup> When we measure multi-qubit systems the non-separable nature of entangled particles means applying a measurement operator to one qubit affects the state of the entire system. This means, for example, if we measure the first qubit to collapse to the <MathDisplay math="|0\rangle" inline={true} /> state the other is guaranteed to also be <MathDisplay math="|0\rangle" inline={true} />. An important note: when we measure the system to have a defined value, the system will always continue to have this value, the probability distribution collapses completely to this single answer.
             </p>
           </div>
         )
@@ -1150,26 +1174,29 @@ export const timelineEvents = [
         content: (
           <div>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              To perform a quantum computation, three steps must be followed. First, the system is prepared in a well-defined initial state called the fiducial state. This state corresponds to all qubits in an initial state in the computational basis of <MathDisplay math="|0\rangle" inline={true} />. Second, the quantum computer evolves this state using unitary transformations U (<MathDisplay math="\psi_{out} = U\psi_{in}" inline={true} />). Lastly, upon completion of the algorithm, a stationary measurement is performed in the computational basis, determining if each qubit is in the spin up or down state.
+              To perform a quantum computation, three steps must be followed. First, the system is prepared in a well-defined initial state called the fiducial state.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup> This state corresponds to all qubits in an initial state in the computational basis of <MathDisplay math="|0\rangle" inline={true} />. Secondly, the quantum computer evolves this state using unitary transformations U (<MathDisplay math="\psi_{out} = U\psi_{in}" inline={true} />). Lastly, upon completion of the algorithm, a measurement is performed in the computational basis, determining if each qubit is in the spin up or down state.
             </p>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
               In practice, quantum computation is performed using quantum gates. A quantum gate is a controlled period of time which allows the system to evolve under a chosen Hamiltonian. The resulting time-evolution operator is given by
             </p>
             <MathDisplay math="U = e^{-iHt/\hbar}" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              where <MathDisplay math="t" inline={true} /> is the duration of the evolution, <MathDisplay math="\hbar" inline={true} /> is the reduced Planck constant and H is the Hamiltonian. These quantum gates can be combined to produce algorithms in gate-based quantum computers to manipulate the state of qubits. From quantum mechanics the time evolution of a wavefunction must be described by the Schrödinger equation. This dictates the quantum evolution must conserve the total probability of the system and therefore the operator U must be unitary. This means it has several properties. Firstly, the operation is reversible
+              where <MathDisplay math="t" inline={true} /> is the duration of the evolution, <MathDisplay math="\hbar" inline={true} /> is the reduced Planck constant and H is the Hamiltonian.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[7]</a></sup> These quantum gates can be combined to produce algorithms in gate-based quantum computers to manipulate the state of qubits.
             </p>
-            <MathDisplay math="U^{-1} = U^\dagger" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              where <MathDisplay math="U^\dagger" inline={true} /> denotes the Hermitian conjugate of <MathDisplay math="U" inline={true} />. Secondly the operator must be linear so that
+              From quantum mechanics the time evolution of a wavefunction must be described by the Schrödinger equation. This dictates the quantum evolution must conserve the total probability of the system and therefore the operator U must be unitary. This means it has several properties. Firstly, the operation is reversible
+            </p>
+            <MathDisplay math="U^{-1} = U^{\dagger}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              where <MathDisplay math="U^{\dagger}" inline={true} /> denotes the Hermitian conjugate of <MathDisplay math="U" inline={true} />. Secondly the operator must be linear so that
             </p>
             <MathDisplay math="U(\alpha|0\rangle + \beta|1\rangle) = \alpha U|0\rangle + \beta U|1\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              For a single qubit these conditions mean the operator can be described by a 2x2 unitary matrix. An important example of one a quantum gate is the Hadamard gate. The Hadamard gate is defined as
+              For a single qubit, these conditions mean the operator can be described by a 2x2 unitary matrix. An important example of one a quantum gate is the Hadamard gate. The Hadamard gate is defined as
             </p>
             <MathDisplay math="H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              This turns the computational basis <MathDisplay math="|0\rangle, |1\rangle" inline={true} /> into the Hadamard basis <MathDisplay math="|+\rangle, |-\rangle" inline={true} />. Where the states are a superposition of the states of the computational basis
+              This turns the computational basis <MathDisplay math="|0\rangle, |1\rangle" inline={true} /> into the Hadamard basis <MathDisplay math="|+\rangle, |-\rangle" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup> Where the states are a superposition of the states of the computational basis
             </p>
             <MathDisplay math="H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \equiv |+\rangle" />
             <MathDisplay math="H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \equiv |-\rangle" />
@@ -1182,9 +1209,60 @@ export const timelineEvents = [
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
               The Hadamard gate also shows us the quantum interference. Interference arises from the relative phase differences between amplitudes. If we consider summing the Hadamard Basis states
             </p>
-            <MathDisplay math="\frac{1}{\sqrt{2}}(|+\rangle + |-\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) + \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |0\rangle" />
+            <MathDisplay math="\frac{1}{\sqrt{2}}(|+\rangle + |-\rangle) = \frac{1}{2}(|0\rangle + |1\rangle) + \frac{1}{2}(|0\rangle - |1\rangle) = |0\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              the amplitudes of the <MathDisplay math="|1\rangle" inline={true} /> cancel due to destructive interference while the <MathDisplay math="|0\rangle" inline={true} /> interfere constructively. Quantum algorithms are constructed by applying sequences of such quantum gates to evolve the system’s wavefunction over time. Each basis state of the system corresponds to a possible answer, and the amplitudes associated with these states describe the probability of observing each outcome upon measurement. By designing a sequence of quantum gates, the algorithm causes amplitudes corresponding to correct solutions to interfere constructively, while amplitudes corresponding to incorrect solutions interfere destructively. This process dramatically increases the likelihood that a measurement yields the correct answer. However, designing these algorithms is incredibly difficult.
+              the amplitudes of the <MathDisplay math="|1\rangle" inline={true} /> cancel due to destructive interference while the <MathDisplay math="|0\rangle" inline={true} /> interfere constructively.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup> The Hadamard gate plays a key role in quantum computing as this is usually the first gate applied to systems at the start of algorithms.
+            </p>
+
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Quantum algorithms are constructed by applying sequences of such quantum gates to evolve the system’s wavefunction over time. Each basis state of the system corresponds to a possible answer, and the amplitudes associated with these states describe the probability of observing each outcome upon measurement. This can be seen with the tensor products state vector
+            </p>
+            <MathDisplay math="\begin{pmatrix} 00 \\ 01 \\ 10 \\ 11 \end{pmatrix} = \begin{pmatrix} \alpha \\ \beta \\ \gamma \\ \delta \end{pmatrix}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Where we can assign a different answer to each state with a different probability amplitude(<MathDisplay math="\alpha, \beta, \gamma, \delta" inline={true} />). By designing a sequence of quantum gates, the algorithm causes amplitudes corresponding to correct solutions to interfere constructively, while amplitudes corresponding to incorrect solutions interfere destructively. This process dramatically increases the likelihood that a measurement yields the correct answer. However, designing these algorithms is incredibly difficult.
+            </p>
+
+            <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '2rem', marginBottom: '0.5rem' }}>
+              Grover's Algorithm
+            </h4>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              An example of a quantum algorithm is Grover’s. This algorithm is used to accelerate database searching, where we want to find a unique item within an unsorted database. A classical computer would brute force the search, looking at each individual item until the correct is found. This results in a computational complexity of order O(N), meaning the average time the algorithm takes increases linearly with the number of items in the database.
+            </p>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              A quantum computation can speed this computation up quadratically, reducing the search time to order <MathDisplay math="\sqrt{N}" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>
+            </p>
+
+            <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '2rem', marginBottom: '0.5rem' }}>
+              Methodology
+            </h4>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              The algorithm begins with all possible states having equal probability of occurring called a uniform superposition. Within this state space, we define a target solution as <MathDisplay math="w" inline={true} /> with all other solutions defined as <MathDisplay math="r" inline={true} />. We can apply a series of quantum gates which, when the correct solution is found, cause the sign of the associated amplitude to flip and when an incorrect solution is found, it remains unchanged. For example, if these states had the probability amplitudes <MathDisplay math="\alpha, \beta, \gamma, \delta" inline={true} />
+            </p>
+            <MathDisplay math="\begin{pmatrix} 00 \\ 01 \\ 10 \\ 11 \end{pmatrix} = \begin{pmatrix} r \\ r \\ w \\ r \end{pmatrix} = \begin{pmatrix} \alpha \\ \beta \\ \gamma \\ \delta \end{pmatrix}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              After the series of gates was applied
+            </p>
+            <MathDisplay math="\begin{pmatrix} r \\ r \\ w \\ r \end{pmatrix} = \begin{pmatrix} \alpha \\ \beta \\ -\gamma \\ \delta \end{pmatrix}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              This can be represented using a matrix called the Oracle Operator<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>
+            </p>
+            <MathDisplay math="U_f = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              We can then apply another matrix to the wavevector called the Diffusion operator. This operator reflects the function about its initial state of uniform superposition. Given by the matrix
+            </p>
+            <MathDisplay math="D = \begin{pmatrix} \cos(2\theta) & \sin(2\theta) \\ \sin(2\theta) & -\cos(2\theta) \end{pmatrix}" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Where <MathDisplay math="\theta" inline={true} /> is the angle between the uniform superposition state and all of the non-solution states.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup> These two transformations are combined to form the Grover iteration <MathDisplay math="G = DU_f" inline={true} />, which is the key to this algorithm. The algorithm is repeatedly applied with each successive iteration constructively interferes with the <MathDisplay math="w" inline={true} /> state. This increases the probability of the system collapsing to this state upon measurement. After k iterations the probability of measuring the target state is given by
+            </p>
+            <MathDisplay math="P_k = \sin^2((2k+1)\theta)" />
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Where the optimal number of solutions is given by <MathDisplay math="k \approx \frac{\pi}{4}\sqrt{N}" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup> By applying Grover’s Algorithm, we can find a solution of the order O(N) in a much faster time than a classical of order O(N).
+            </p>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              For a more geometric interpretation of Grover’s Algorithm, watch this YouTube video by 3Blue1Brown on the topic:{' '}
+              <a href="https://www.youtube.com/watch?v=RQWpF2Gb-gU&t=2s" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-finance)' }}>
+                https://www.youtube.com/watch?v=RQWpF2Gb-gU&t=2s
+              </a>
             </p>
           </div>
         )
@@ -1194,8 +1272,41 @@ export const timelineEvents = [
         title: "Applications and Limitations",
         content: (
           <div>
-            <p style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
-              to be written
+            <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginBottom: '0.5rem' }}>
+              Advantages
+            </h4>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              The core advantage of quantum computing is in quantum parallelism. In contrast to a classical computer which require separate runs to process different inputs, a quantum computer can evaluate a function across a combination of possible states simultaneously. A single quantum operation can act upon <MathDisplay math="2^n" inline={true} /> number of inputs for n number of qubits. While we cannot extract the result of every calculation, it allows algorithms to achieve a quadratic speedup (Grover’s) and some even an exponential speedup compared to regular computers.
+            </p>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Another advantage of quantum computers comes how they naturally encode high dimensional probability distributions into quantum states. Classical computers struggle to model complex stochastic systems such as stock market fluctuations or weather patterns due to the number of interacting variables. Quantum computers can use entanglement of qubits to create non separable probability distributions which model these systems.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup> This makes quantum computers run simulations of these systems where the interactions between variables are run with the quantum state itself rather than by approximations, which are used by classical computers.
+            </p>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Quantum computers are also well suited to optimisation. Optimisation involves finding a global minimum within a dataset, for example finding the lowest level of risk for a given rate of return in portfolio investing. This is an incredibly difficult task for classical computers, given large datasets where the total number of combinations is <MathDisplay math="\frac{(n-1)!}{2}" inline={true} />. Quantum computers can use parallelism to simulate many inputs simultaneously, reducing the time and computing power required. Furthermore, classical computers can risk becoming trapped in local minima and means the algorithm fails to find the global minima. Quantum computers can use quantum tunnelling to pass through the energy barriers allowing them to find the global minimum more efficiently.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
+            </p>
+
+            <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '2rem', marginBottom: '0.5rem' }}>
+              Limitations
+            </h4>
+            <h5 style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>Hardware Fragility</h5>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              One of the main challenges in the development of quantum computers is decoherence. This is where a quantum system loses its quantum properties due to interactions with its environment. This causes the superposition of states of qubits to collapse into classical states. This is effectively measuring the system however the measurement is an uncontrolled premature interaction with the environment, making the output information useless.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup> For a qubit to perform useful computations it must be isolated from the external environment, however in practice this is extremely difficult. The state can interact with its environment due to many influences including thermal fluctuations, electromagnetic radiation or even cosmic radiation. The quantum states are very delicate meaning even small disturbances can introduce errors.
+            </p>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              There are two types of decoherence, energy relaxation and dephasing.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[10]</a></sup> Energy relaxation occurs when a qubit loses energy to the environment causing transitions from high to a lower energy state. For example, a spin up qubit may lose energy over time causing it to flip to the lower energy spin down state. Dephasing occurs when noise causes random fluctuations in the phase relationship between states. This effectively causes the interference to average out making the state classical.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[10]</a></sup> Techniques have been developed to reduce these errors including quantum error correction, dynamical decoupling and operating the qubits at extremely low temperatures, often a few mK above absolute zero.
+            </p>
+
+            <h5 style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>Not applicable to all tasks</h5>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              A common misconception in quantum computing is that quantum computers are a universally superior version of existing computers. This is not true and their advantages only apply to a limited number of problems. For most general tasks such as playing a game or making a website, quantum computers are no better than conventional and are much more expensive! The advantage to quantum computers are seen in problems where quantum mechanical effects can be exploited algorithmically. To expand the range of problems quantum computers can solve, more algorithms need to be discovered. These algorithms are extremely difficult to produce and despite decades of research only a small number have been produced.
+            </p>
+
+            <h5 style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>Scalability Challenges</h5>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              There are huge engineering challenges in building and running large scale quantum computers. To gain significant advantages in quantum computers many problems would likely require thousands of high-quality qubits reliably working together. Building and running these systems is extremely challenging. Firstly, qubits are kept at extremely low temperatures, completely isolated from external interactions. This requires extremely complex cryogenic systems which are very complex and expensive. As the number of qubits increases this challenge only becomes harder.
+            </p>
+            <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+              Another major issue is error accumulation. Currently qubits are not high enough quality to perform algorithms, meaning a higher number must be used. This is because the qubits are imperfect and prone to error. As the number of qubits increase the errors compound limiting the usefulness of the computations.
             </p>
           </div>
         )
@@ -1208,35 +1319,35 @@ export const timelineEvents = [
         </h2>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Currently finance is undergoing a transition through the accelerated integration of artificial intelligence (AI) and machine learning models. This transition will fundamentally change how information is processed and acted upon in financial markets.
+          Currently finance is undergoing a transition through the accelerated integration of new technologies such as artificial intelligence (AI) and machine learning models. This transition will fundamentally change how information is processed and acted upon in financial markets.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In recent years, there has been a huge expansion in the development and implementation of AI across all of society, including the world of finance. Machine learning models are now widely used in portfolio optimization, credit scoring and macroeconomic forecasting. By finding non-linear relationships between assets which classical models may overlook, machine learning can create more realistic models of market dynamics.
+          In recent years, there has been a huge expansion in the development and implementation of AI across all of society, including the world of finance. Machine learning models are now widely used in portfolio optimisation, credit scoring and macroeconomic forecasting. By finding non-linear relationships between assets which classical models may overlook, machine learning can create more realistic models of market dynamics.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          While artificial intelligence has already evolved the sector, quantum computing promises to revolutionize finance, with the potential to solve computational problems which currently push classical computing to its limits. By using the principles of superposition and entanglement, quantum computers could significantly improve areas in finance such as advanced risk profiling, modeling of market dynamics and optimizing portfolios.
+          While artificial intelligence has already evolved the sector, quantum computing promises to revolutionise finance, with the potential to solve computational problems which currently push classical computing to its limits. By using the principles of superposition and entanglement, quantum computers could significantly improve areas in finance such as advanced risk profiling, modelling of market dynamics and optimising portfolios.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          When managing risk, banks currently use Monte Carlo simulations to predict how markets may respond to economic shocks such as a sudden rise in interest rates or a spike in oil prices. These simulations require a huge amount of computing power and time, making them extremely expensive. As a result, financial institutions running these simulations must compromise on the complexity of these calculations.
+          When managing risk, banks currently use Monte Carlo simulations to predict how markets may respond to economic shocks, such as a sudden rise in interest rates or a spike in oil prices.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup> These simulations require a huge amount of computing power and time, making them extremely expensive. As a result, financial institutions running these simulations must compromise on the complexity of these calculations.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          However, quantum computers can run many possible simulation outcomes simultaneously. By generating a probability distribution of all possible outcomes, including those which classical models may discard, quantum computing allows for more accurate assessments of risk.
+          However, quantum computers can run many possible simulation outcomes simultaneously. By generating a probability distribution of all possible outcomes, including those which classical may discard, quantum computing allows for more complete and accurate assessments of risk.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Another application of this technology is in modelling contagion effects, where the behavior of one actor in an interconnected system influences others. Classical models struggle to model such dynamics at a large scale. Quantum computing is inherently designed to represent interacting particles and are well-suited to model this type of behavior.
+          Another application of this technology is in modelling contagion effects, where the behaviour of one actor in an interconnected system influences others.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup> Classical models struggle to model such dynamics at a large scale. Quantum computing is inherently designed to represent interacting particles and are well suited to model this type of behaviour.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In financial markets this approach can be used to model panic-driven behavior where investor sell-off triggers others to follow.
+          In financial markets this approach can be used to model panic driven behaviour where investor selloff triggers others to follow.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Portfolio optimization is another application of this technology in finance. Investment firms aim to maximize returns for a given level of risk, but this is an extremely complex problem. Balancing real-life constraints such as market volatility and liquidity into these portfolios increases complexity further. Classical computing limits how quickly firms can rebalance portfolios in response to changing market conditions. Quantum computers can use their ability to identify optimal solutions from a large number of possible combinations could improve portfolio optimization. This includes better diversification, faster responses to market volatility and portfolios more aligned with individual investor preferences.
+          Portfolio optimisation is another application of this technology in finance. Investment firms aim to maximise returns for a given level of risk, but this is an extremely complex problem. Balancing real life constraints such as market volatility and liquidity into these portfolios increases complexity further.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup> Classical computing limits how quickly firms can rebalance portfolios in response to changing market conditions. Quantum computers can use their ability to identify optimal solutions from a large number of possible combinations to improve portfolio optimisation.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup> This includes better diversification, faster responses to market volatility and portfolios more aligned with individual investor preferences.
         </p>
       </div>
     )

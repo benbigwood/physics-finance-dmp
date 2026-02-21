@@ -191,13 +191,18 @@ const HadamardGateSimulation = () => {
             width: 400, height: 400,
             margin: { l: 0, r: 0, b: 0, t: 0 },
             showlegend: false,
-            uirevision: cameraRevision,
+            uirevision: cameraRevision, // Changing this prop forces a camera reset
             scene: {
                 xaxis: { showgrid: false, zeroline: false, showticklabels: false, title: '', range: [-1.1, 1.1], visible: false },
                 yaxis: { showgrid: false, zeroline: false, showticklabels: false, title: '', range: [-1.1, 1.1], visible: false },
                 zaxis: { showgrid: false, zeroline: false, showticklabels: false, title: '', range: [-1.1, 1.1], visible: false },
                 aspectmode: 'cube',
-                camera: { eye: { x: 1.25, y: 1.25, z: 0.5 } },
+                // Explicitly define the initial camera. When uirevision changes, it reverts to this.
+                camera: {
+                    eye: { x: 1.25, y: 1.25, z: 0.5 },
+                    up: { x: 0, y: 0, z: 1 },
+                    center: { x: 0, y: 0, z: 0 }
+                },
                 dragmode: 'orbit'
             },
             paper_bgcolor: 'rgba(0,0,0,0)',
@@ -214,7 +219,13 @@ const HadamardGateSimulation = () => {
         }}>
             <h3 style={{ marginBottom: '0.25rem', color: 'var(--color-text-primary)', fontSize: '1rem' }}>Hadamard Gate on |0⟩ and |1⟩</h3>
 
-            <Plot data={data} layout={layout} config={{ displayModeBar: false, scrollZoom: true }} />
+            <Plot
+                data={data}
+                layout={layout}
+                config={{ displayModeBar: false, scrollZoom: true }}
+                // Plotly specifically needs to be told not to update the layout if uirevision is constant
+                revision={cameraRevision}
+            />
 
             <div style={{ width: '100%', maxWidth: '300px', marginTop: '0.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
