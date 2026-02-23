@@ -160,7 +160,7 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
                                         <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Quantum Mechanics & Computing ↗</td>
-                                        <td style={{ padding: '1rem' }}>Portfolio Optimisation & Market Simulation</td>
+                                        <td style={{ padding: '1rem' }}>Portfolio Optimisation & Contagion Modelling</td>
                                         <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Hilbert Spaces & Tensor Products</td>
                                     </tr>
                                 </tbody>

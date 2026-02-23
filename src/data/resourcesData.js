@@ -4,13 +4,6 @@ export const resourcesData = {
             category: "1900: Speculation Theory",
             items: [
                 {
-                    title: "Théorie de la Spéculation",
-                    author: "Louis Bachelier",
-                    year: "1900",
-                    description: "The PhD thesis that introduced the first mathematical model of Brownian motion for financial markets.",
-                    link: "https://investmenttheory.org/uploads/3/4/8/2/34825752/emhbachelier.pdf"
-                },
-                {
                     title: "From Simple Random Walk to Wiener Process and Diffusion Equation",
                     author: "Dr. Christian P. Salas",
                     year: "2024",
@@ -24,10 +17,17 @@ export const resourcesData = {
                     link: "https://www.le.ac.uk/users/dsgp1/COURSES/DERIVATE/PROCESSES.PDF"
                 },
                 {
-                    title: "The Heat Equation",
-                    author: "Stanford University",
-                    description: "Mathematical derivation and properties of the diffusion equation.",
-                    link: "https://web.stanford.edu/class/math220b/handouts/heateqn.pdf"
+                    title: "Phynance (General Financial Physics)",
+                    author: "Oxford University Physics",
+                    description: "Lecture notes mapping statistical mechanics to financial theory.",
+                    link: "https://users.physics.ox.ac.uk/~Foot/Phynance/"
+                },
+                {
+                    title: "Théorie de la Spéculation",
+                    author: "Louis Bachelier",
+                    year: "1900",
+                    description: "The PhD thesis that introduced the first mathematical model of Brownian motion for financial markets.",
+                    link: "https://investmenttheory.org/uploads/3/4/8/2/34825752/emhbachelier.pdf"
                 },
                 {
                     title: "Black-Scholes and Bachelier",
@@ -35,6 +35,18 @@ export const resourcesData = {
                     year: "2021",
                     description: "Link between modern and classical pricing models.",
                     link: "https://arxiv.org/pdf/2104.08686.pdf"
+                },
+                {
+                    title: "The Heat Equation",
+                    author: "Stanford University",
+                    description: "Mathematical derivation and properties of the diffusion equation.",
+                    link: "https://web.stanford.edu/class/math220b/handouts/heateqn.pdf?utm_source=chatgpt.com"
+                },
+                {
+                    title: "The History of Bachelier's 'Théorie de la Spéculation'",
+                    author: "JSTOR",
+                    description: "Historical context of Bachelier's misunderstood PhD thesis.",
+                    link: "https://www.jstor.org/stable/1182421?utm_source=chatgpt.com"
                 }
             ]
         },
@@ -42,32 +54,25 @@ export const resourcesData = {
             category: "1952: Modern Portfolio Theory",
             items: [
                 {
-                    title: "Portfolio Selection",
-                    author: "Harry Markowitz",
-                    year: "1952",
-                    description: "The founding paper of Modern Portfolio Theory, published in the Journal of Finance.",
-                    link: "https://www.math.ust.hk/~maykwok/courses/ma362/07F/markowitz_52.pdf"
+                    title: "60 Years of portfolio optimization: Practical challenges and current trends",
+                    author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J.",
+                    year: "2014",
+                    description: "Practical challenges and current trends in MPT.",
+                    link: "https://doi.org/10.1016/j.ejor.2013.10.060"
                 },
                 {
                     title: "Portfolio Selection: Efficient Diversification of Investments",
-                    author: "Harry Markowitz",
+                    author: "Markowitz, H.M.",
                     year: "1959",
                     description: "Book extending the theory to practical implementation.",
                     link: "https://www.jstor.org/stable/j.ctt1bh4c8h"
                 },
                 {
-                    title: "Capital Asset Prices: A Theory of Market Equilibrium",
-                    author: "William F. Sharpe",
+                    title: "Capital Asset Prices: A Theory of Market Equilibrium Under Conditions of Risk",
+                    author: "Sharpe, W.F.",
                     year: "1964",
                     description: "The introduction of CAPM and the Sharpe Ratio.",
                     link: "https://doi.org/10.1111/j.1540-6261.1964.tb02865.x"
-                },
-                {
-                    title: "60 Years of portfolio optimization",
-                    author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J.",
-                    year: "2014",
-                    description: "Practical challenges and current trends in MPT.",
-                    link: "https://doi.org/10.1016/j.ejor.2013.10.060"
                 }
             ]
         },
@@ -75,11 +80,73 @@ export const resourcesData = {
             category: "1960s: Fractal Markets",
             items: [
                 {
+                    title: "Learning from Benoit Mandelbrot",
+                    author: "Masters Invest",
+                    year: "2018",
+                    description: "Reflections on Mandelbrot's approach to financial market roughness.",
+                    link: "https://mastersinvest.com/newblog/2018/2/18/learning-from-benoit-mandelbrot"
+                },
+                {
+                    title: "Fractals and the art of roughness – Benoit Mandelbrot",
+                    author: "TED",
+                    year: "2013",
+                    description: "A TED talk detailing Mandelbrot's perspective on the structure of nature.",
+                    link: "https://www.youtube.com/watch?v=wQTnVEXAtBY"
+                },
+                {
                     title: "The Fractal Geometry of Nature",
-                    author: "Benoit Mandelbrot",
-                    year: "1982",
-                    description: "Establishing the concept of self-similarity and power laws.",
-                    link: "https://www.amazon.com/Fractal-Geometry-Nature-Benoit-Mandelbrot/dp/0716711869"
+                    author: "Wikipedia",
+                    description: "Overview of Mandelbrot's most famous work on fractal geometry.",
+                    link: "https://en.wikipedia.org/wiki/The_Fractal_Geometry_of_Nature"
+                },
+                {
+                    title: "Fractal market hypothesis and two power-laws",
+                    author: "Aleksander Weron, Rafał Weron",
+                    year: "2000",
+                    description: "Academic discussion on the power-law distributions in finance.",
+                    link: "https://doi.org/10.1016/S0960-0779(98)00295-1"
+                },
+                {
+                    title: "Extreme observations and risk assessment in the equity markets of MENA region",
+                    author: "A. Assaf",
+                    year: "2009",
+                    description: "Application of tail measures and Value-at-Risk.",
+                    link: "https://doi.org/10.1016/j.irfa.2009.03.007"
+                },
+                {
+                    title: "Fractal Market Hypothesis: An In-Depth Review",
+                    author: "Ambati, Murari",
+                    year: "2025",
+                    description: "Review of the structural inevitability of market crashes.",
+                    link: "http://dx.doi.org/10.2139/ssrn.5137493"
+                },
+                {
+                    title: "A brief description to self-similar processes",
+                    author: "Pardo, J.C.",
+                    year: "2007",
+                    description: "Establishing the mathematical foundations of self-similarity processes.",
+                    link: "https://www.cimat.mx/~jcpardo/ssp1.pdf"
+                },
+                {
+                    title: "Hurst exponent: Calculation, Values and More",
+                    author: "Singh, V., Divakar, V. and Garg, A.",
+                    year: "2019",
+                    description: "Detailed guide on measuring long-term memory in time series.",
+                    link: "https://blog.quantinsti.com/hurst-exponent/"
+                },
+                {
+                    title: "Fractional Brownian motion in a nutshell",
+                    author: "Shevenko, G.",
+                    year: "2015",
+                    description: "Overview of stochastic modeling and fractional Brownian motion.",
+                    link: "https://doi.org/10.1142/S2010194515600022"
+                },
+                {
+                    title: "Financial Markets: From fractals to power laws",
+                    author: "Olsen, R.",
+                    year: "2023",
+                    description: "Modern application of fractal geometry to market microstructure.",
+                    link: "http://dx.doi.org/10.2139/ssrn.4344887"
                 },
                 {
                     title: "A theory of power-law distributions in financial market fluctuations",
@@ -89,18 +156,11 @@ export const resourcesData = {
                     link: "https://doi.org/10.1038/nature01624"
                 },
                 {
-                    title: "Financial Markets: From fractals to power laws",
-                    author: "Richard Olsen",
-                    year: "2023",
-                    description: "Modern application of fractal geometry to market microstructure.",
-                    link: "http://dx.doi.org/10.2139/ssrn.4344887"
-                },
-                {
-                    title: "Hurst exponent: Calculation and Values",
-                    author: "Singh, V., Divakar, V. and Garg, A.",
-                    year: "2019",
-                    description: "Detailed guide on measuring long-term memory in time series.",
-                    link: "https://blog.quantinsti.com/hurst-exponent/"
+                    title: "The art of fitting financial time series with Lévy stable distributions",
+                    author: "Scalas, E. and Kim, K.",
+                    year: "2006",
+                    description: "Applying statistical physics concepts like anomalous diffusion to financial time series.",
+                    link: "https://doi.org/10.48550/arXiv.physics/0608224"
                 }
             ]
         },
@@ -109,7 +169,7 @@ export const resourcesData = {
             items: [
                 {
                     title: "The Pricing of Options and Corporate Liabilities",
-                    author: "Fischer Black & Myron Scholes",
+                    author: "Black, F. and Scholes, M.",
                     year: "1973",
                     description: "The paper that introduced the famous Black-Scholes model.",
                     link: "https://doi.org/10.1086/260062"
@@ -127,16 +187,23 @@ export const resourcesData = {
                     link: "https://youtu.be/NHvQ5CSSgw0"
                 },
                 {
+                    title: "Edward O. Thorp",
+                    author: "Wikipedia",
+                    description: "The story of the man who beat the casino and Wall Street.",
+                    link: "https://en.wikipedia.org/wiki/Edward_O._Thorp"
+                },
+                {
                     title: "Black–Scholes model",
                     author: "Wikipedia",
                     description: "Comprehensive overview of the model and its extensions.",
                     link: "https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model"
                 },
                 {
-                    title: "Edward O. Thorp",
-                    author: "Wikipedia",
-                    description: "The story of the man who beat the casino and Wall Street.",
-                    link: "https://en.wikipedia.org/wiki/Edward_O._Thorp"
+                    title: "Black-Scholes and Bachelier",
+                    author: "arXiv:2104.08686",
+                    year: "2021",
+                    description: "Comparison of Bachelier's and Black-Scholes' equations.",
+                    link: "https://arxiv.org/pdf/2104.08686.pdf"
                 }
             ]
         },
@@ -144,7 +211,7 @@ export const resourcesData = {
             category: "NOW: Quantum Computing",
             items: [
                 {
-                    title: "Principles Of Quantum Computation and Information",
+                    title: "Principles Of Quantum Computation And Information",
                     author: "Giuliano, Benenti, et al.",
                     year: "2004",
                     description: "Textbook on the fundamentals of quantum information.",
@@ -196,7 +263,7 @@ export const resourcesData = {
                     title: "On the Role of Hadamard Gates in Quantum Circuits",
                     author: "Shepherd, D.J.",
                     year: "2006",
-                    description: "Detailed analysis of Hadamard gates in quantum algorithms. Quantum Inf Process 5, 161–177.",
+                    description: "Detailed analysis of Hadamard gates in quantum algorithms.",
                     link: "https://doi.org/10.1007/s11128-006-0023-4"
                 },
                 {
@@ -259,7 +326,7 @@ export const resourcesData = {
                     title: "Beat the Dealer",
                     author: "Ed Thorp",
                     year: "1962",
-                    description: "The book that proved blackjack could be beaten, leading Thorp to Wall Street.",
+                    description: "The book that proved blackjack could be beaten, leading Thorp to apply game theory to Wall Street.",
                     link: "https://www.amazon.com/Beat-Dealer-Winning-Strategy-Twenty-One/dp/0394703103"
                 }
             ]
@@ -331,6 +398,12 @@ export const resourcesData = {
                     author: "3Blue1Brown",
                     description: "A visual, geometric explanation of how Grover's algorithm achieves quadratic speedup.",
                     link: "https://www.youtube.com/watch?v=RQWpF2Gb-gU&t=2s"
+                },
+                {
+                    title: "Fractals and the art of roughness – Benoit Mandelbrot",
+                    author: "TED",
+                    description: "Mandelbrot explains how fractals replicate the roughness of nature and markets.",
+                    link: "https://www.youtube.com/watch?v=wQTnVEXAtBY"
                 }
             ]
         }

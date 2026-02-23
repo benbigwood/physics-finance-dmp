@@ -8,6 +8,7 @@ import ModernPortfolioSimulation from './ModernPortfolioSimulation';
 
 import BachelierSimulation from './BachelierSimulation';
 import DiffusionSimulation from './DiffusionSimulation';
+import FractionalBrownianMotionSimulation from './FractionalBrownianMotionSimulation';
 
 const ExplanationView = ({ activeEvent }) => {
     const [activeSubTab, setActiveSubTab] = useState(activeEvent.subPaths ? activeEvent.subPaths[0].id : null);
@@ -453,9 +454,29 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                     </div>
                                                 </div>
                                             ) : activeEvent.id === '1960' ? (
-                                                <>
-                                                    <FractalMarketSimulation />
-                                                </>
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+                                                    {/* Simulation 1: Volatility Clustering */}
+                                                    <div>
+                                                        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+                                                            1. Volatility Clustering
+                                                        </h3>
+                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
+                                                            Mandelbrot observed that large price changes tend to be followed by large price changes, and small changes by small ones. This creates distinct visual "regimes" of high and low volatility that repeat at different scales.
+                                                        </p>
+                                                        <FractalMarketSimulation />
+                                                    </div>
+
+                                                    {/* Simulation 2: Fractional Brownian Motion */}
+                                                    <div>
+                                                        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '2rem' }}>
+                                                            2. Fractional Brownian Motion & Hurst Exponent
+                                                        </h3>
+                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
+                                                            Unlike standard Brownian motion (where H = 0.5), Fractal Markets exhibit "memory". Adjust the Hurst Exponent ($H$) to see how a market can become mean-reverting (H &lt; 0.5) or persistently trending (H &gt; 0.5), comparing the fractal model to a real market proxy.
+                                                        </p>
+                                                        <FractionalBrownianMotionSimulation />
+                                                    </div>
+                                                </div>
                                             ) : activeEvent.id === '1952' ? (
                                                 <ModernPortfolioSimulation />
                                             ) : activeEvent.id === 'now' ? (

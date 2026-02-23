@@ -634,12 +634,18 @@ export const timelineEvents = [
       }
     ],
     references: [
-      { id: 1, title: "A brief description to self-similar processes", author: "Pardo, J.C. (2007)", link: "https://www.cimat.mx/~jcpardo/ssp1.pdf" },
-      { id: 2, title: "Hurst exponent: Calculation, Values and More", author: "Singh, V., Divakar, V. and Garg, A. (2019)", link: "https://blog.quantinsti.com/hurst-exponent/" },
-      { id: 3, title: "Fractional Brownian motion in a nutshell", author: "Shevenko, G. (2015)", link: "https://doi.org/10.1142/S2010194515600022" },
-      { id: 4, title: "Financial Markets: From fractals to power laws", author: "Olsen, R. (2023)", link: "http://dx.doi.org/10.2139/ssrn.4344887" },
-      { id: 5, title: "A theory of power-law distributions in financial market fluctuations", author: "Gabaix, X. et al. (2003)", link: "https://doi.org/10.1038/nature01624" },
-      { id: 6, title: "The art of fitting financial time series with Lévy stable distributions", author: "Scalas, E. and Kim, K. (2006)", link: "https://doi.org/10.48550/arXiv.physics/0608224" }
+      { id: 1, title: "Learning from Benoit Mandelbrot", author: "Masters Invest (2018)", link: "https://mastersinvest.com/newblog/2018/2/18/learning-from-benoit-mandelbrot" },
+      { id: 2, title: "Fractals and the art of roughness – Benoit Mandelbrot", author: "TED (2013)", link: "https://www.youtube.com/watch?v=wQTnVEXAtBY" },
+      { id: 3, title: "The Fractal Geometry of Nature", author: "Wikipedia", link: "https://en.wikipedia.org/wiki/The_Fractal_Geometry_of_Nature" },
+      { id: 4, title: "Fractal market hypothesis and two power-laws", author: "Aleksander Weron, Rafał Weron (2000)", link: "https://doi.org/10.1016/S0960-0779(98)00295-1" },
+      { id: 5, title: "Extreme observations and risk assessment in the equity markets of MENA region: Tail measures and Value-at-Risk", author: "A. Assaf (2009)", link: "https://doi.org/10.1016/j.irfa.2009.03.007" },
+      { id: 6, title: "Fractal Market Hypothesis: An In-Depth Review", author: "Ambati, Murari (2025)", link: "http://dx.doi.org/10.2139/ssrn.5137493" },
+      { id: 7, title: "A brief description to self-similar processes", author: "Pardo, J.C. (2007)", link: "https://www.cimat.mx/~jcpardo/ssp1.pdf" },
+      { id: 8, title: "Hurst exponent: Calculation, Values and More", author: "Singh, V., Divakar, V. and Garg, A. (2019)", link: "https://blog.quantinsti.com/hurst-exponent/" },
+      { id: 9, title: "Fractional Brownian motion in a nutshell", author: "Shevenko, G. (2015)", link: "https://doi.org/10.1142/S2010194515600022" },
+      { id: 10, title: "Financial Markets: From fractals to power laws", author: "Olsen, R. (2023)", link: "http://dx.doi.org/10.2139/ssrn.4344887" },
+      { id: 11, title: "A theory of power-law distributions in financial market fluctuations", author: "Gabaix, X. et al. (2003)", link: "https://doi.org/10.1038/nature01624" },
+      { id: 12, title: "The art of fitting financial time series with Lévy stable distributions", author: "Scalas, E. and Kim, K. (2006)", link: "https://doi.org/10.48550/arXiv.physics/0608224" }
     ],
     customContent: (
       <div>
@@ -648,23 +654,27 @@ export const timelineEvents = [
         </h2>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Educated at the École Polytechnique and California Institute of Technology, mathematician Benoit Mandelbrot was not drawn to the elegance and simplicity that many of his peers sought after in their mathematical solutions. Later, as a Professor of Mathematics at Yale University and IBM Fellow Emeritus, Mandelbrot had the freedom to pursue unconventional problems. The seemingly irregular, messy, disordered and noisy problems that refused to be smoothed out and simplified captivated him.
+          Educated at the École Polytechnique and California Institute of Technology, mathematician Benoit Mandelbrot was not drawn to the elegance and simplicity that many of his peers sought after in their mathematical solution. Later, as a Professor of Mathematics at Yale University and IBM Fellow Emeritus, Mandelbrot had the freedom to pursue unconventional problems. The seemingly irregular, messy, disordered and noisy problems that refused to be smoothed out and simplified captivated him.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup>
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Where many mathematicians saw error and uncertainty, Mandelbrot believed there was an order within randomness and an underlying structure waiting to be understood. Benoit had questions about the shapes of clouds, trees, mountains, and coastlines—structures mathematics struggled to describe. Why does a coastline grow longer and longer the more precisely it’s measured? Why does the structure of a tree repeat itself as you zoom in? His questions about the structure of nature would soon lead him to redefine the mathematics of financial phenomena.
+          Where many mathematicians saw error and uncertainty, Mandelbrot believed there was an order within randomness and an underlying structure, waiting to be understood. Benoit had questions about the shapes of clouds, trees, mountains, and coastlines—structures mathematics struggled to describe. Why does a coastline grow longer and longer the more precisely it’s measured? Why does the structure of a tree repeat itself as you zoom in? His questions about the structure of nature would soon lead him to redefine the mathematics of financial phenomena.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mandelbrot’s description of these structural phenomena was named ‘fractals’: shapes that repeated themselves endlessly with self-similarity and a fractal dimension that exists between integer topological dimensions to define a shape's complexity. His ideas were collected in the “Fractal Geometry of Nature”, showing that irregularity was not a defect but an intrinsic property of nature itself.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup>
+          Mandelbrot’s description of these structural phenomena was named ‘fractals’: shapes that repeated themselves endlessly with self-similarity and a fractal dimension that exists between integer topological dimensions to define a shape's complexity. His ideas were collected in the “Fractal Geometry of Nature”, showing that irregularity was not a defect but an intrinsic property of nature itself.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mandelbrot argued that markets were fractal, exhibiting the same order beneath their jagged and seemingly unexplainable nature. Markets were not governed by smooth equilibrium but by a hidden structure beneath their unpredictable behavior. Mandelbrot challenged the basics of traditional financial theory and reconsidered the ideas of risk, stability and uncertainty. Price changes did not follow the Gaussian distribution they were believed to by the current financial model. Mandelbrot argued they followed power laws<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4,5]</a></sup> and large price changes occurred far more frequently than traditional theory predicted. Jumps greater than five standard deviations were occurring every few years in market data rather than after thousands of years like the traditional theory predicted. Eugene Fama later confirmed stock returns showed much fatter tails than the normal distribution would account for.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup> Mandelbrot then challenged the notion of a Gaussian distribution, arguing that smooth Brownian motion was insufficient to describe a market's turbulence and that it was better described by anomalous diffusion which was like turbulent systems in statistical physics. Characterized by volatility clustering, like turbulence in fluids, large changes follow large changes and small changes follow small changes.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>
+          Mandelbrot turned his focus to the financial world drawing parallels with markets and the roughness he saw in nature. A price chart showed similar patterns irrespective of the time scale, whether it be measured over days, weeks or years. Extreme events repeated and the same patterns re-emerged time after time.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Although the work of Mandelbrot would not allow prices to be predicted it did hold great value elsewhere. He showed instability was inherent to financial systems and crashes were structurally inevitable which challenged the foundations of the Efficient Market Hypothesis and highlighted the limitations of standard risk measures.
+          Mandelbrot argued that markets were fractal, exhibiting the same order beneath their jagged and seemingly unexplainable nature. Markets were not governed by smooth equilibrium but by a hidden structure beneath their unpredictable behaviour. Mandelbrot challenged the basics of traditional financial theory and reconsidered the ideas of risk, stability and uncertainty. Price changes did not follow the Gaussian distribution they were believed to by the current financial model. Mandelbrot argued they followed power laws and large price changes occurred far more frequently than traditional theory predicted.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup> Jumps greater than five standard deviations were occurring every few years in market data rather than after thousands of years like the traditional theory predicted. Eugene Fama later confirmed stock returns showed much fatter tails than the normal distribution would account for. Mandelbrot then challenged the notion of a gaussian distribution, arguing that smooth Brownian motion was insufficient to describe a market's turbulence and that it was better described by anomalous diffusion which was like turbulent systems in statistical physics. Characterised by volatility clustering, like turbulence in fluids, large changes follow large changes and small changes follow small changes.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup>
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Although the work of Mandelbrot would not allow prices to be predicted it did hold great value elsewhere. He showed instability was inherent to financial systems and crashes were structurally inevitable which challenged the foundations of the Efficient Market Hypothesis and highlighted the limitations of standard risk measures.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
         </p>
       </div>
     ),
@@ -681,7 +691,7 @@ export const timelineEvents = [
           where <MathDisplay math="\stackrel{d}{=}" inline={true} /> means equal in distribution.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The Hurst exponent <MathDisplay math="H" inline={true} /> is used as a measure of long-term memory of a time series <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>.
+          The Hurst exponent <MathDisplay math="H" inline={true} /> is used as a measure of long-term memory of a time series <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup>.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Equation (1) is the mathematical foundation of fractal time series which exhibits self-similarity in the financial world. This is because the statistical properties of price fluctuations are the same after rescaling the time axis.
@@ -714,7 +724,7 @@ export const timelineEvents = [
         </p>
         <MathDisplay math="E(|\Delta_{a\tau}X(t)|^2) = a^{2H}E(|\Delta_{\tau}X(t)|^2)" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Hence analogous to anomalous diffusion in physics <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>:
+          Hence analogous to anomalous diffusion in physics <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>:
         </p>
         <MathDisplay math="E(\Delta X^2) \propto \Delta t^{2H}" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -733,11 +743,11 @@ export const timelineEvents = [
           Fractals describe how a financial market looks the same at all scales and it has no characteristic scale. The statistical structure is the same at different scales.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mandelbrot proposed that the distribution of price changes had fat tails which were described by power laws (5). Where the probability of a large price change <MathDisplay math="|r|" inline={true} /> is given by:
+          Mandelbrot proposed that the distribution of price changes had fat tails which were described by power laws <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[11]</a></sup>. Where the probability of a large price change <MathDisplay math="|r|" inline={true} /> is given by:
         </p>
         <MathDisplay math="P(|r| > x) \sim x^{-\alpha}" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          where <MathDisplay math="x" inline={true} /> is large and <MathDisplay math="\alpha > 0" inline={true} /> <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[7]</a></sup>. This was consistent with scale-invariant fractal behavior.
+          where <MathDisplay math="x" inline={true} /> is large and <MathDisplay math="\alpha > 0" inline={true} /> <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[12]</a></sup>. This was consistent with scale-invariant fractal behavior.
         </p>
       </div>
     )
@@ -1129,7 +1139,7 @@ export const timelineEvents = [
             </p>
             <MathDisplay math="H_{AB} = H_A \otimes H_B" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Tensor products allow us to combine two different 2-dimensional Hilbert Spaces into one 4 dimensional one. E.g
+              Tensor products allow us to combine two different 2-dimensional Hilbert spaces into one 4-dimensional one. For example:
             </p>
             <MathDisplay math="|0\rangle \otimes |1\rangle = |01\rangle" />
             <MathDisplay math="|a\rangle = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix} \quad |b\rangle = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}" />
@@ -1279,10 +1289,10 @@ export const timelineEvents = [
               The core advantage of quantum computing is in quantum parallelism. In contrast to a classical computer which require separate runs to process different inputs, a quantum computer can evaluate a function across a combination of possible states simultaneously. A single quantum operation can act upon <MathDisplay math="2^n" inline={true} /> number of inputs for n number of qubits. While we cannot extract the result of every calculation, it allows algorithms to achieve a quadratic speedup (Grover’s) and some even an exponential speedup compared to regular computers.
             </p>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Another advantage of quantum computers comes how they naturally encode high dimensional probability distributions into quantum states. Classical computers struggle to model complex stochastic systems such as stock market fluctuations or weather patterns due to the number of interacting variables. Quantum computers can use entanglement of qubits to create non separable probability distributions which model these systems.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup> This makes quantum computers run simulations of these systems where the interactions between variables are run with the quantum state itself rather than by approximations, which are used by classical computers.
+              Another advantage of quantum computers comes how they naturally encode high dimensional probability distributions into quantum states. Classical computers struggle to model complex stochastic systems such as stock market fluctuations or weather patterns due to the number of interacting variables. Quantum computers can use entanglement of qubits to create non-separable probability distributions which model these systems.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup> This makes quantum computers run simulations of these systems where the interactions between variables are run with the quantum state itself rather than by approximations, which are used by classical computers.
             </p>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Quantum computers are also well suited to optimisation. Optimisation involves finding a global minimum within a dataset, for example finding the lowest level of risk for a given rate of return in portfolio investing. This is an incredibly difficult task for classical computers, given large datasets where the total number of combinations is <MathDisplay math="\frac{(n-1)!}{2}" inline={true} />. Quantum computers can use parallelism to simulate many inputs simultaneously, reducing the time and computing power required. Furthermore, classical computers can risk becoming trapped in local minima and means the algorithm fails to find the global minima. Quantum computers can use quantum tunnelling to pass through the energy barriers allowing them to find the global minimum more efficiently.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
+              Quantum computers are also well suited to optimisation. Optimisation involves finding a global minimum within a dataset, for example finding the lowest level of risk for a given rate of return in portfolio investing. This is an incredibly difficult task for classical computers, given large datasets where the total number of combinations is <MathDisplay math="\frac{(n-1)!}{2}" inline={true} />. Quantum computers can use parallelism to simulate many inputs simultaneously, reducing the time and computing power required. Furthermore, classical computers can risk becoming trapped in local minima, which means the algorithm fails to find the global minimum. Quantum computers can use quantum tunnelling to pass through the energy barriers allowing them to find the global minimum more efficiently.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
             </p>
 
             <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '2rem', marginBottom: '0.5rem' }}>
@@ -1298,7 +1308,7 @@ export const timelineEvents = [
 
             <h5 style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>Not applicable to all tasks</h5>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              A common misconception in quantum computing is that quantum computers are a universally superior version of existing computers. This is not true and their advantages only apply to a limited number of problems. For most general tasks such as playing a game or making a website, quantum computers are no better than conventional and are much more expensive! The advantage to quantum computers are seen in problems where quantum mechanical effects can be exploited algorithmically. To expand the range of problems quantum computers can solve, more algorithms need to be discovered. These algorithms are extremely difficult to produce and despite decades of research only a small number have been produced.
+              A common misconception in quantum computing is that quantum computers are a universally superior version of existing computers. This is not true and their advantages only apply to a limited number of problems. For most general tasks such as playing a game or making a website, quantum computers are no better than conventional computers, and they are much more expensive! The advantage to quantum computers are seen in problems where quantum mechanical effects can be exploited algorithmically. To expand the range of problems quantum computers can solve, more algorithms need to be discovered. These algorithms are extremely difficult to produce and despite decades of research only a small number have been produced.
             </p>
 
             <h5 style={{ fontSize: '1.05rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>Scalability Challenges</h5>

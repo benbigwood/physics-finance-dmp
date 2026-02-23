@@ -168,5 +168,30 @@ export const glossaryTerms = [
         term: "Hermitian Operator",
         definition: "A mathematical operator used in quantum mechanics to represent physical observables. The eigenvalues of this operator correspond to the possible outcomes of a measurement.",
         category: "Physics"
+    },
+    {
+        term: "Anomalous Diffusion",
+        definition: "A diffusion process that exhibits a non-linear relationship with time, contrary to standard Brownian motion. In finance, it is used to describe turbulent markets characterized by volatility clustering and heavy tails.",
+        category: "Physics"
+    },
+    {
+        term: "Gauge Transformation",
+        definition: "A mathematical transformation often used in physics to simplify equations without altering the physical state. In finance, it is applied to the Black-Scholes PDE to reduce it to the standard Heat Equation.",
+        category: "Math"
+    },
+    {
+        term: "Green's Function (Heat Kernel)",
+        definition: "A function that describes how a point source of heat diffuses through space over time. It is used in solving the Black-Scholes equation to determine the expected future value of an option's payoff.",
+        category: "Physics"
+    },
+    {
+        term: "Contagion Effect",
+        definition: "A situation where a shock in a particular sector or market spreads to others, mimicking interconnected networks. Quantum computing algorithms are being explored to model these complex, panic-driven systemic risks.",
+        category: "Finance"
+    },
+    {
+        term: "Card Counting",
+        definition: "A casino strategy used in blackjack to determine whether the next hand is likely to give a probable advantage to the player or the dealer, functioning like a system with \"memory\"—a precursor to delta hedging.",
+        category: "Statistics"
     }
 ];

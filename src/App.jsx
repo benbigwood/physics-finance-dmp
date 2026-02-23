@@ -227,7 +227,7 @@ function App() {
                 fontWeight: 500
               }}
             >
-              About
+              About Us!
             </button>
             <button
               onClick={() => {

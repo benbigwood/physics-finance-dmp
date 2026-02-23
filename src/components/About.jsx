@@ -32,7 +32,7 @@ const About = ({ isOpen, onClose }) => {
                         paddingBottom: '4rem'
                     }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
-                            <h2 style={{ color: 'var(--color-accent)', fontSize: '2.5rem', margin: 0 }}>About Us</h2>
+                            <h2 style={{ color: 'var(--color-accent)', fontSize: '2.5rem', margin: 0 }}>About Us!</h2>
                             <button
                                 onClick={onClose}
                                 style={{
@@ -75,10 +75,10 @@ const About = ({ isOpen, onClose }) => {
                             <div style={{ flex: '2', minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 <div style={{ fontSize: '1.1rem' }}>
                                     <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.8' }}>
-                                        Hi! We're Alicia Lamplugh, Ben Bigwood, Will Kitching, Will Murray, and Alex Wilkinson and this is our group project for our digital media project as second year undergraduate physics students at Durham University taking the Physics in Society module.
+                                        Hi! We're Alicia Lamplugh, Ben Bigwood, Will Kitching, Will Murray, and Alex Wilkinson and this is our group project for our digital media project as second-year undergraduate physics students at Durham University taking the Physics in Society module.
                                     </p>
                                     <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.8', marginTop: '1rem' }}>
-                                        We're proud of what we've done and hope it helps you to understand and explore how the physics we come across in our studies is being applied to finance. We wanted to explore how concepts from the physical world, like Brownian motion and heat diffusion, have been applied to model financial markets. Our goal is to provide an interactive and educational resource for students and enthusiasts to discover these fascinating connections. It's a fascinating field that has taken many inert phenomena such as Brownian motion and applied similar logic and mathematics to predict the financial markets generating trillions of pounds and we have explored many of those scenarios in this website for you.
+                                        We're proud of what we've done and hope it helps you understand and explore how the physics we come across in our studies is being applied to finance. We wanted to explore how concepts from the physical world, like Brownian motion and heat diffusion, have been applied to model financial markets. Our goal is to provide an interactive and educational resource for students and enthusiasts to discover these fascinating connections. It's a fascinating field that has taken many inert phenomena such as Brownian motion and applied similar logic and mathematics to predict the financial markets generating trillions of pounds and we have explored many of those scenarios in this website for you.
                                     </p>
                                     <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.8', marginTop: '1rem' }}>
                                         We hope you find it interesting seeing how physics can be applied to finance whether you're curious about just a tiny part of how physics is applied, or want to pick up the pattern of solving these problems and make money yourself!
