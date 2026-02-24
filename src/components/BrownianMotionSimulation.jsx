@@ -135,7 +135,7 @@ const BrownianMotionSimulation = () => {
             });
 
             mainParticle.y += mainParticle.vy;
-            mainParticle.x = widthP / 2; // Keep centered horizontally
+            mainParticle.x = widthP / 2; // Keep centred horizontally
 
             // Damping & Centering
             mainParticle.vy *= 0.6;

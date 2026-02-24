@@ -90,7 +90,7 @@ const ModernPortfolioSimulation = () => {
 
         // Covariance Matrix Generation (Pure JS)
         // 1. Create a valid correlation structure first
-        // We simulate this by generating a random covariance matrix and normalizing it to correlation
+        // We simulate this by generating a random covariance matrix and normalising it to correlation
         const rawCov = calculateCovarianceFromRandom(n);
 
         // Convert to correlation matrix
@@ -134,7 +134,7 @@ const ModernPortfolioSimulation = () => {
                 sumW += val;
             }
 
-            // Normalize & Calculate Expected Return
+            // Normalise & Calculate Expected Return
             let portRet = 0;
             for (let j = 0; j < n; j++) {
                 w[j] /= sumW;
@@ -145,7 +145,7 @@ const ModernPortfolioSimulation = () => {
             // variance = sum(w[i] * w[j] * Cov[i][j])
             let variance = 0;
             for (let r = 0; r < n; r++) {
-                // Optimization: Compute row sum first
+                // Optimisation: Compute row sum first
                 let rowTerm = 0;
                 for (let c = 0; c < n; c++) {
                     rowTerm += w[c] * finalCov[r][c];

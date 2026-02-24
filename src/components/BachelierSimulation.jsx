@@ -116,7 +116,7 @@ const BachelierSimulation = () => {
                     Bachelier Diffusion Simulator
                 </h2>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
-                    Control the market's behavior by adjusting <span style={{ color: 'var(--color-accent)' }}>Volatility</span> (particle speed) and <span style={{ color: '#22c55e' }}>Drift</span> (trend bias).
+                    Control the market's behaviour by adjusting <span style={{ color: 'var(--color-accent)' }}>Volatility</span> (particle speed) and <span style={{ color: '#22c55e' }}>Drift</span> (trend bias).
                     Observe how these microscopic interactions in the <strong>Collsions Box</strong> aggregate to form the <strong>Price Path</strong> and probability distribution above.
                     <br /><span style={{ display: 'block', marginTop: '0.5rem', fontStyle: 'italic', color: 'var(--color-text-tertiary)' }}>Enjoy playing around!</span>
                 </p>

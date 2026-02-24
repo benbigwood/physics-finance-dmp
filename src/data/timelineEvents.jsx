@@ -141,7 +141,7 @@ export const timelineEvents = [
         </p>
         <MathDisplay math="\partial_t u = \kappa \partial_{xx} u" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          which describes how temperature spreads smoothly over time. Bachelier recognized that the probability distribution of prices evolves in the same way.
+          which describes how temperature spreads smoothly over time. Bachelier recognised that the probability distribution of prices evolves in the same way.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           In his model, the density of possible future prices satisfies
@@ -391,16 +391,16 @@ export const timelineEvents = [
     title: "Modern Portfolio Theory",
     physicist: "Harry Markowitz",
     physicsConnection: "Statistical Variances & Covariances",
-    context: "Investors needed a way to mathematically maximize returns for a given level of risk.",
+    context: "Investors needed a way to mathematically maximise returns for a given level of risk.",
     math: "\\sigma_p^2 = \\sum \\sum w_i w_j \\sigma_{ij}",
-    impact: "Transformed portfolio management from qualitative stock picking to quantitative risk/return optimization.",
+    impact: "Transformed portfolio management from qualitative stock picking to quantitative risk/return optimisation.",
     image: "Harry Markowitz.png",
     imageCaption: "Harry Markowitz Portrait",
     imageSource: "UCSD Today",
     sourceLink: "https://today.ucsd.edu/story/harry_markowitz_economic_sciences_1990",
     visualType: "distribution",
     references: [
-      { id: 1, title: "60 Years of portfolio optimization: Practical challenges and current trends", author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J. (2014)", link: "https://doi.org/10.1016/j.ejor.2013.10.060" },
+      { id: 1, title: "60 Years of portfolio optimisation: Practical challenges and current trends", author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J. (2014)", link: "https://doi.org/10.1016/j.ejor.2013.10.060" },
       { id: 2, title: "Portfolio Selection: Efficient Diversification of Investments", author: "Markowitz, H.M. (1959)", link: "https://www.jstor.org/stable/j.ctt1bh4c8h" },
       { id: 3, title: "Capital Asset Prices: A Theory of Market Equilibrium Under Conditions of Risk", author: "Sharpe, W.F. (1964)", link: "https://doi.org/10.1111/j.1540-6261.1964.tb02865.x" }
     ],
@@ -410,13 +410,13 @@ export const timelineEvents = [
           The Birth of Modern Portfolio Theory
         </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Harry Markowitz, an economist from the University of Chicago, introduced mean-variance optimization in 1952, in a paper that fundamentally changed finance <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup>. He was motivated by a challenge that investors frequently encountered: making rational choices when faced with multiple risky assets, where prior to his work investment decisions were largely intuitive rather than objective.
+          Harry Markowitz, an economist from the University of Chicago, introduced mean-variance optimisation in 1952, in a paper that fundamentally changed finance <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup>. He was motivated by a challenge that investors frequently encountered: making rational choices when faced with multiple risky assets, where prior to his work investment decisions were largely intuitive rather than objective.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Markowitz formalized risk as the variance of returns and demonstrated that diversification reduces overall portfolio risk, similar to the now common sentiment of “don’t put all your eggs in one basket”. His framework quantified the trade-off between expected return and risk, showing that investors could construct portfolios with a risk-to-return trade-off that lies along an mathematically formulated ‘efficient frontier’. Along this efficient frontier we can read off the values of the maximized expected return for a given level of risk, or the minimized risk for a given return.
+          Markowitz formalised risk as the variance of returns and demonstrated that diversification reduces overall portfolio risk, similar to the now common sentiment of “don’t put all your eggs in one basket”. His framework quantified the trade-off between expected return and risk, showing that investors could construct portfolios with a risk-to-return trade-off that lies along an mathematically formulated ‘efficient frontier’. Along this efficient frontier we can read off the values of the maximised expected return for a given level of risk, or the minimised risk for a given return.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          This theory was expanded upon in Markowitz’s 1959 book titled ‘Portfolio Selection: Efficient Diversification of Investment’ <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>, which introduced the covariance matrix of asset returns and other rigorous tools for portfolio optimization. This work laid out the framework for what is now known as modern portfolio theory.
+          This theory was expanded upon in Markowitz’s 1959 book titled ‘Portfolio Selection: Efficient Diversification of Investment’ <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>, which introduced the covariance matrix of asset returns and other rigorous tools for portfolio optimisation. This work laid out the framework for what is now known as modern portfolio theory.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           In the 1960s, William Sharpe extended Markowitz’s framework by incorporating the concept of the market portfolio and risk-free assets, combining to form the Capital Asset Pricing Model (CAPM). In 1964 Sharpe introduced the Sharpe ratio <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>, a measure of risk-adjusted return, and linked individual asset risk to market-wide risk. Sharpe, along with Markowitz and Merton Miller, were awarded the 1990 Nobel Prize in Economics.
@@ -432,10 +432,10 @@ export const timelineEvents = [
           The Mathematics of Modern Portfolio Theory
         </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mean-variance portfolio theory uses many tools familiar to physics, due to finance’s heavy reliance on stochastic calculus, derived from the geometric Brownian motion of a particle. In this theory specifically, we see that the portfolio variance <MathDisplay math="\mathbf{w}^T\mathbf{\Sigma}\mathbf{w}" inline={true} /> is of a quadratic form, similar to the energy of a system of coupled oscillators. The minimization under constraints uses a possibly familiar concept of Lagrange multipliers, exactly like a physicist would use them to solve for equilibrium configurations.
+          Mean-variance portfolio theory uses many tools familiar to physics, due to finance’s heavy reliance on stochastic calculus, derived from the geometric Brownian motion of a particle. In this theory specifically, we see that the portfolio variance <MathDisplay math="\mathbf{w}^T\mathbf{\Sigma}\mathbf{w}" inline={true} /> is of a quadratic form, similar to the energy of a system of coupled oscillators. The minimisation under constraints uses a possibly familiar concept of Lagrange multipliers, exactly like a physicist would use them to solve for equilibrium configurations.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The covariance matrix denoted <MathDisplay math="\mathbf{\Sigma}" inline={true} /> has variances along the diagonal and covariances on the off diagonal (tell you how asset returns move together) which is analogous to coupling terms in many-body physics such as coupled oscillators. In many-body physics one diagonalizes the coupling matrix and transforms to eigenmodes where each mode becomes an independent oscillator, and in portfolio theory one diagonalizes <MathDisplay math="\mathbf{\Sigma}" inline={true} />, transforming into eigenvector coordinates, where each eigenvector represents an independent risk factor.
+          The covariance matrix denoted <MathDisplay math="\mathbf{\Sigma}" inline={true} /> has variances along the diagonal and covariances on the off diagonal (tell you how asset returns move together) which is analogous to coupling terms in many-body physics such as coupled oscillators. In many-body physics one diagonalises the coupling matrix and transforms to eigenmodes where each mode becomes an independent oscillator, and in portfolio theory one diagonalises <MathDisplay math="\mathbf{\Sigma}" inline={true} />, transforming into eigenvector coordinates, where each eigenvector represents an independent risk factor.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Therefore, mean variance optimisation is essentially a constrained equilibrium problem, mathematically equivalent to finding the equilibrium of a quadratic energy surface under linear constraints.
@@ -445,7 +445,7 @@ export const timelineEvents = [
           1. Introduction and Definitions
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          We formulate the problem of portfolio selection as a constrained optimization problem in linear algebra. We treat the returns of assets as random variables and seek to minimize the variance of a linear combination of these variables.
+          We formulate the problem of portfolio selection as a constrained optimisation problem in linear algebra. We treat the returns of assets as random variables and seek to minimise the variance of a linear combination of these variables.
         </p>
 
         <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
@@ -490,13 +490,13 @@ export const timelineEvents = [
         </ol>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          2. The Optimization Problem
+          2. The Optimisation Problem
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Our objective is to minimize the portfolio risk (variance) for a specifically chosen target return <MathDisplay math="\mu^*" inline={true} />, subject to the constraint that all capital must be invested (the weights must sum to unity).
+          Our objective is to minimise the portfolio risk (variance) for a specifically chosen target return <MathDisplay math="\mu^*" inline={true} />, subject to the constraint that all capital must be invested (the weights must sum to unity).
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mathematically, we minimize the scalar field <MathDisplay math="f(\mathbf{w}) = \frac{1}{2}\mathbf{w}^T \mathbf{\Sigma} \mathbf{w}" inline={true} /> subject to two linear constraints:
+          Mathematically, we minimise the scalar field <MathDisplay math="f(\mathbf{w}) = \frac{1}{2}\mathbf{w}^T \mathbf{\Sigma} \mathbf{w}" inline={true} /> subject to two linear constraints:
         </p>
         <ol style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
           <li style={{ marginBottom: '0.5rem' }}>
@@ -596,14 +596,14 @@ export const timelineEvents = [
           6. The Tangency Portfolio (Maximum Sharpe Ratio)
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          If a risk-free asset <MathDisplay math="r_f" inline={true} /> is introduced, we instead maximize the Sharpe Ratio <MathDisplay math="S(\mathbf{w})" inline={true} />:
+          If a risk-free asset <MathDisplay math="r_f" inline={true} /> is introduced, we instead maximise the Sharpe Ratio <MathDisplay math="S(\mathbf{w})" inline={true} />:
         </p>
         <MathDisplay math="S(\mathbf{w}) = \frac{\mathbf{w}^T \boldsymbol{\mu} - r_f}{\sqrt{\mathbf{w}^T \mathbf{\Sigma} \mathbf{w}}}" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6', fontStyle: 'italic', color: 'var(--color-text-secondary)' }}>
           Note: The explicit vector differentiation of this quotient is omitted here for brevity. It involves applying the quotient rule to vector derivatives.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The result of the maximization yields the Tangency Portfolio weights <MathDisplay math="\mathbf{w}_{tan}" inline={true} />:
+          The result of the maximisation yields the Tangency Portfolio weights <MathDisplay math="\mathbf{w}_{tan}" inline={true} />:
         </p>
         <MathDisplay math="\mathbf{w}_{tan} \propto \mathbf{\Sigma}^{-1}(\boldsymbol{\mu} - r_f \mathbf{1})" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -640,10 +640,6 @@ export const timelineEvents = [
       { id: 4, title: "Fractal market hypothesis and two power-laws", author: "Aleksander Weron, Rafał Weron (2000)", link: "https://doi.org/10.1016/S0960-0779(98)00295-1" },
       { id: 5, title: "Extreme observations and risk assessment in the equity markets of MENA region: Tail measures and Value-at-Risk", author: "A. Assaf (2009)", link: "https://doi.org/10.1016/j.irfa.2009.03.007" },
       { id: 6, title: "Fractal Market Hypothesis: An In-Depth Review", author: "Ambati, Murari (2025)", link: "http://dx.doi.org/10.2139/ssrn.5137493" },
-      { id: 7, title: "A brief description to self-similar processes", author: "Pardo, J.C. (2007)", link: "https://www.cimat.mx/~jcpardo/ssp1.pdf" },
-      { id: 8, title: "Hurst exponent: Calculation, Values and More", author: "Singh, V., Divakar, V. and Garg, A. (2019)", link: "https://blog.quantinsti.com/hurst-exponent/" },
-      { id: 9, title: "Fractional Brownian motion in a nutshell", author: "Shevenko, G. (2015)", link: "https://doi.org/10.1142/S2010194515600022" },
-      { id: 10, title: "Financial Markets: From fractals to power laws", author: "Olsen, R. (2023)", link: "http://dx.doi.org/10.2139/ssrn.4344887" },
       { id: 11, title: "A theory of power-law distributions in financial market fluctuations", author: "Gabaix, X. et al. (2003)", link: "https://doi.org/10.1038/nature01624" },
       { id: 12, title: "The art of fitting financial time series with Lévy stable distributions", author: "Scalas, E. and Kim, K. (2006)", link: "https://doi.org/10.48550/arXiv.physics/0608224" }
     ],
@@ -681,64 +677,8 @@ export const timelineEvents = [
     derivationContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          Self-Similarity and the Hurst Exponent
-        </h2>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          A non-trivial stochastic process <MathDisplay math="X=(X_{t}, t \ge 0)" inline={true} /> taking values on <MathDisplay math="\mathbb{R}" inline={true} /> is said to be self-similar if for any <MathDisplay math="a > 0" inline={true} /> there exists <MathDisplay math="H > 0" inline={true} /> such that:
-        </p>
-        <MathDisplay math="(X_{at}, t \ge 0) \stackrel{d}{=} (a^H X_t, t \ge 0)" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          where <MathDisplay math="\stackrel{d}{=}" inline={true} /> means equal in distribution.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The Hurst exponent <MathDisplay math="H" inline={true} /> is used as a measure of long-term memory of a time series <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup>.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Equation (1) is the mathematical foundation of fractal time series which exhibits self-similarity in the financial world. This is because the statistical properties of price fluctuations are the same after rescaling the time axis.
-        </p>
-
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Returns and Lag Time
-        </h3>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Defining the return over lag time <MathDisplay math="\Delta t" inline={true} /> to be:
-        </p>
-        <MathDisplay math="r_{\Delta t}(t) = X(t + \Delta t) - X(t)" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Using the self-similarity of price series and equation (1) we obtain:
-        </p>
-        <MathDisplay math="r_{\Delta t} \stackrel{d}{=} (\Delta t)^H r_{(1)}" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          where <MathDisplay math="1" inline={true} /> is a basic time unit (returns measured over 1 day, 1 week, etc.).
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Let us consider <MathDisplay math="r_{a\tau} \stackrel{d}{=} a^H r_{\tau}" inline={true} />. Assuming stationary increments:
-        </p>
-        <MathDisplay math="X(t+a\tau) - X(t) \stackrel{d}{=} X(a\tau) - X(0) \stackrel{d}{=} a^H(X(\tau) - X(0))" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Squaring LHS and RHS:
-        </p>
-        <MathDisplay math="(\Delta_{a\tau}X(t))^2 = a^{2H}(\Delta_{\tau}X(t))^2" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Taking expectations:
-        </p>
-        <MathDisplay math="E(|\Delta_{a\tau}X(t)|^2) = a^{2H}E(|\Delta_{\tau}X(t)|^2)" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Hence analogous to anomalous diffusion in physics <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>:
-        </p>
-        <MathDisplay math="E(\Delta X^2) \propto \Delta t^{2H}" />
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The Hurst Exponent value <MathDisplay math="H" inline={true} /> shows:
-        </p>
-        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
-          <li><MathDisplay math="H > 0.5" inline={true} />, roughly shows a trending market.</li>
-          <li><MathDisplay math="H < 0.5" inline={true} />, roughly shows a sideways market.</li>
-          <li><MathDisplay math="H = 0.5" inline={true} />, indicates prediction cannot be based on past market data.</li>
-        </ul>
-
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
           Power Laws & Fractals
-        </h3>
+        </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Fractals describe how a financial market looks the same at all scales and it has no characteristic scale. The statistical structure is the same at different scales.
         </p>
@@ -747,7 +687,7 @@ export const timelineEvents = [
         </p>
         <MathDisplay math="P(|r| > x) \sim x^{-\alpha}" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          where <MathDisplay math="x" inline={true} /> is large and <MathDisplay math="\alpha > 0" inline={true} /> <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[12]</a></sup>. This was consistent with scale-invariant fractal behavior.
+          where <MathDisplay math="x" inline={true} /> is large and <MathDisplay math="\alpha > 0" inline={true} /> <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[12]</a></sup>. This was consistent with scale-invariant fractal behaviour.
         </p>
       </div>
     )
@@ -786,7 +726,7 @@ export const timelineEvents = [
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Thorp realized that Blackjack was a system with "memory." Unlike a roulette wheel, where every spin is independent, a deck of cards changes its probabilities as cards are removed. By mentally tracking the ratio of high cards to low cards, Thorp could identify specific moments when the probability distribution shifted in his favor. When the deck was "hot," he bet big; when it was "cold," he bet the minimum. He wasn't gambling; he was executing a calculation. This was the invention of <strong>card counting</strong>.
+          Thorp realised that Blackjack was a system with "memory." Unlike a roulette wheel, where every spin is independent, a deck of cards changes its probabilities as cards are removed. By mentally tracking the ratio of high cards to low cards, Thorp could identify specific moments when the probability distribution shifted in his favor. When the deck was "hot," he bet big; when it was "cold," he bet the minimum. He wasn't gambling; he was executing a calculation. This was the invention of <strong>card counting</strong>.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -800,7 +740,7 @@ export const timelineEvents = [
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Thorp devised a strategy called <strong>Delta Hedging</strong> to neutralize risk. The concept is elegant in its physics-like symmetry:
+          Thorp devised a strategy called <strong>Delta Hedging</strong> to neutralise risk. The concept is elegant in its physics-like symmetry:
         </p>
 
         <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
@@ -955,7 +895,7 @@ export const timelineEvents = [
         </h3>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Equation (14) represents a complex financial reality, but its structure is remarkably similar to equations found in thermodynamics. Black and Scholes realized that by transforming the coordinate system and the value function, they could map the chaotic movement of markets onto the smooth diffusion of heat.
+          Equation (14) represents a complex financial reality, but its structure is remarkably similar to equations found in thermodynamics. Black and Scholes realised that by transforming the coordinate system and the value function, they could map the chaotic movement of markets onto the smooth diffusion of heat.
         </p>
 
         <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
@@ -1033,21 +973,23 @@ export const timelineEvents = [
     id: "now",
     year: "NOW",
     title: "What's happening now?",
-    physicist: "Current Researchers",
+    physicist: "IBM Quantum Computer",
     physicsConnection: "Quantum Computing & Information Theory",
     context: "The frontier of physics and finance is merging with advanced computing and AI.",
     math: "|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle",
-    impact: "Exploring quantum algorithms for optimization and detecting systemic risk in complex networks.",
+    impact: "Exploring quantum algorithms for optimisation and detecting systemic risk in complex networks.",
+    image: "quatum computer.png",
+    imageAspectRatio: "3/4",
     visualType: "quantum",
     references: [
-      { id: 1, title: "Principles Of Quantum Computation And Information - Volume I: Basic Concepts", author: "Giuliano, Benenti, et al. (2004)", link: "" },
+      { id: 1, title: "Principles Of Quantum Computation And Information", author: "Giuliano, Benenti, et al. (2004)", link: "" },
       { id: 2, title: "An Introduction to Quantum Computing", author: "Kaye, Phillip, et al. (2007)", link: "" },
-      { id: 3, title: "Fundamentals of Quantum Entanglement (Second Edition)", author: "Duarte, F. J. (2022)", link: "" },
+      { id: 3, title: "Fundamentals of Quantum Entanglement", author: "Duarte, F. J. (2022)", link: "" },
       { id: 4, title: "Quantum Mechanics", author: "Stefanovich, Eugene (2018)", link: "" },
       { id: 5, title: "Quantum Communication and Computing: Elevating the Banking Sector", author: "McKinsey & Company (2020)", link: "https://www.mckinsey.com/industries/financial-services/our-insights/quantum-communication-and-computing-elevating-the-banking-sector" },
       { id: 6, title: "Quantum computing for finance", author: "Herman, D., Googin, C., Liu, X. et al. (2023)", link: "https://doi.org/10.1038/s42254-023-00603-1" },
       { id: 7, title: "Quantum Computing: an Applied Approach", author: "Hidary, Jack D. (2019)", link: "" },
-      { id: 8, title: "On the Role of Hadamard Gates in Quantum Circuits. Quantum Inf Process 5, 161–177", author: "Shepherd, D.J. (2006)", link: "https://doi.org/10.1007/s11128-006-0023-4" },
+      { id: 8, title: "On the Role of Hadamard Gates in Quantum Circuits", author: "Shepherd, D.J. (2006)", link: "https://doi.org/10.1007/s11128-006-0023-4" },
       { id: 9, title: "Quantum Computing", author: "Mehta, Nihal D. (2020)", link: "" },
       { id: 10, title: "Quantum Computing Explained", author: "McMahon, David (2007)", link: "" }
     ],
@@ -1057,20 +999,7 @@ export const timelineEvents = [
           What is Quantum Computing
         </h2>
 
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-          <img
-            src={`${import.meta.env.BASE_URL}quatum computer.png`}
-            alt="Quantum Computer"
-            style={{
-              maxWidth: '200px',
-              width: '100%',
-              height: 'auto',
-              borderRadius: 'var(--radius-md)',
-              border: '1px solid var(--color-border)',
-              boxShadow: 'var(--shadow-sm)'
-            }}
-          />
-        </div>
+
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginBottom: '1rem' }}>
           Quantum computation as a physical theory of information
@@ -1095,7 +1024,7 @@ export const timelineEvents = [
               Mathematical description of qubits
             </h4>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              In this complex Hilbert space, using the Dirac notation, we can define a pair of normalized and mutually orthogonal quantum states as <MathDisplay math="|0\rangle, |1\rangle" inline={true} /> where
+              In this complex Hilbert space, using the Dirac notation, we can define a pair of normalised and mutually orthogonal quantum states as <MathDisplay math="|0\rangle, |1\rangle" inline={true} /> where
             </p>
             <MathDisplay math="|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -1103,7 +1032,7 @@ export const timelineEvents = [
             </p>
             <MathDisplay math="\psi = \alpha|0\rangle + \beta|1\rangle" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Where <MathDisplay math="|\alpha|^2 + |\beta|^2 = 1" inline={true} />. The <MathDisplay math="\alpha" inline={true} /> and <MathDisplay math="\beta" inline={true} /> represent the associated amplitudes of the basis wavevectors. The probability of finding the electron in either state is found by taking the magnitude squared of these amplitudes. Compared to a classical bit which only allows two, this system allows for a continuum of possible states. A way to visualize this continuum is the Bloch sphere, a sphere with radius 1 in the two-dimensional Hilbert space <MathDisplay math="|0\rangle, |1\rangle" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
+              Where <MathDisplay math="|\alpha|^2 + |\beta|^2 = 1" inline={true} />. The <MathDisplay math="\alpha" inline={true} /> and <MathDisplay math="\beta" inline={true} /> represent the associated amplitudes of the basis wavevectors. The probability of finding the electron in either state is found by taking the magnitude squared of these amplitudes. Compared to a classical bit which only allows two, this system allows for a continuum of possible states. A way to visualise this continuum is the Bloch sphere, a sphere with radius 1 in the two-dimensional Hilbert space <MathDisplay math="|0\rangle, |1\rangle" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
             </p>
 
             {/* Simulation Placeholder 1 */}

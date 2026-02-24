@@ -23,7 +23,7 @@ const HadamardGateSimulation = () => {
 
     // Helper: Get target state for Hadamard gate
     const getHadamardTarget = (t, p) => {
-        // Normalize angles
+        // Normalise angles
         const normT = t % (2 * Math.PI);
         const normP = p % (2 * Math.PI);
 

@@ -92,7 +92,7 @@ const About = ({ isOpen, onClose }) => {
                                 <div style={{ fontSize: '1rem', marginTop: '1rem' }}>
                                     <h3 style={{ color: 'var(--color-text-primary)', marginBottom: '0.5rem', fontSize: '1.2rem' }}>AI Statement</h3>
                                     <p style={{ color: 'var(--color-text-tertiary)', lineHeight: '1.6', fontStyle: 'italic' }}>
-                                        This project utilized AI assistance for code generation, text drafting, and design inspiration. While AI tools were used to accelerate development and explore creative ideas, all content is our own ideas and intentions. We have reviewed every part and it has all been curated by our team to accuracy and alignment with our educational goals. We have used AI as our tool, but it has not chosen the work or taken from our creative intentions.
+                                        This project utilised AI assistance for code generation, text drafting, and design inspiration. While AI tools were used to accelerate development and explore creative ideas, all content is our own ideas and intentions. We have reviewed every part and it has all been curated by our team to accuracy and alignment with our educational goals. We have used AI as our tool, but it has not chosen the work or taken from our creative intentions.
                                     </p>
                                 </div>
                             </div>

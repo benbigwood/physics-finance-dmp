@@ -120,7 +120,7 @@ function App() {
             PiS DMP
           </div>
 
-          {/* Center Title - Appears when Scrolled */}
+          {/* Centre Title - Appears when Scrolled */}
           <div style={{
             position: 'absolute',
             left: '50%',

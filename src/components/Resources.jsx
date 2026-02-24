@@ -173,52 +173,60 @@ const Resources = ({ isOpen, onClose }) => {
                                         ))}
                                     </div>
                                 ) : (
-                                    <div style={{ padding: '1.5rem', border: '1px solid var(--color-surface-hover)', borderRadius: '12px', background: 'rgba(255,255,255,0.03)' }}>
-                                        <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-                                            {resourcesData.references.flatMap(category => category.items).map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '1.5rem', paddingLeft: '1rem', borderLeft: '2px solid var(--color-surface-hover)' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                                        <a
-                                                            href={item.link}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            style={{
-                                                                color: 'var(--color-accent)',
-                                                                textDecoration: 'none',
-                                                                fontWeight: 600,
-                                                                fontSize: '1.1rem',
-                                                                transition: 'color 0.2s ease'
-                                                            }}
-                                                            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-highlight)'}
-                                                            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                                                        >
-                                                            {item.title}
-                                                        </a>
-                                                        {item.year && <span style={{ fontSize: '0.9rem', color: 'var(--color-text-tertiary)' }}>({item.year})</span>}
-                                                    </div>
-                                                    <div style={{ marginTop: '0.2rem', marginBottom: '0.4rem' }}>
-                                                        <a
-                                                            href={item.link}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            style={{
-                                                                color: 'var(--color-accent)',
-                                                                fontSize: '0.85em',
-                                                                textDecoration: 'none',
-                                                                wordBreak: 'break-all',
-                                                                opacity: 0.8
-                                                            }}
-                                                            onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-                                                            onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-                                                        >
-                                                            {item.link}
-                                                        </a>
-                                                    </div>
-                                                    <p style={{ margin: '0.2rem 0', color: 'var(--color-text-secondary)', fontWeight: 500 }}>{item.author}</p>
-                                                    <p style={{ margin: '0.2rem 0', fontSize: '0.9rem', color: 'var(--color-text-tertiary)', lineHeight: '1.4' }}>{item.description}</p>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <div style={{ display: 'grid', gap: '2rem' }}>
+                                        {resourcesData.references.map((category, index) => (
+                                            <div key={index} style={{ padding: '1.5rem', border: '1px solid var(--color-surface-hover)', borderRadius: '12px', background: 'rgba(255,255,255,0.03)' }}>
+                                                <h3 style={{ color: 'var(--color-accent)', fontSize: '1.4rem', marginBottom: '1rem', borderBottom: '1px solid var(--color-surface-hover)', paddingBottom: '0.5rem', display: 'inline-block' }}>
+                                                    {category.category}
+                                                </h3>
+                                                <ul style={{ listStyle: 'none', paddingLeft: 0, marginTop: '1rem' }}>
+                                                    {category.items.map((item, idx) => (
+                                                        <li key={idx} style={{ marginBottom: '1.5rem', paddingLeft: '1rem', borderLeft: '2px solid var(--color-surface-hover)' }}>
+                                                            <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                                                <span style={{ color: 'var(--color-finance)', fontWeight: 'bold' }}>[{idx + 1}]</span>
+                                                                <a
+                                                                    href={item.link}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    style={{
+                                                                        color: 'var(--color-accent)',
+                                                                        textDecoration: 'none',
+                                                                        fontWeight: 600,
+                                                                        fontSize: '1.1rem',
+                                                                        transition: 'color 0.2s ease'
+                                                                    }}
+                                                                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-highlight)'}
+                                                                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
+                                                                >
+                                                                    {item.title}
+                                                                </a>
+                                                                {item.year && <span style={{ fontSize: '0.9rem', color: 'var(--color-text-tertiary)' }}>({item.year})</span>}
+                                                            </div>
+                                                            <div style={{ marginTop: '0.2rem', marginBottom: '0.4rem' }}>
+                                                                <a
+                                                                    href={item.link}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    style={{
+                                                                        color: 'var(--color-accent)',
+                                                                        fontSize: '0.85em',
+                                                                        textDecoration: 'none',
+                                                                        wordBreak: 'break-all',
+                                                                        opacity: 0.8
+                                                                    }}
+                                                                    onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                                                                    onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                                                                >
+                                                                    {item.link}
+                                                                </a>
+                                                            </div>
+                                                            <p style={{ margin: '0.2rem 0', color: 'var(--color-text-secondary)', fontWeight: 500 }}>{item.author}</p>
+                                                            <p style={{ margin: '0.2rem 0', fontSize: '0.9rem', color: 'var(--color-text-tertiary)', lineHeight: '1.4' }}>{item.description}</p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                 )}
                             </motion.div>

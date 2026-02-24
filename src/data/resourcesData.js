@@ -54,7 +54,7 @@ export const resourcesData = {
             category: "1952: Modern Portfolio Theory",
             items: [
                 {
-                    title: "60 Years of portfolio optimization: Practical challenges and current trends",
+                    title: "60 Years of portfolio optimisation: Practical challenges and current trends",
                     author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J.",
                     year: "2014",
                     description: "Practical challenges and current trends in MPT.",
@@ -138,7 +138,7 @@ export const resourcesData = {
                     title: "Fractional Brownian motion in a nutshell",
                     author: "Shevenko, G.",
                     year: "2015",
-                    description: "Overview of stochastic modeling and fractional Brownian motion.",
+                    description: "Overview of stochastic modelling and fractional Brownian motion.",
                     link: "https://doi.org/10.1142/S2010194515600022"
                 },
                 {
@@ -295,7 +295,7 @@ export const resourcesData = {
                     link: "https://www.amazon.com/Physics-Wall-Street-Brief-History/dp/0544112432"
                 },
                 {
-                    title: "The Misbehavior of Markets: A Fractal View of Financial Turbulence",
+                    title: "The Misbehaviour of Markets: A Fractal View of Financial Turbulence",
                     author: "Benoit Mandelbrot & Richard L. Hudson",
                     year: "2004",
                     description: "Mandelbrot's own account of why modern financial theory fails and how fractals provide a better model.",
@@ -305,7 +305,7 @@ export const resourcesData = {
                     title: "Quantum Finance: Path Integrals and Hamiltonians for Options and Interest Rates",
                     author: "Belal E. Baaquie",
                     year: "2004",
-                    description: "A rigorous application of quantum field theory methods to financial modeling.",
+                    description: "A rigorous application of quantum field theory methods to financial modelling.",
                     link: "https://www.amazon.com/Quantum-Finance-Integrals-Hamiltonians-Options/dp/0521840455"
                 },
                 {
@@ -372,7 +372,7 @@ export const resourcesData = {
                 {
                     title: "The Trillion Dollar Equation",
                     author: "Veritasium",
-                    description: "How Ed Thorp and Black-Scholes used mathematics to revolutionize finance.",
+                    description: "How Ed Thorp and Black-Scholes used mathematics to revolutionise finance.",
                     link: "https://youtu.be/A5w-dEgIU1M"
                 },
                 {
@@ -382,7 +382,7 @@ export const resourcesData = {
                     link: "https://youtu.be/JhHMJCUmq28"
                 },
                 {
-                    title: "The Efficient Frontier - Portfolio Optimization",
+                    title: "The Efficient Frontier - Portfolio Optimisation",
                     author: "Plain Bagel",
                     description: "Clear visual explanation of Markowitz's diversification theory.",
                     link: "https://youtu.be/A-o9s0k-1sc"

@@ -26,7 +26,7 @@ export const glossaryTerms = [
     },
     {
         term: "Phase Transition",
-        definition: "The transformation of a thermodynamic system from one phase or state of matter to another. Market crashes are often modeled as phase transitions.",
+        definition: "The transformation of a thermodynamic system from one phase or state of matter to another. Market crashes are often modelled as phase transitions.",
         category: "Physics"
     },
     {
@@ -70,8 +70,8 @@ export const glossaryTerms = [
         category: "Finance"
     },
     {
-        term: "Mean-Variance Optimization",
-        definition: "A mathematical framework for assembling a portfolio of assets such that the expected return is maximized for a given level of risk.",
+        term: "Mean-Variance Optimisation",
+        definition: "A mathematical framework for assembling a portfolio of assets such that the expected return is maximised for a given level of risk.",
         category: "Finance"
     },
     {
@@ -171,7 +171,7 @@ export const glossaryTerms = [
     },
     {
         term: "Anomalous Diffusion",
-        definition: "A diffusion process that exhibits a non-linear relationship with time, contrary to standard Brownian motion. In finance, it is used to describe turbulent markets characterized by volatility clustering and heavy tails.",
+        definition: "A diffusion process that exhibits a non-linear relationship with time, contrary to standard Brownian motion. In finance, it is used to describe turbulent markets characterised by volatility clustering and heavy tails.",
         category: "Physics"
     },
     {

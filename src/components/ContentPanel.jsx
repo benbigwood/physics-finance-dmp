@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import BlackScholesSimulation from './BlackScholesSimulation';
 import BrownianMotionSimulation from './BrownianMotionSimulation';
@@ -7,8 +7,6 @@ import FractalMarketSimulation from './FractalMarketSimulation';
 import ModernPortfolioSimulation from './ModernPortfolioSimulation';
 
 import BachelierSimulation from './BachelierSimulation';
-import DiffusionSimulation from './DiffusionSimulation';
-import FractionalBrownianMotionSimulation from './FractionalBrownianMotionSimulation';
 
 const ExplanationView = ({ activeEvent }) => {
     const [activeSubTab, setActiveSubTab] = useState(activeEvent.subPaths ? activeEvent.subPaths[0].id : null);
@@ -165,6 +163,8 @@ ExplanationView.propTypes = { activeEvent: PropTypes.object.isRequired };
 
 const ContentPanel = ({ activeEvent, onClose }) => {
     const [activeTab, setActiveTab] = useState('explanation');
+    const [visibleRefIds, setVisibleRefIds] = useState([]);
+    const contentRef = useRef(null);
 
     // Reset tab when event changes
     useEffect(() => {
@@ -175,9 +175,45 @@ const ContentPanel = ({ activeEvent, onClose }) => {
         }
     }, [activeEvent]);
 
+    // Automatically detect which references are currently visible
+    useEffect(() => {
+        const updateVisibleRefs = () => {
+            if (!contentRef.current) return;
+            const links = contentRef.current.querySelectorAll('a[href="#reference-section"]');
+            const foundIds = new Set();
+            links.forEach(link => {
+                // If the element has layout, it's visible (handles display: none from inactive tabs)
+                if (link.offsetParent !== null) {
+                    const match = link.innerText.match(/\[(\d+)\]/i);
+                    if (match) {
+                        foundIds.add(parseInt(match[1], 10));
+                    }
+                }
+            });
+            const newIds = Array.from(foundIds).sort((a, b) => a - b);
+            setVisibleRefIds(prev => JSON.stringify(prev) !== JSON.stringify(newIds) ? newIds : prev);
+        };
+
+        updateVisibleRefs();
+
+        // Use MutationObserver for dynamic subtab changes inside ExplanationView
+        const observer = new MutationObserver(() => updateVisibleRefs());
+        if (contentRef.current) {
+            observer.observe(contentRef.current, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+        }
+
+        return () => observer.disconnect();
+    }, [activeTab, activeEvent]);
+
     if (!activeEvent) return null;
 
     const hasTabs = !!activeEvent.customContent;
+
+    const showImages = !activeTab.includes('simulation') && activeTab !== 'calculator';
+    const visibleReferences = (activeEvent.references || []).filter(ref => visibleRefIds.includes(ref.id));
+    const hasAnySources = (showImages && activeEvent.sourceLink) ||
+        (showImages && activeEvent.sideImages?.some(img => img.sourceLink)) ||
+        visibleReferences.length > 0;
 
     const scrollToReferences = () => {
         const refSection = document.getElementById('reference-section');
@@ -240,7 +276,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                         <div>
                             <div style={{
                                 width: '100%',
-                                aspectRatio: '4/3',
+                                aspectRatio: activeEvent.imageAspectRatio || '4/3',
                                 background: 'var(--color-surface-hover)',
                                 borderRadius: 'var(--radius-lg)',
                                 display: 'flex',
@@ -369,39 +405,55 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                     )}
 
                     {/* Right Column: Content */}
-                    <div>
+                    <div ref={contentRef}>
                         {hasTabs ? (
                             <>
                                 {/* Segmented Control Tab Navigation */}
                                 <div style={{
                                     display: 'inline-flex',
+                                    flexWrap: 'wrap',
+                                    gap: '4px',
                                     background: 'var(--color-surface-hover)',
                                     padding: '4px',
                                     borderRadius: 'var(--radius-md)',
-                                    marginBottom: 'var(--spacing-lg)'
+                                    marginBottom: 'var(--spacing-lg)',
+                                    maxWidth: 'calc(100% - 40px)'
                                 }}>
-                                    {(activeEvent.id === '1973' ? ['story', 'explanation', 'calculator', 'diffusion'] : ['story', 'explanation', 'simulation']).map(tab => (
-                                        <button
-                                            key={tab}
-                                            onClick={() => setActiveTab(tab)}
-                                            style={{
-                                                background: activeTab === tab ? 'var(--color-bg)' : 'transparent',
-                                                border: 'none',
-                                                borderRadius: '6px', // slightly smaller than container
-                                                color: activeTab === tab ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
-                                                padding: '0.5rem 1.5rem',
-                                                cursor: 'pointer',
-                                                fontSize: '0.95rem',
-                                                fontWeight: 500,
-                                                boxShadow: activeTab === tab ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                                                transition: 'all 0.2s ease',
-                                                textTransform: 'capitalize'
-                                            }}
-                                        >
-                                            {tab === 'explanation' ? 'Physics-Finance' :
-                                                (tab === 'story' && activeEvent.id === 'now' ? 'Modern Finance' : tab)}
-                                        </button>
-                                    ))}
+                                    {(activeEvent.id === '1973' ? ['story', 'explanation', 'calculator'] : ['story', 'explanation', 'simulation']).map(tab => {
+                                        let displayLabel = tab;
+                                        if (tab === 'explanation') displayLabel = 'Physics-Finance';
+                                        else if (tab === 'story' && activeEvent.id === 'now') displayLabel = 'Modern Finance';
+                                        else if (tab === 'calculator' && activeEvent.id === '1973') displayLabel = 'Black-Scholes Calculator';
+                                        else if (tab === 'simulation') {
+                                            if (activeEvent.id === '1952') displayLabel = 'Portfolio Optimizer Simulation';
+                                            else if (activeEvent.id === '1900') displayLabel = 'Market Randomness Simulation';
+                                            else if (activeEvent.id === '1960') displayLabel = 'Market Fractals Simulation';
+                                            else displayLabel = 'Simulation';
+                                        }
+
+                                        return (
+                                            <button
+                                                key={tab}
+                                                onClick={() => setActiveTab(tab)}
+                                                style={{
+                                                    background: activeTab === tab ? 'var(--color-bg)' : 'transparent',
+                                                    border: 'none',
+                                                    borderRadius: '6px', // slightly smaller than container
+                                                    color: activeTab === tab ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                                                    padding: '0.5rem 1.5rem',
+                                                    cursor: 'pointer',
+                                                    fontSize: '0.95rem',
+                                                    fontWeight: 500,
+                                                    boxShadow: activeTab === tab ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                                                    transition: 'all 0.2s ease',
+                                                    textTransform: (tab === 'explanation' || tab === 'story') ? 'capitalize' : 'none',
+                                                    whiteSpace: 'nowrap'
+                                                }}
+                                            >
+                                                {displayLabel}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
 
                                 {/* Tab Content */}
@@ -431,7 +483,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                     {/* Simulation 1: Brownian Motion */}
                                                     <div>
                                                         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-                                                            1. The Physics: Brownian Motion
+                                                            1. Brownian Motion Simulation
                                                         </h3>
                                                         <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
                                                             In 1827, botanist Robert Brown observed pollen grains jiggling erratically in water. This "Brownian motion" was later explained by Einstein as the result of invisible water molecules colliding with the pollen. In this simulation, the large particle represents the price (or pollen), and the smaller particles represent the random market orders (or water molecules) kicking it around.
@@ -442,40 +494,23 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                     {/* Simulation 2: Bachelier Model */}
                                                     <div>
                                                         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '2rem' }}>
-                                                            2. The Finance: Bachelier's Diffusion
+                                                            2. Bachelier Model Simulation
                                                         </h3>
                                                         <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
-                                                            Louis Bachelier took this physical concept and applied it to finance. He realized that if prices are driven by countless independent shocks (like the collisions above), their probability distribution spreads out over time exactly like heat diffusing through a metal rod.
+                                                            Louis Bachelier took this physical concept and applied it to finance. He realised that if prices are driven by countless independent shocks (like the collisions above), their probability distribution spreads out over time exactly like heat diffusing through a metal rod.
                                                         </p>
                                                         <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
-                                                            Unlike the single particle above, this simulation generates thousands of potential price paths to visualize the market's "risk envelope". The bell curve on the right shows the Normal (Gaussian) distribution of possible future prices, widening as time (volatility) increases.
+                                                            Unlike the single particle above, this simulation generates thousands of potential price paths to visualise the market's "risk envelope". The bell curve on the right shows the Normal (Gaussian) distribution of possible future prices, widening as time (volatility) increases.
                                                         </p>
                                                         <BachelierSimulation />
                                                     </div>
                                                 </div>
                                             ) : activeEvent.id === '1960' ? (
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-                                                    {/* Simulation 1: Volatility Clustering */}
-                                                    <div>
-                                                        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-                                                            1. Volatility Clustering
-                                                        </h3>
-                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
-                                                            Mandelbrot observed that large price changes tend to be followed by large price changes, and small changes by small ones. This creates distinct visual "regimes" of high and low volatility that repeat at different scales.
-                                                        </p>
-                                                        <FractalMarketSimulation />
-                                                    </div>
-
-                                                    {/* Simulation 2: Fractional Brownian Motion */}
-                                                    <div>
-                                                        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '2rem' }}>
-                                                            2. Fractional Brownian Motion & Hurst Exponent
-                                                        </h3>
-                                                        <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
-                                                            Unlike standard Brownian motion (where H = 0.5), Fractal Markets exhibit "memory". Adjust the Hurst Exponent ($H$) to see how a market can become mean-reverting (H &lt; 0.5) or persistently trending (H &gt; 0.5), comparing the fractal model to a real market proxy.
-                                                        </p>
-                                                        <FractionalBrownianMotionSimulation />
-                                                    </div>
+                                                <div>
+                                                    <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
+                                                        Mandelbrot observed that large price changes tend to be followed by large price changes, and small changes by small ones. This creates distinct visual "regimes" of high and low volatility that repeat at different scales.
+                                                    </p>
+                                                    <FractalMarketSimulation />
                                                 </div>
                                             ) : activeEvent.id === '1952' ? (
                                                 <ModernPortfolioSimulation />
@@ -494,7 +529,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                 }}>
                                                     <span style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔮</span>
                                                     <p style={{ fontSize: '1.2rem', fontStyle: 'italic' }}>
-                                                        "Well if we had a real simulation, we’d be quite successful! - see in the physics-finance simulation for simulations of some of the concepts."
+                                                        Well if we had a real simulation, we’d be quite successful! - see in the physics-finance simulation for simulations of some of the concepts.
                                                     </p>
                                                 </div>
                                             ) : (
@@ -515,14 +550,6 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                             )}
                                         </div>
                                     </div>
-
-                                    {/* Diffusion Tab */}
-                                    <div style={{ display: activeTab === 'diffusion' ? 'block' : 'none', height: '100%' }}>
-                                        <div className="fade-in" style={{ height: '100%' }}>
-                                            <DiffusionSimulation />
-                                        </div>
-                                    </div>
-
                                 </div>
                             </>
                         ) : (
@@ -531,76 +558,43 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                         )}
 
                         {/* References Section */}
-                        <div id="reference-section" style={{
-                            marginTop: '3rem',
-                            padding: '1.5rem',
-                            background: 'var(--color-surface-hover)',
-                            borderRadius: 'var(--radius-md)',
-                            color: 'var(--color-text-secondary)',
-                            fontSize: '0.8rem',
-                            border: '1px solid var(--color-border)'
-                        }}>
-                            <h4 style={{
-                                marginBottom: '0.75rem',
-                                color: 'var(--color-text-primary)',
-                                fontSize: '0.9rem',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.05em',
-                                opacity: 0.8
+                        {hasAnySources && (
+                            <div id="reference-section" style={{
+                                marginTop: '3rem',
+                                padding: '1.5rem',
+                                background: 'var(--color-surface-hover)',
+                                borderRadius: 'var(--radius-md)',
+                                color: 'var(--color-text-secondary)',
+                                fontSize: '0.8rem',
+                                border: '1px solid var(--color-border)'
                             }}>
-                                References & Sources
-                            </h4>
-                            <ul style={{ listStyle: 'none', padding: 0 }}>
-                                {activeEvent.sourceLink && (
-                                    <li style={{ marginBottom: '0.6rem' }}>
-                                        <strong style={{ color: 'var(--color-text-primary)' }}>
-                                            {activeEvent.imageCaption || "Main Visual"}
-                                        </strong>
-                                        <span style={{ color: 'var(--color-text-secondary)', margin: '0 0.5rem' }}>
-                                            from {activeEvent.imageSource || "Source"}
-                                        </span>
-                                        <div style={{ marginTop: '0.1rem' }}>
-                                            <a
-                                                href={activeEvent.sourceLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                style={{
-                                                    color: 'var(--color-finance)',
-                                                    fontSize: '0.9em',
-                                                    textDecoration: 'underline',
-                                                    textDecorationColor: 'var(--color-border)',
-                                                    wordBreak: 'break-all',
-                                                    transition: 'all 0.2s ease',
-                                                    opacity: 0.85
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    e.target.style.color = 'var(--color-finance)';
-                                                    e.target.style.textDecorationColor = 'var(--color-finance)';
-                                                    e.target.style.opacity = '1';
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.target.style.color = 'var(--color-finance)';
-                                                    e.target.style.textDecorationColor = 'var(--color-border)';
-                                                    e.target.style.opacity = '0.85';
-                                                }}
-                                            >
-                                                {activeEvent.sourceLink}
-                                            </a>
-                                        </div>
-                                    </li>
-                                )}
-                                {activeEvent.sideImages && activeEvent.sideImages.map((img, i) => (
-                                    img.sourceLink && (
-                                        <li key={i} style={{ marginBottom: '0.6rem' }}>
-                                            <strong style={{ color: 'var(--color-text-primary)' }}>{img.caption}:</strong>
+                                <h4 style={{
+                                    marginBottom: '0.75rem',
+                                    color: 'var(--color-text-primary)',
+                                    fontSize: '0.9rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em',
+                                    opacity: 0.8
+                                }}>
+                                    References & Sources
+                                </h4>
+                                <ul style={{ listStyle: 'none', padding: 0 }}>
+                                    {showImages && activeEvent.sourceLink && (
+                                        <li style={{ marginBottom: '0.6rem' }}>
+                                            <strong style={{ color: 'var(--color-text-primary)' }}>
+                                                {activeEvent.imageCaption || "Main Visual"}
+                                            </strong>
+                                            <span style={{ color: 'var(--color-text-secondary)', margin: '0 0.5rem' }}>
+                                                from {activeEvent.imageSource || "Source"}
+                                            </span>
                                             <div style={{ marginTop: '0.1rem' }}>
                                                 <a
-                                                    href={img.sourceLink}
+                                                    href={activeEvent.sourceLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     style={{
                                                         color: 'var(--color-finance)',
-                                                        fontSize: '0.85em',
+                                                        fontSize: '0.9em',
                                                         textDecoration: 'underline',
                                                         textDecorationColor: 'var(--color-border)',
                                                         wordBreak: 'break-all',
@@ -618,22 +612,18 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                         e.target.style.opacity = '0.85';
                                                     }}
                                                 >
-                                                    {img.sourceLink}
+                                                    {activeEvent.sourceLink}
                                                 </a>
                                             </div>
                                         </li>
-                                    )
-                                ))}
-                                {activeEvent.references && activeEvent.references.map((ref, i) => (
-                                    <li key={`ref-${i}`} style={{ marginBottom: '0.8rem' }}>
-                                        <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                            <span style={{ color: 'var(--color-finance)', fontWeight: 600, minWidth: '20px', opacity: 0.9 }}>[{ref.id}]</span>
-                                            <div>
-                                                <strong style={{ color: 'var(--color-text-primary)', display: 'block', fontSize: '0.85rem' }}>{ref.title}</strong>
-                                                {ref.author && <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>{ref.author}</span>}
+                                    )}
+                                    {showImages && activeEvent.sideImages && activeEvent.sideImages.map((img, i) => (
+                                        img.sourceLink && (
+                                            <li key={i} style={{ marginBottom: '0.6rem' }}>
+                                                <strong style={{ color: 'var(--color-text-primary)' }}>{img.caption}:</strong>
                                                 <div style={{ marginTop: '0.1rem' }}>
                                                     <a
-                                                        href={ref.link}
+                                                        href={img.sourceLink}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         style={{
@@ -656,15 +646,54 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                             e.target.style.opacity = '0.85';
                                                         }}
                                                     >
-                                                        {ref.link}
+                                                        {img.sourceLink}
                                                     </a>
                                                 </div>
+                                            </li>
+                                        )
+                                    ))}
+                                    {visibleReferences.map((ref, i) => (
+                                        <li key={`ref-${i}`} style={{ marginBottom: '0.8rem' }}>
+                                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                                <span style={{ color: 'var(--color-finance)', fontWeight: 600, minWidth: '20px', opacity: 0.9 }}>[{ref.id}]</span>
+                                                <div>
+                                                    <strong style={{ color: 'var(--color-text-primary)', display: 'block', fontSize: '0.85rem' }}>{ref.title}</strong>
+                                                    {ref.author && <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>{ref.author}</span>}
+                                                    <div style={{ marginTop: '0.1rem' }}>
+                                                        <a
+                                                            href={ref.link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            style={{
+                                                                color: 'var(--color-finance)',
+                                                                fontSize: '0.85em',
+                                                                textDecoration: 'underline',
+                                                                textDecorationColor: 'var(--color-border)',
+                                                                wordBreak: 'break-all',
+                                                                transition: 'all 0.2s ease',
+                                                                opacity: 0.85
+                                                            }}
+                                                            onMouseEnter={(e) => {
+                                                                e.target.style.color = 'var(--color-finance)';
+                                                                e.target.style.textDecorationColor = 'var(--color-finance)';
+                                                                e.target.style.opacity = '1';
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.target.style.color = 'var(--color-finance)';
+                                                                e.target.style.textDecorationColor = 'var(--color-border)';
+                                                                e.target.style.opacity = '0.85';
+                                                            }}
+                                                        >
+                                                            {ref.link}
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 </div>
             </motion.div>

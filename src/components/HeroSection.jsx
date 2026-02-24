@@ -94,10 +94,10 @@ const HeroSection = () => {
                         color: 'var(--color-finance)',
                         fontWeight: 600
                     }}>
-                        We offer an interactive and informative platform to discover the unique applications of your physics studies within finance. Whether you are simply curious about this specialized field or are interested in acquiring the problem-solving patterns needed to potentially profit from these methods, we hope you find this application of physics to finance truly captivating.
+                        We offer an interactive and informative platform to discover the unique applications of your physics studies within finance. Whether you are simply curious about this specialised field or are interested in acquiring the problem-solving patterns needed to potentially profit from these methods, we hope you find this application of physics to finance truly captivating.
                     </p>
                     <p style={{ fontSize: '0.9rem', opacity: 0.8, color: 'var(--color-text-tertiary)', marginBottom: 0 }}>
-                        <strong>Navigating the Timeline:</strong> The interactive graph below represents the chronological evolution of these models. Select any node to explore the historical context, the mathematical derivations linking physics to finance, and interactive simulations that visualize these theories in real-time.
+                        <strong>Navigating the Timeline:</strong> The interactive graph below represents the chronological evolution of these models. Select any node to explore the historical context, the mathematical derivations linking physics to finance, and interactive simulations that visualise these theories in real-time.
                     </p>
                 </div>
             </div>
