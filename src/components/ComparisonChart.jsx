@@ -83,8 +83,8 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-surface-hover)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
-                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Brownian Motion (Diffusion) ↗</td>
-                                        <td style={{ padding: '1rem' }}>Speculation & Price Discovery</td>
+                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Brownian Motion ↗</td>
+                                        <td style={{ padding: '1rem' }}>Speculation Theory</td>
                                         <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Diffusion Equation</td>
                                     </tr>
                                     <tr
@@ -102,9 +102,9 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-surface-hover)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
-                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Coupled Oscillators & Energy ↗</td>
+                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Statistical Variances & Coupled Oscillators ↗</td>
                                         <td style={{ padding: '1rem' }}>Modern Portfolio Theory</td>
-                                        <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Quadratic Forms</td>
+                                        <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Quadratic Forms & Covariance Matrices</td>
                                     </tr>
                                     <tr
                                         onClick={() => {
@@ -121,8 +121,8 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-surface-hover)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
-                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Turbulence & Self-Similarity ↗</td>
-                                        <td style={{ padding: '1rem' }}>Fractal Market Volatility</td>
+                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Fractals & Anomalous Diffusion ↗</td>
+                                        <td style={{ padding: '1rem' }}>Fractal Markets</td>
                                         <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Power Laws</td>
                                     </tr>
                                     <tr
@@ -140,9 +140,9 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-surface-hover)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
-                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Thermodynamics & Heat Flux ↗</td>
-                                        <td style={{ padding: '1rem' }}>Options Pricing (Black-Scholes)</td>
-                                        <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Heat Equation</td>
+                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Heat Diffusion Equation ↗</td>
+                                        <td style={{ padding: '1rem' }}>Option Pricing (Black-Scholes)</td>
+                                        <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Stochastic Calculus & PDEs</td>
                                     </tr>
                                     <tr
                                         onClick={() => {
@@ -159,8 +159,8 @@ const ComparisonChart = ({ isOpen, onClose, onNavigate }) => {
                                         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-surface-hover)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
-                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Quantum Mechanics & Computing ↗</td>
-                                        <td style={{ padding: '1rem' }}>Portfolio Optimisation & Contagion Modelling</td>
+                                        <td style={{ padding: '1rem', color: 'var(--color-accent)' }}>Quantum Computing & Information Theory ↗</td>
+                                        <td style={{ padding: '1rem' }}>Contagion Modelling & Portfolio Optimisation</td>
                                         <td style={{ padding: '1rem', fontFamily: 'monospace' }}>Hilbert Spaces & Tensor Products</td>
                                     </tr>
                                 </tbody>

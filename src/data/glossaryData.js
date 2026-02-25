@@ -25,16 +25,6 @@ export const glossaryTerms = [
         category: "Statistics"
     },
     {
-        term: "Phase Transition",
-        definition: "The transformation of a thermodynamic system from one phase or state of matter to another. Market crashes are often modelled as phase transitions.",
-        category: "Physics"
-    },
-    {
-        term: "Quantum Annealing",
-        definition: "A metaheuristic for finding the global minimum of a given objective function over a given set of candidate solutions using quantum fluctuations.",
-        category: "Physics"
-    },
-    {
         term: "Zero Drift",
         definition: "A statistical process with no trend or directional bias over time. In finance, it implies the expected future price is equal to the current price.",
         category: "Statistics"
@@ -193,5 +183,25 @@ export const glossaryTerms = [
         term: "Card Counting",
         definition: "A casino strategy used in blackjack to determine whether the next hand is likely to give a probable advantage to the player or the dealer, functioning like a system with \"memory\"—a precursor to delta hedging.",
         category: "Statistics"
+    },
+    {
+        term: "Law of Large Numbers",
+        definition: "A theorem describing the result of performing the same experiment a large number of times. It guarantees stable long-term results for the averages of random events, underpinning many risk models.",
+        category: "Math"
+    },
+    {
+        term: "Warrants",
+        definition: "A financial derivative giving the right, but not the obligation, to buy or sell a security at a certain price before expiration. Ed Thorp identified pricing anomalies in warrants to develop delta hedging.",
+        category: "Finance"
+    },
+    {
+        term: "Born Rule",
+        definition: "A key postulate of quantum mechanics which gives the probability that a measurement on a quantum system will yield a given result. It relates the square of the amplitude of a wave function to the probability of an outcome.",
+        category: "Quantum"
+    },
+    {
+        term: "Tensor Products",
+        definition: "A mathematical operation combining two vector spaces into a larger one. In quantum computing, it is used to describe the combined state space of multiple qubits, making it fundamental for describing entanglement.",
+        category: "Math"
     }
 ];

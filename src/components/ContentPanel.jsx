@@ -486,7 +486,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                                             1. Brownian Motion Simulation
                                                         </h3>
                                                         <p style={{ marginBottom: '1.5rem', lineHeight: '1.6', color: 'var(--color-text-secondary)' }}>
-                                                            In 1827, botanist Robert Brown observed pollen grains jiggling erratically in water. This "Brownian motion" was later explained by Einstein as the result of invisible water molecules colliding with the pollen. In this simulation, the large particle represents the price (or pollen), and the smaller particles represent the random market orders (or water molecules) kicking it around.
+                                                            In 1827, botanist Robert Brown observed pollen grains jiggling erratically in water. This phenomenon was later explained by Einstein as the result of water molecules continuously bumping into the pollen – he famously coined the exhibited behaviour to be ‘Brownian motion’. In this simulation, the large particle represents the price (or pollen), and the smaller particles represent the random market orders (or water molecules) colliding into it.
                                                         </p>
                                                         <BrownianMotionSimulation />
                                                     </div>
@@ -582,7 +582,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                     {showImages && activeEvent.sourceLink && (
                                         <li style={{ marginBottom: '0.6rem' }}>
                                             <strong style={{ color: 'var(--color-text-primary)' }}>
-                                                {activeEvent.imageCaption || "Main Visual"}
+                                                {activeEvent.imageReferenceTitle || activeEvent.imageCaption || "Main Visual"}
                                             </strong>
                                             <span style={{ color: 'var(--color-text-secondary)', margin: '0 0.5rem' }}>
                                                 from {activeEvent.imageSource || "Source"}

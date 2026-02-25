@@ -24,7 +24,10 @@ export const timelineEvents = [
       { id: 4, title: "Théorie de la Spéculation", author: "Louis Bachelier (1900)", link: "https://investmenttheory.org/uploads/3/4/8/2/34825752/emhbachelier.pdf" },
       { id: 5, title: "Black-Scholes and Bachelier", author: "arXiv:2104.08686", link: "https://arxiv.org/pdf/2104.08686.pdf" },
       { id: 6, title: "The Heat Equation", author: "Stanford University", link: "https://web.stanford.edu/class/math220b/handouts/heateqn.pdf?utm_source=chatgpt.com" },
-      { id: 7, title: "The History of Bachelier's 'Théorie de la Spéculation'", author: "JSTOR", link: "https://www.jstor.org/stable/1182421?utm_source=chatgpt.com" }
+      { id: 7, title: "The History of Bachelier's 'Théorie de la Spéculation'", author: "JSTOR", link: "https://www.jstor.org/stable/1182421?utm_source=chatgpt.com" },
+      { id: 8, title: "Jules Regnault", author: "Wikipedia contributors (2024)", link: "https://en.wikipedia.org/wiki/Jules_Regnault" },
+      { id: 9, title: "Elementary Principles in Statistical Mechanics", author: "Gibbs, J.W. (1902)", link: "https://en.wikipedia.org/wiki/Elementary_Principles_in_Statistical_Mechanics" },
+      { id: 10, title: "Between economics and physics…", author: "Huber, T.A. (2016)", link: "https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/167132/1/content.pdf" }
     ],
     customContent: (
       <div>
@@ -33,10 +36,10 @@ export const timelineEvents = [
         </h2>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act I: The Illusion of cause.
+          Act I: The Illusion of Cause
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Before the 20th Century, prices were generally thought to move because of identifiable, explainable causes (news, harvest, wars etc.).
+          Before the 20th Century, asset prices were generally thought to move because of identifiable, explainable causes (news, harvest, wars, etc.).
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           It was widely thought that skilled traders could analyse trends/cycles and make a profit in the financial markets.
@@ -45,33 +48,83 @@ export const timelineEvents = [
           The notion of randomness was just considered to be an acute lack of information, with price fluctuations generally thought to be noisy, however, deterministic if a trader was provided with all the information associated with the stock.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Inherent randomness was yet to be conceptualised and hence no rigorous mathematical framework was in place for financial markets of the time.
+          Inherent randomness was yet to be conceptualised, and hence no rigorous mathematical framework was in place for financial markets of the time.
         </p>
 
         <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
-          The role of Louis Bachelier.
+          The role of Louis Bachelier
         </h4>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Enter Louis Bachelier. Studying mathematics under Henri Poincaré, Bachelier published his PhD thesis ‘Théorie de la Spéculation’<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup> which was highly unconventional for the time.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[7]</a></sup>
+          Enter Louis Bachelier. Studying mathematics under Henri Poincaré, Bachelier published his PhD thesis ‘Théorie de la Spéculation’<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup>, which was highly unconventional for the time.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[7]</a></sup>
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Rather than addressing a classical problem in pure mathematics, he examined the mathematical structure of financial markets, specifically price fluctuations on the Paris Bourse.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          It should be said Louis Bachelier&apos;s contributions to option pricing and financial mathematics were disregarded at the time and not rediscovered until 50 years later.
+          The Paris Bourse consisted of two main segments: the cash market (marché au comptant) - immediate settlement, or the forward market (marché à terme) - settlement (financial closing of a trade) at a future date.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Meanwhile Bachelier drew many conceptual parallels from the world of physics to finance intentionally.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>
+          Primarily, Bachelier directed his research towards the forward market, which was highly developed and more active than the cash market.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The forward market followed the regime:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li>Today, you agree on a price.</li>
+          <li>Actual delivery/payment happens later (often monthly settlement).</li>
+          <li>You post a margin deposit.</li>
+          <li>You profit if the price moves in your favour before settlement.</li>
+        </ul>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The key issue was the structural temporal gap between agreement and settlement.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The problem was that future asset prices (forward price) were unknown at the time of contracting, hence the value given to the asset was mostly speculative.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          To counteract this uncertainty, it was widely believed that more information on what could possibly affect the asset price (news, other trades etc.), led to a fairer spot price at settlement.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Louis Bachelier suggested that attempting to catalogue economic events that may influence prices was far from rigorous and depended on unpredictable short-term fluctuations.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          His research reformulated the problem mathematically; future prices should be treated as random variables with pricing following set probability laws.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In doing so, Bachelier treated the market as a statistical system composed of numerous interacting agents, analogous to a system of gas particles.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Fundamentally, statistical thermodynamics tells us that the behaviour of individual gas particles is known to be virtually impossible to predict.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Bachelier’s mathematical background allowed him to analyse stock prices in the same regard, which he concluded that pricing is structurally random and can only be said to be probabilistic, not deterministic.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Bachelier&apos;s key findings were:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li>Modelled asset prices as a continuous random process.</li>
+          <li>Introduced Brownian motion into finance.</li>
+          <li>Showed price changes are normally distributed and independent.</li>
+          <li>Argued expected speculative profit is zero.</li>
+          <li>Derived an early mathematical formula for option pricing.</li>
+          <li>Intentionally drew many conceptual parallels from the world of physics to finance.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup></li>
+        </ul>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          It should be said that Louis Bachelier&apos;s contributions to option pricing and financial mathematics were disregarded at the time and not rediscovered until 50 years later.
         </p>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          Act II:
+          Act II
         </h3>
         <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
           The Drunken Walk:
         </h4>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Bachelier suggested the financial markets evolve randomly over time – an efficient market is one at statistical equilibrium (probabilistically, no one should be able to predict an efficient market).<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
+          Bachelier suggested financial markets evolve randomly over time – an efficient market is one at statistical equilibrium (probabilistically, no one should be able to predict an efficient market).<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Bachelier modelled an asset price to follow that of a random walk – formalised by Einstein 5 years later, who applied this phenomenon to pollen grains in a liquid.
         </p>
         <MathDisplay math="S_t = S_0 + \sigma W_t" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -97,7 +150,7 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Exact distribution at every time:
         </p>
-        <MathDisplay math="W_t \sim \mathcal{N}(0,t)" />
+        <MathDisplay math="W_t \sim \mathcal{N}(0, t)" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Variance grows linearly in time:
         </p>
@@ -107,21 +160,24 @@ export const timelineEvents = [
         </p>
         <MathDisplay math="W_{ct} \stackrel{d}{=} \sqrt{c} W_t" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Diffusion spreads proportionally to <MathDisplay math="\sqrt{t}" inline={true} />.
+          Diffusion spreads proportionally to <MathDisplay math="t" inline={true} />.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The <MathDisplay math="W_t" inline={true} /> term introduces a continuous-time random process, making the stock price completely unpredictable by nature.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           In a symmetric random walk, the position at the next step equals the current position plus a random increment that is equally likely to be positive or negative.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The expected position therefore, remains constant,
+          The expected position, therefore, remains constant,
         </p>
-        <MathDisplay math="\mathbb{E} [ X_n ]= X_0" />
+        <MathDisplay math="\mathbb{E}[X_n] = X_0" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           while the variance grows linearly with the number of steps,
         </p>
-        <MathDisplay math="\text{Var}( X_n )= n (\Delta x )^2" />
+        <MathDisplay math="\text{Var}(X_n) = n(\Delta x)^2" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Thus the process does not drift on average, but the uncertainty spreads over time, with the typical displacement increasing proportionally to root (n).
+          Thus, the process does not drift on average, but the uncertainty spreads over time, with the typical displacement increasing proportionally to <MathDisplay math="n" inline={true} />.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           This linear growth of variance is the fundamental mechanism underlying diffusion in physics and volatility growth in Bachelier’s financial model.
@@ -146,7 +202,7 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           In his model, the density of possible future prices satisfies
         </p>
-        <MathDisplay math="\partial_t p  = \frac{\sigma ^2}{2} \partial_{xx} p" />
+        <MathDisplay math="\partial_t p = \frac{\sigma^2}{2} \partial_{xx} p" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           the same diffusion (heat) equation, with volatility playing the role of thermal diffusivity.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
         </p>
@@ -159,7 +215,7 @@ export const timelineEvents = [
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           When applied to option pricing, the equation appears in backward form:
         </p>
-        <MathDisplay math="\partial_t V  + \frac{\sigma ^2}{2} \partial_{S} V  = 0" />
+        <MathDisplay math="\partial_t V + \frac{\sigma^2}{2} \partial_S V = 0" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           After a change of variables, this becomes the standard heat equation.
         </p>
@@ -167,24 +223,24 @@ export const timelineEvents = [
           The option price evolves exactly like temperature diffusing through space.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          A payoff function at maturity is “smoothed” over time by Gaussian diffusion.
+          A payoff function at maturity is smoothed over time by Gaussian diffusion.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Inherently we can therefore take away that:
+          Inherently, we can therefore take away that:
         </p>
         <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
           <li>Market dynamics are diffusive: Information disperses like heat.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup></li>
-          <li>Volatility is a diffusion constant: It controls how fast uncertainty spreads<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup></li>
+          <li>Volatility is a diffusion constant: It controls how fast uncertainty spreads.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup></li>
         </ul>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Naturally, the solution to the PDE is found to be:
         </p>
-        <MathDisplay math="p(x,t \mid x_0, 0) = \frac{1}{\sqrt{2\pi\sigma^2t}} \exp \left( - \frac{(x-x_0)^2}{2\sigma^2t} \right)" />
+        <MathDisplay math="p(x, t \mid x_0, 0) = \frac{1}{\sqrt{2\pi\sigma^2 t}} \exp\left(-\frac{(x - x_0)^2}{2\sigma^2 t}\right)" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           The fundamental solution of the heat equation is the Gaussian distribution.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In Bachelier’s model, this means that conditional on today’s price, future prices are normally distributed with variance <MathDisplay math="\sigma^2( T - t )" inline={true} />.
+          In Bachelier’s model, this means that conditional on today’s price, future prices are normally distributed with variance <MathDisplay math="\sigma^2(T-t)" inline={true} />.
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           The mean remains at the current price (in the zero-drift case), and volatility acts as the diffusion constant determining how quickly the distribution widens over time.
@@ -193,7 +249,7 @@ export const timelineEvents = [
           This result was revolutionary because it provided an explicit probabilistic law for price movements and made option pricing analytically solvable.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup>
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          By identifying the market’s uncertainty with the Gaussian solution of the heat equation, Bachelier showed that financial fluctuations obey a precise diffusion structure — transforming speculation into a problem of mathematical analysis and establishing the first continuous-time pricing framework.
+          By identifying the market’s uncertainty with the Gaussian solution of the heat equation, Bachelier showed that financial fluctuations obey a precise diffusion structure, transforming speculation into a problem of mathematical analysis and establishing the first continuous-time pricing framework.
         </p>
       </div>
     ),
@@ -622,7 +678,7 @@ export const timelineEvents = [
     math: "P(X > x) \\sim x^{-\\alpha}",
     impact: "Challenged the Efficient Market Hypothesis and introduced the idea of roughness in financial data.",
     image: "fractal photo.png",
-    imageCaption: "Mandelbrot Set Visualization",
+    imageReferenceTitle: "Benoit Mandelbrot",
     imageSource: "TED Talk: Fractals and the art of roughness",
     visualType: "fractal",
     sourceLink: "https://www.ted.com/talks/benoit_mandelbrot_fractals_and_the_art_of_roughness",
@@ -640,6 +696,7 @@ export const timelineEvents = [
       { id: 4, title: "Fractal market hypothesis and two power-laws", author: "Aleksander Weron, Rafał Weron (2000)", link: "https://doi.org/10.1016/S0960-0779(98)00295-1" },
       { id: 5, title: "Extreme observations and risk assessment in the equity markets of MENA region: Tail measures and Value-at-Risk", author: "A. Assaf (2009)", link: "https://doi.org/10.1016/j.irfa.2009.03.007" },
       { id: 6, title: "Fractal Market Hypothesis: An In-Depth Review", author: "Ambati, Murari (2025)", link: "http://dx.doi.org/10.2139/ssrn.5137493" },
+      { id: 7, title: "Mandelbrot Fractal Visualisation", author: "Gart", link: "https://mandel.gart.nz/" },
       { id: 11, title: "A theory of power-law distributions in financial market fluctuations", author: "Gabaix, X. et al. (2003)", link: "https://doi.org/10.1038/nature01624" },
       { id: 12, title: "The art of fitting financial time series with Lévy stable distributions", author: "Scalas, E. and Kim, K. (2006)", link: "https://doi.org/10.48550/arXiv.physics/0608224" }
     ],
@@ -659,6 +716,10 @@ export const timelineEvents = [
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Mandelbrot’s description of these structural phenomena was named ‘fractals’: shapes that repeated themselves endlessly with self-similarity and a fractal dimension that exists between integer topological dimensions to define a shape's complexity. His ideas were collected in the “Fractal Geometry of Nature”, showing that irregularity was not a defect but an intrinsic property of nature itself.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          See <a href="https://mandel.gart.nz/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)' }}>this website for a great visualisation on fractals</a>.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[7]</a></sup>
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>

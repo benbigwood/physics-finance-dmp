@@ -6,47 +6,52 @@ export const resourcesData = {
                 {
                     title: "From Simple Random Walk to Wiener Process and Diffusion Equation",
                     author: "Dr. Christian P. Salas",
-                    year: "2024",
-                    description: "Connecting discrete random walks to continuous diffusion.",
                     link: "https://drchristianphsalas.com/2024/04/02/from-simple-random-walk-to-wiener-process-and-diffusion-equation/"
                 },
                 {
                     title: "Stochastic Processes",
                     author: "University of Leicester",
-                    description: "Lecture notes on the mathematical foundations of stochasticity.",
                     link: "https://www.le.ac.uk/users/dsgp1/COURSES/DERIVATE/PROCESSES.PDF"
                 },
                 {
                     title: "Phynance (General Financial Physics)",
                     author: "Oxford University Physics",
-                    description: "Lecture notes mapping statistical mechanics to financial theory.",
                     link: "https://users.physics.ox.ac.uk/~Foot/Phynance/"
                 },
                 {
                     title: "Théorie de la Spéculation",
-                    author: "Louis Bachelier",
-                    year: "1900",
-                    description: "The PhD thesis that introduced the first mathematical model of Brownian motion for financial markets.",
+                    author: "Louis Bachelier (1900)",
                     link: "https://investmenttheory.org/uploads/3/4/8/2/34825752/emhbachelier.pdf"
                 },
                 {
                     title: "Black-Scholes and Bachelier",
                     author: "arXiv:2104.08686",
-                    year: "2021",
-                    description: "Link between modern and classical pricing models.",
                     link: "https://arxiv.org/pdf/2104.08686.pdf"
                 },
                 {
                     title: "The Heat Equation",
                     author: "Stanford University",
-                    description: "Mathematical derivation and properties of the diffusion equation.",
                     link: "https://web.stanford.edu/class/math220b/handouts/heateqn.pdf?utm_source=chatgpt.com"
                 },
                 {
                     title: "The History of Bachelier's 'Théorie de la Spéculation'",
                     author: "JSTOR",
-                    description: "Historical context of Bachelier's misunderstood PhD thesis.",
                     link: "https://www.jstor.org/stable/1182421?utm_source=chatgpt.com"
+                },
+                {
+                    title: "Jules Regnault",
+                    author: "Wikipedia contributors (2024)",
+                    link: "https://en.wikipedia.org/wiki/Jules_Regnault"
+                },
+                {
+                    title: "Elementary Principles in Statistical Mechanics",
+                    author: "Gibbs, J.W. (1902)",
+                    link: "https://en.wikipedia.org/wiki/Elementary_Principles_in_Statistical_Mechanics"
+                },
+                {
+                    title: "Between economics and physics…",
+                    author: "Huber, T.A. (2016)",
+                    link: "https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/167132/1/content.pdf"
                 }
             ]
         },
@@ -55,23 +60,17 @@ export const resourcesData = {
             items: [
                 {
                     title: "60 Years of portfolio optimisation: Practical challenges and current trends",
-                    author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J.",
-                    year: "2014",
-                    description: "Practical challenges and current trends in MPT.",
+                    author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J. (2014)",
                     link: "https://doi.org/10.1016/j.ejor.2013.10.060"
                 },
                 {
                     title: "Portfolio Selection: Efficient Diversification of Investments",
-                    author: "Markowitz, H.M.",
-                    year: "1959",
-                    description: "Book extending the theory to practical implementation.",
+                    author: "Markowitz, H.M. (1959)",
                     link: "https://www.jstor.org/stable/j.ctt1bh4c8h"
                 },
                 {
                     title: "Capital Asset Prices: A Theory of Market Equilibrium Under Conditions of Risk",
-                    author: "Sharpe, W.F.",
-                    year: "1964",
-                    description: "The introduction of CAPM and the Sharpe Ratio.",
+                    author: "Sharpe, W.F. (1964)",
                     link: "https://doi.org/10.1111/j.1540-6261.1964.tb02865.x"
                 }
             ]
@@ -81,85 +80,47 @@ export const resourcesData = {
             items: [
                 {
                     title: "Learning from Benoit Mandelbrot",
-                    author: "Masters Invest",
-                    year: "2018",
-                    description: "Reflections on Mandelbrot's approach to financial market roughness.",
+                    author: "Masters Invest (2018)",
                     link: "https://mastersinvest.com/newblog/2018/2/18/learning-from-benoit-mandelbrot"
                 },
                 {
                     title: "Fractals and the art of roughness – Benoit Mandelbrot",
-                    author: "TED",
-                    year: "2013",
-                    description: "A TED talk detailing Mandelbrot's perspective on the structure of nature.",
+                    author: "TED (2013)",
                     link: "https://www.youtube.com/watch?v=wQTnVEXAtBY"
                 },
                 {
                     title: "The Fractal Geometry of Nature",
                     author: "Wikipedia",
-                    description: "Overview of Mandelbrot's most famous work on fractal geometry.",
                     link: "https://en.wikipedia.org/wiki/The_Fractal_Geometry_of_Nature"
                 },
                 {
                     title: "Fractal market hypothesis and two power-laws",
-                    author: "Aleksander Weron, Rafał Weron",
-                    year: "2000",
-                    description: "Academic discussion on the power-law distributions in finance.",
+                    author: "Aleksander Weron, Rafał Weron (2000)",
                     link: "https://doi.org/10.1016/S0960-0779(98)00295-1"
                 },
                 {
-                    title: "Extreme observations and risk assessment in the equity markets of MENA region",
-                    author: "A. Assaf",
-                    year: "2009",
-                    description: "Application of tail measures and Value-at-Risk.",
+                    title: "Extreme observations and risk assessment in the equity markets of MENA region: Tail measures and Value-at-Risk",
+                    author: "A. Assaf (2009)",
                     link: "https://doi.org/10.1016/j.irfa.2009.03.007"
                 },
                 {
                     title: "Fractal Market Hypothesis: An In-Depth Review",
-                    author: "Ambati, Murari",
-                    year: "2025",
-                    description: "Review of the structural inevitability of market crashes.",
+                    author: "Ambati, Murari (2025)",
                     link: "http://dx.doi.org/10.2139/ssrn.5137493"
                 },
                 {
-                    title: "A brief description to self-similar processes",
-                    author: "Pardo, J.C.",
-                    year: "2007",
-                    description: "Establishing the mathematical foundations of self-similarity processes.",
-                    link: "https://www.cimat.mx/~jcpardo/ssp1.pdf"
-                },
-                {
-                    title: "Hurst exponent: Calculation, Values and More",
-                    author: "Singh, V., Divakar, V. and Garg, A.",
-                    year: "2019",
-                    description: "Detailed guide on measuring long-term memory in time series.",
-                    link: "https://blog.quantinsti.com/hurst-exponent/"
-                },
-                {
-                    title: "Fractional Brownian motion in a nutshell",
-                    author: "Shevenko, G.",
-                    year: "2015",
-                    description: "Overview of stochastic modelling and fractional Brownian motion.",
-                    link: "https://doi.org/10.1142/S2010194515600022"
-                },
-                {
-                    title: "Financial Markets: From fractals to power laws",
-                    author: "Olsen, R.",
-                    year: "2023",
-                    description: "Modern application of fractal geometry to market microstructure.",
-                    link: "http://dx.doi.org/10.2139/ssrn.4344887"
+                    title: "Mandelbrot Fractal Visualisation",
+                    author: "Gart",
+                    link: "https://mandel.gart.nz/"
                 },
                 {
                     title: "A theory of power-law distributions in financial market fluctuations",
-                    author: "Gabaix, X. et al.",
-                    year: "2003",
-                    description: "Explaining why extreme events happen more often than expected.",
+                    author: "Gabaix, X. et al. (2003)",
                     link: "https://doi.org/10.1038/nature01624"
                 },
                 {
                     title: "The art of fitting financial time series with Lévy stable distributions",
-                    author: "Scalas, E. and Kim, K.",
-                    year: "2006",
-                    description: "Applying statistical physics concepts like anomalous diffusion to financial time series.",
+                    author: "Scalas, E. and Kim, K. (2006)",
                     link: "https://doi.org/10.48550/arXiv.physics/0608224"
                 }
             ]
@@ -169,40 +130,32 @@ export const resourcesData = {
             items: [
                 {
                     title: "The Pricing of Options and Corporate Liabilities",
-                    author: "Black, F. and Scholes, M.",
-                    year: "1973",
-                    description: "The paper that introduced the famous Black-Scholes model.",
+                    author: "Black, F. and Scholes, M. (1973)",
                     link: "https://doi.org/10.1086/260062"
                 },
                 {
                     title: "The Trillion Dollar Equation",
-                    author: "Veritasium",
-                    description: "Documentary on the revolution of options pricing.",
+                    author: "Veritasium (YouTube)",
                     link: "https://youtu.be/A5w-dEgIU1M"
                 },
                 {
                     title: "The Easiest Way to Derive the Black-Scholes Model",
-                    author: "Perfiliev Financial Training",
-                    description: "Derivation using delta hedging principles.",
+                    author: "Perfiliev Financial Training (YouTube)",
                     link: "https://youtu.be/NHvQ5CSSgw0"
                 },
                 {
                     title: "Edward O. Thorp",
                     author: "Wikipedia",
-                    description: "The story of the man who beat the casino and Wall Street.",
                     link: "https://en.wikipedia.org/wiki/Edward_O._Thorp"
                 },
                 {
                     title: "Black–Scholes model",
                     author: "Wikipedia",
-                    description: "Comprehensive overview of the model and its extensions.",
                     link: "https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model"
                 },
                 {
                     title: "Black-Scholes and Bachelier",
                     author: "arXiv:2104.08686",
-                    year: "2021",
-                    description: "Comparison of Bachelier's and Black-Scholes' equations.",
                     link: "https://arxiv.org/pdf/2104.08686.pdf"
                 }
             ]
@@ -212,72 +165,52 @@ export const resourcesData = {
             items: [
                 {
                     title: "Principles Of Quantum Computation And Information",
-                    author: "Giuliano, Benenti, et al.",
-                    year: "2004",
-                    description: "Textbook on the fundamentals of quantum information.",
+                    author: "Giuliano, Benenti, et al. (2004)",
                     link: ""
                 },
                 {
                     title: "An Introduction to Quantum Computing",
-                    author: "Kaye, Phillip, et al.",
-                    year: "2007",
-                    description: "A comprehensive guide to quantum algorithms.",
+                    author: "Kaye, Phillip, et al. (2007)",
                     link: ""
                 },
                 {
                     title: "Fundamentals of Quantum Entanglement",
-                    author: "Duarte, F. J.",
-                    year: "2022",
-                    description: "Deep dive into the physics of entanglement.",
+                    author: "Duarte, F. J. (2022)",
                     link: ""
                 },
                 {
                     title: "Quantum Mechanics",
-                    author: "Stefanovich, Eugene",
-                    year: "2018",
-                    description: "Foundational physics of quantum states.",
+                    author: "Stefanovich, Eugene (2018)",
                     link: ""
                 },
                 {
                     title: "Quantum Communication and Computing: Elevating the Banking Sector",
-                    author: "McKinsey & Company",
-                    year: "2020",
-                    description: "Report on quantum computing's potential in banking and finance.",
+                    author: "McKinsey & Company (2020)",
                     link: "https://www.mckinsey.com/industries/financial-services/our-insights/quantum-communication-and-computing-elevating-the-banking-sector"
                 },
                 {
                     title: "Quantum computing for finance",
-                    author: "Herman, D., Googin, C., Liu, X. et al.",
-                    year: "2023",
-                    description: "Overview of quantum algorithms and financial applications.",
+                    author: "Herman, D., Googin, C., Liu, X. et al. (2023)",
                     link: "https://doi.org/10.1038/s42254-023-00603-1"
                 },
                 {
                     title: "Quantum Computing: an Applied Approach",
-                    author: "Hidary, Jack D.",
-                    year: "2019",
-                    description: "A comprehensive guide to practical quantum computing and its applications.",
+                    author: "Hidary, Jack D. (2019)",
                     link: ""
                 },
                 {
                     title: "On the Role of Hadamard Gates in Quantum Circuits",
-                    author: "Shepherd, D.J.",
-                    year: "2006",
-                    description: "Detailed analysis of Hadamard gates in quantum algorithms.",
+                    author: "Shepherd, D.J. (2006)",
                     link: "https://doi.org/10.1007/s11128-006-0023-4"
                 },
                 {
                     title: "Quantum Computing",
-                    author: "Mehta, Nihal D.",
-                    year: "2020",
-                    description: "Foundational concepts and algorithms in quantum computing.",
+                    author: "Mehta, Nihal D. (2020)",
                     link: ""
                 },
                 {
                     title: "Quantum Computing Explained",
-                    author: "McMahon, David",
-                    year: "2007",
-                    description: "A clear and accessible approach to understanding quantum mechanics and computing.",
+                    author: "McMahon, David (2007)",
                     link: ""
                 }
             ]
