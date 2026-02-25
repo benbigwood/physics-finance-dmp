@@ -697,6 +697,9 @@ export const timelineEvents = [
       { id: 5, title: "Extreme observations and risk assessment in the equity markets of MENA region: Tail measures and Value-at-Risk", author: "A. Assaf (2009)", link: "https://doi.org/10.1016/j.irfa.2009.03.007" },
       { id: 6, title: "Fractal Market Hypothesis: An In-Depth Review", author: "Ambati, Murari (2025)", link: "http://dx.doi.org/10.2139/ssrn.5137493" },
       { id: 7, title: "Mandelbrot Fractal Visualisation", author: "Gart", link: "https://mandel.gart.nz/" },
+      { id: 8, title: "Hurst exponent: Calculation, Values and More", author: "Singh, V., Divakar, V. and Garg, A. (2019)", link: "https://blog.quantinsti.com/hurst-exponent/" },
+      { id: 9, title: "Fractional Brownian motion in a nutshell", author: "Shevenko, G. (2015)", link: "https://doi.org/10.1142/S2010194515600022" },
+      { id: 10, title: "Financial Markets: From fractals to power laws", author: "Olsen, R. (2023)", link: "http://dx.doi.org/10.2139/ssrn.4344887" },
       { id: 11, title: "A theory of power-law distributions in financial market fluctuations", author: "Gabaix, X. et al. (2003)", link: "https://doi.org/10.1038/nature01624" },
       { id: 12, title: "The art of fitting financial time series with Lévy stable distributions", author: "Scalas, E. and Kim, K. (2006)", link: "https://doi.org/10.48550/arXiv.physics/0608224" }
     ],
@@ -738,8 +741,64 @@ export const timelineEvents = [
     derivationContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          Power Laws & Fractals
+          Self-Similarity and the Hurst Exponent
         </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          A non-trivial stochastic process <MathDisplay math="X=(X_{t}, t \ge 0)" inline={true} /> taking values on <MathDisplay math="\mathbb{R}" inline={true} /> is said to be self-similar if for any <MathDisplay math="a > 0" inline={true} /> there exists <MathDisplay math="H > 0" inline={true} /> such that:
+        </p>
+        <MathDisplay math="(X_{at}, t \ge 0) \stackrel{d}{=} (a^H X_t, t \ge 0)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="\stackrel{d}{=}" inline={true} /> means equal in distribution.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The Hurst exponent <MathDisplay math="H" inline={true} /> is used as a measure of long-term memory of a time series <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup>.
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Equation (1) is the mathematical foundation of fractal time series which exhibits self-similarity in the financial world. This is because the statistical properties of price fluctuations are the same after rescaling the time axis.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          Returns and Lag Time
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Defining the return over lag time <MathDisplay math="\Delta t" inline={true} /> to be:
+        </p>
+        <MathDisplay math="r_{\Delta t}(t) = X(t + \Delta t) - X(t)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Using the self-similarity of price series and equation (1) we obtain:
+        </p>
+        <MathDisplay math="r_{\Delta t} \stackrel{d}{=} (\Delta t)^H r_{(1)}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="1" inline={true} /> is a basic time unit (returns measured over 1 day, 1 week, etc.).
+        </p>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Let us consider <MathDisplay math="r_{a\tau} \stackrel{d}{=} a^H r_{\tau}" inline={true} />. Assuming stationary increments:
+        </p>
+        <MathDisplay math="X(t+a\tau) - X(t) \stackrel{d}{=} X(a\tau) - X(0) \stackrel{d}{=} a^H(X(\tau) - X(0))" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Squaring LHS and RHS:
+        </p>
+        <MathDisplay math="(\Delta_{a\tau}X(t))^2 = a^{2H}(\Delta_{\tau}X(t))^2" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Taking expectations:
+        </p>
+        <MathDisplay math="E(|\Delta_{a\tau}X(t)|^2) = a^{2H}E(|\Delta_{\tau}X(t)|^2)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Hence analogous to anomalous diffusion in physics <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>:
+        </p>
+        <MathDisplay math="E(\Delta X^2) \propto \Delta t^{2H}" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The Hurst Exponent value <MathDisplay math="H" inline={true} /> shows:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li><MathDisplay math="H > 0.5" inline={true} />, roughly shows a trending market.</li>
+          <li><MathDisplay math="H < 0.5" inline={true} />, roughly shows a sideways market.</li>
+          <li><MathDisplay math="H = 0.5" inline={true} />, indicates prediction cannot be based on past market data.</li>
+        </ul>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          Power Laws & Fractals
+        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Fractals describe how a financial market looks the same at all scales and it has no characteristic scale. The statistical structure is the same at different scales.
         </p>
