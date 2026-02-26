@@ -349,9 +349,34 @@ const ModernPortfolioSimulation = () => {
                             layout={{
                                 autosize: true,
                                 height: 500,
-                                margin: { l: 50, r: 20, t: 30, b: 40 },
-                                xaxis: { title: 'Volatility (Risk)', tickformat: '.0%', rangemode: 'tozero' },
-                                yaxis: { title: 'Expected Return', tickformat: '.0%' },
+                                margin: { l: 80, r: 30, t: 40, b: 60 },
+                                xaxis: {
+                                    title: { text: 'Volatility (Risk)', font: { size: 14 } },
+                                    tickformat: '.0%',
+                                    rangemode: 'tozero',
+                                    showline: true,
+                                    linewidth: 1,
+                                    linecolor: 'rgba(128,128,128,0.5)',
+                                    zeroline: true,
+                                    zerolinewidth: 1,
+                                    zerolinecolor: 'rgba(128,128,128,0.5)',
+                                    gridcolor: 'rgba(128,128,128,0.2)'
+                                },
+                                yaxis: {
+                                    title: { text: 'Expected Return', font: { size: 14 } },
+                                    tickformat: '.0%',
+                                    showline: true,
+                                    linewidth: 1,
+                                    linecolor: 'rgba(128,128,128,0.5)',
+                                    zeroline: true,
+                                    zerolinewidth: 1,
+                                    zerolinecolor: 'rgba(128,128,128,0.5)',
+                                    gridcolor: 'rgba(128,128,128,0.2)'
+                                },
+                                font: {
+                                    family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                                    color: 'rgba(128,128,128,0.9)'
+                                },
                                 legend: { orientation: 'h', y: 1.1, x: 0.5, xanchor: 'center' },
                                 hovermode: 'closest',
                                 showlegend: true,

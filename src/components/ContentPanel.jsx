@@ -425,7 +425,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
                                         else if (tab === 'story' && activeEvent.id === 'now') displayLabel = 'Modern Finance';
                                         else if (tab === 'calculator' && activeEvent.id === '1973') displayLabel = 'Black-Scholes Calculator';
                                         else if (tab === 'simulation') {
-                                            if (activeEvent.id === '1952') displayLabel = 'Portfolio Optimizer Simulation';
+                                            if (activeEvent.id === '1952') displayLabel = 'Portfolio Optimiser Simulation';
                                             else if (activeEvent.id === '1900') displayLabel = 'Market Randomness Simulation';
                                             else if (activeEvent.id === '1960') displayLabel = 'Market Fractals Simulation';
                                             else displayLabel = 'Simulation';

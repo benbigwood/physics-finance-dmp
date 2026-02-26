@@ -203,5 +203,25 @@ export const glossaryTerms = [
         term: "Tensor Products",
         definition: "A mathematical operation combining two vector spaces into a larger one. In quantum computing, it is used to describe the combined state space of multiple qubits, making it fundamental for describing entanglement.",
         category: "Math"
+    },
+    {
+        term: "Random Walk",
+        definition: "A mathematical object, known as a stochastic or random process, that describes a path consisting of a succession of random steps on some mathematical space.",
+        category: "Math"
+    },
+    {
+        term: "Coupled Oscillators",
+        definition: "Two or more oscillators connected in such a way that energy can be transferred between them. This concept is used intuitively to explain the covariance matrix in modern portfolio theory.",
+        category: "Physics"
+    },
+    {
+        term: "Lagrange Multipliers",
+        definition: "A mathematical strategy for finding the local maxima and minima of a function subject to equation constraints, used extensively in portfolio optimisation to incorporate budget and return constraints.",
+        category: "Math"
+    },
+    {
+        term: "Metric Tensor",
+        definition: "A fundamental concept in differential geometry. In portfolio theory, the covariance matrix acts as a metric tensor that defines the concept of 'distance' in terms of financial risk.",
+        category: "Math"
     }
 ];

@@ -13,7 +13,7 @@ export const timelineEvents = [
     physicist: "Louis Bachelier",
     physicsConnection: "Brownian Motion",
     image: "Louis bachelier.png",
-    imageCaption: "Louis Bachelier Portrait",
+    imageReferenceTitle: "Louis Bachelier Portrait",
     imageSource: "Exante Data",
     visualType: "brownian",
     sourceLink: "https://x.com/ExanteData/status/1679788970262102020",
@@ -27,7 +27,8 @@ export const timelineEvents = [
       { id: 7, title: "The History of Bachelier's 'Théorie de la Spéculation'", author: "JSTOR", link: "https://www.jstor.org/stable/1182421?utm_source=chatgpt.com" },
       { id: 8, title: "Jules Regnault", author: "Wikipedia contributors (2024)", link: "https://en.wikipedia.org/wiki/Jules_Regnault" },
       { id: 9, title: "Elementary Principles in Statistical Mechanics", author: "Gibbs, J.W. (1902)", link: "https://en.wikipedia.org/wiki/Elementary_Principles_in_Statistical_Mechanics" },
-      { id: 10, title: "Between economics and physics…", author: "Huber, T.A. (2016)", link: "https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/167132/1/content.pdf" }
+      { id: 10, title: "Between economics and physics…", author: "Huber, T.A. (2016)", link: "https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/167132/1/content.pdf" },
+      { id: 11, title: "Investigations on the Theory of the Brownian Movement", author: "Einstein, A. (1905)", link: "https://einsteinpapers.press.princeton.edu/vol2-trans/137" }
     ],
     customContent: (
       <div>
@@ -124,13 +125,13 @@ export const timelineEvents = [
           Bachelier suggested financial markets evolve randomly over time – an efficient market is one at statistical equilibrium (probabilistically, no one should be able to predict an efficient market).<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
         </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Bachelier modelled an asset price to follow that of a random walk – formalised by Einstein 5 years later, who applied this phenomenon to pollen grains in a liquid.
+          Bachelier modelled an asset price to follow that of a random walk – formalised by Einstein 5 years later, who applied this phenomenon to pollen grains in a liquid.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[11]</a></sup>
         </p>
         <MathDisplay math="S_t = S_0 + \sigma W_t" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Similarly:
         </p>
-        <MathDisplay math="dS_t = \sigma W_t" />
+        <MathDisplay math="dS_t = \sigma dW_t" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           <MathDisplay math="S_t" inline={true} /> : price of asset at time <MathDisplay math="t" inline={true} />
         </p>
@@ -159,6 +160,9 @@ export const timelineEvents = [
           Square-root scaling law:
         </p>
         <MathDisplay math="W_{ct} \stackrel{d}{=} \sqrt{c} W_t" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="\stackrel{d}{=}" inline={true} /> means equal in distribution.
+        </p>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Diffusion spreads proportionally to <MathDisplay math="t" inline={true} />.
         </p>
@@ -258,6 +262,25 @@ export const timelineEvents = [
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
           Speculation Theory Derivation<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup>
         </h2>
+
+        <div style={{ marginBottom: '2rem', marginTop: '1.5rem', width: '100%', maxWidth: '800px' }}>
+          <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginBottom: '1rem' }}>
+            A Video Walkthrough of the Derivation
+          </h3>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '8px', marginBottom: '0.5rem' }}>
+            <iframe
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              src="https://www.youtube.com/embed/QDtYwGo7w2M"
+              title="A Video Walkthrough of the Derivation"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen>
+            </iframe>
+          </div>
+          <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', marginTop: '0.5rem' }}>
+            Below is the typed derivation.
+          </p>
+        </div>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
           1. Discrete random walk and diffusive scaling<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>
@@ -435,7 +458,7 @@ export const timelineEvents = [
         </p>
         <MathDisplay math="\partial_t u = \kappa \partial_{xx} u. \quad (7.1)" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Comparing (2.5) and (5.2) gives the identification
+          where <MathDisplay math="\kappa" inline={true} /> is the thermal diffusivity. Comparing (2.5) and (5.2) gives the identification
         </p>
         <MathDisplay math="\kappa = \frac{\sigma^2}{2}. \quad (7.2)" />
       </div>
@@ -451,7 +474,7 @@ export const timelineEvents = [
     math: "\\sigma_p^2 = \\sum \\sum w_i w_j \\sigma_{ij}",
     impact: "Transformed portfolio management from qualitative stock picking to quantitative risk/return optimisation.",
     image: "Harry Markowitz.png",
-    imageCaption: "Harry Markowitz Portrait",
+    imageReferenceTitle: "Harry Markowitz Portrait",
     imageSource: "UCSD Today",
     sourceLink: "https://today.ucsd.edu/story/harry_markowitz_economic_sciences_1990",
     visualType: "distribution",
@@ -819,17 +842,19 @@ export const timelineEvents = [
     physicist: "Fischer Black and Myron Scholes",
     physicsConnection: "Heat Diffusion Equation",
     image: "black-scholes.png",
-    imageCaption: "Black-Scholes Formula",
+    imageReferenceTitle: "Fischer Black and Myron Scholes",
     imageSource: "Greek Soft Institute",
     visualType: "heat-equation",
     sourceLink: "https://greeksoftinstitute.wordpress.com/2016/08/09/what-is-the-black-scholes-model-in-laymans-terms/",
     references: [
-      { id: 1, title: "The Pricing of Options and Corporate Liabilities", author: "Black, F. and Scholes, M. (1973)", link: "https://doi.org/10.1086/260062" },
-      { id: 2, title: "The Trillion Dollar Equation", author: "Veritasium (YouTube)", link: "https://youtu.be/A5w-dEgIU1M" },
-      { id: 3, title: "The Easiest Way to Derive the Black-Scholes Model", author: "Perfiliev Financial Training (YouTube)", link: "https://youtu.be/NHvQ5CSSgw0" },
-      { id: 4, title: "Edward O. Thorp", author: "Wikipedia", link: "https://en.wikipedia.org/wiki/Edward_O._Thorp" },
-      { id: 5, title: "Black–Scholes model", author: "Wikipedia", link: "https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model" },
-      { id: 6, title: "Black-Scholes and Bachelier", author: "arXiv:2104.08686", link: "https://arxiv.org/pdf/2104.08686.pdf" }
+      { id: 1, title: "Edward O. Thorp", author: "Wikipedia", link: "https://en.wikipedia.org/wiki/Edward_O._Thorp" },
+      { id: 2, title: "Beat the Dealer", author: "Thorp, E. O. (1966)", link: "https://en.wikipedia.org/wiki/Beat_the_Dealer" },
+      { id: 3, title: "The Trillion Dollar Equation", author: "Veritasium (YouTube)", link: "https://youtu.be/A5w-dEgIU1M" },
+      { id: 4, title: "Beat the Market: A Scientific Stock Market System", author: "Thorp, E. O., and Kassouf, S. T. (1967)", link: "https://en.wikipedia.org/wiki/Beat_the_Market" },
+      { id: 5, title: "The Pricing of Options and Corporate Liabilities", author: "Black, F. and Scholes, M. (1973)", link: "https://doi.org/10.1086/260062" },
+      { id: 6, title: "Black-Scholes and Bachelier", author: "arXiv:2104.08686", link: "https://arxiv.org/pdf/2104.08686.pdf" },
+      { id: 7, title: "Black–Scholes model", author: "Wikipedia", link: "https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model" },
+      { id: 8, title: "The Easiest Way to Derive the Black-Scholes Model", author: "Perfiliev Financial Training (YouTube)", link: "https://youtu.be/NHvQ5CSSgw0" }
     ],
     sideImages: [
       { src: "Robert_Merton.png", caption: "Robert Merton", sourceLink: "https://en.wikipedia.org/wiki/Robert_C._Merton" },
@@ -842,21 +867,21 @@ export const timelineEvents = [
         </h2>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In the late 1950s, <strong>Ed Thorp</strong><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2,4]</a></sup>, a brilliant mathematics PhD student at UCLA, looked at the lights of Las Vegas and saw not a playground of chance, but a physics problem to be solved. While the common gambler relied on superstition, Thorp relied on the <em>Law of Large Numbers</em>.
+          In the late 1950s, <strong>Ed Thorp</strong><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1]</a></sup>, a brilliant mathematics PhD student at UCLA, looked at Las Vegas and saw not a playground of chance, but a predictable problem to be solved. While most gamblers relied on superstition and random luck, Thorp relied on the <em>Law of Large Numbers</em>.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Thorp realised that Blackjack was a system with "memory." Unlike a roulette wheel, where every spin is independent, a deck of cards changes its probabilities as cards are removed. By mentally tracking the ratio of high cards to low cards, Thorp could identify specific moments when the probability distribution shifted in his favor. When the deck was "hot," he bet big; when it was "cold," he bet the minimum. He wasn't gambling; he was executing a calculation. This was the invention of <strong>card counting</strong>.
+          Thorp realised that Blackjack was a system with "memory." Unlike a roulette wheel, where every spin is independent, a deck of cards changes its probabilities as cards are removed. By mentally tracking the ratio of high cards to low cards, Thorp could identify specific moments when the probability distribution shifted in his favor. When the deck was "hot," he bet big. When it was "cold," he bet the minimum. He wasn't gambling, he was executing a calculation.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Thorp published his findings in <em>Beat the Dealer</em>, causing a panic in the casino industry. They got wise, changed the rules, added multiple decks, and eventually banned him. Having "solved" gambling, Thorp took his winnings and turned his eyes toward the “world’s biggest casino: the stock market”.
+          Thorp invented <strong>card counting</strong> and proceeded to make a lot of money. Eventually casino’s got wise, something was up and banned him from playing. Thorp left the casino’s and published his findings in <em>Beat the Dealer</em><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[2]</a></sup>, causing a panic in the casino industry. Having "solved" gambling, Thorp took his winnings and turned his eyes toward the “world’s biggest casino: the stock market”<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup>.
         </p>
 
         <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-surface-hover)' }} />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Thorp approached Wall Street with the same scientific rigor. He identified an anomaly in the pricing of warrants<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup> (a type of option). Options were notoriously difficult to value because they are derivative—their value depends on the movement of an underlying stock.
+          Thorp approached Wall Street with the same scientific rigor. He identified an anomaly in the pricing of warrants<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup> (a type of option). Options were notoriously difficult to value because they are derivative—their value depends on the movement of an underlying stock.
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
@@ -894,7 +919,7 @@ export const timelineEvents = [
         </p>
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          By applying <strong>Itô’s Lemma</strong> (the stochastic equivalent of the chain rule), they reduced the chaotic movement of the market into a partial differential equation. To the shock of the scientific community, the resulting <strong>Black-Scholes Equation</strong> was actually a variant of the <em>Heat Diffusion Equation</em> used in thermodynamics.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1,2,6]</a></sup>
+          By applying <strong>Itô’s Lemma</strong> (the stochastic equivalent of the chain rule), they reduced the chaotic movement of the market into a partial differential equation. To the shock of the scientific community, the resulting <strong>Black-Scholes Equation</strong> was actually a variant of the <em>Heat Diffusion Equation</em> used in thermodynamics.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[3]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>
         </p>
 
         <div style={{ margin: '1.5rem 0', padding: '1rem', background: 'var(--color-bg)', borderRadius: '8px', overflowX: 'auto' }}>
@@ -1007,7 +1032,7 @@ export const timelineEvents = [
         <MathDisplay math="\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}V}{\partial S^{2}} - rV = 0 \quad (14)." />
 
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          This is the Black-Scholes equation.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[1,3,5,6]</a></sup>
+          This is the Black-Scholes equation.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[7]</a></sup><sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup>
         </p>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
@@ -1315,7 +1340,7 @@ export const timelineEvents = [
             </p>
             <MathDisplay math="P_k = \sin^2((2k+1)\theta)" />
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-              Where the optimal number of solutions is given by <MathDisplay math="k \approx \frac{\pi}{4}\sqrt{N}" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup> By applying Grover’s Algorithm, we can find a solution of the order O(N) in a much faster time than a classical of order O(N).
+              Where the optimal number of solutions is given by <MathDisplay math="k \approx \frac{\pi}{4}\sqrt{N}" inline={true} />.<sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup> By applying Grover’s Algorithm, we can find a solution of the order <MathDisplay math="O(\sqrt{N})" inline={true} /> in a much faster time than a classical of order <MathDisplay math="O(N)" inline={true} />.
             </p>
             <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
               For a more geometric interpretation of Grover’s Algorithm, watch this YouTube video by 3Blue1Brown on the topic:{' '}

@@ -161,14 +161,24 @@ const Quiz = ({ isOpen, onClose }) => {
                                         onClick={restartQuiz}
                                         style={{
                                             marginTop: '2rem',
-                                            padding: '1rem 2rem',
+                                            padding: '1rem 2.5rem',
                                             background: 'var(--color-primary)',
                                             color: '#fff',
                                             border: 'none',
                                             borderRadius: 'var(--radius-md)',
                                             fontSize: '1.2rem',
                                             cursor: 'pointer',
-                                            fontWeight: 600
+                                            fontWeight: 600,
+                                            boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                                            transition: 'all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.transform = 'translateY(-3px)';
+                                            e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
                                         }}
                                     >
                                         Restart Quiz

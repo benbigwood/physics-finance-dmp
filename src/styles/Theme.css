@@ -23,6 +23,7 @@
   --color-warning: #ff9500;
 
   /* Finance specific accents - keep sophisticated */
+  --color-primary: #5e5ce6;
   --color-finance: #5e5ce6; /* Indigo */
   --color-highlight: #bf5af2; /* Purple */
 
@@ -81,6 +82,7 @@
     --color-accent-hover: #409cff;
     --color-accent-glow: rgba(41, 151, 255, 0.4);
 
+    --color-primary: #ac8e68;
     --color-finance: #ac8e68; /* Goldish/Earthy for finance in dark mode */
     --color-highlight: #ffcc00; /* Yellow */
 
@@ -112,6 +114,7 @@
     --color-accent-hover: #409cff;
     --color-accent-glow: rgba(41, 151, 255, 0.4);
 
+    --color-primary: #ac8e68;
     --color-finance: #ac8e68;
     --color-highlight: #ffcc00;
 
@@ -141,6 +144,7 @@
     --color-accent-hover: #0077ed;
     --color-accent-glow: rgba(0, 113, 227, 0.3);
     
+    --color-primary: #5e5ce6;
     --color-finance: #5e5ce6;
     --color-highlight: #bf5af2;
 

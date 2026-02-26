@@ -52,6 +52,11 @@ export const resourcesData = {
                     title: "Between economics and physics…",
                     author: "Huber, T.A. (2016)",
                     link: "https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/167132/1/content.pdf"
+                },
+                {
+                    title: "Investigations on the Theory of the Brownian Movement",
+                    author: "Einstein, A. (1905)",
+                    link: "https://einsteinpapers.press.princeton.edu/vol2-trans/137"
                 }
             ]
         },
@@ -114,6 +119,21 @@ export const resourcesData = {
                     link: "https://mandel.gart.nz/"
                 },
                 {
+                    title: "Hurst exponent: Calculation, Values and More",
+                    author: "Singh, V., Divakar, V. and Garg, A. (2019)",
+                    link: "https://blog.quantinsti.com/hurst-exponent/"
+                },
+                {
+                    title: "Fractional Brownian motion in a nutshell",
+                    author: "Shevenko, G. (2015)",
+                    link: "https://doi.org/10.1142/S2010194515600022"
+                },
+                {
+                    title: "Financial Markets: From fractals to power laws",
+                    author: "Olsen, R. (2023)",
+                    link: "http://dx.doi.org/10.2139/ssrn.4344887"
+                },
+                {
                     title: "A theory of power-law distributions in financial market fluctuations",
                     author: "Gabaix, X. et al. (2003)",
                     link: "https://doi.org/10.1038/nature01624"
@@ -129,9 +149,14 @@ export const resourcesData = {
             category: "1973: Black-Scholes Model",
             items: [
                 {
-                    title: "The Pricing of Options and Corporate Liabilities",
-                    author: "Black, F. and Scholes, M. (1973)",
-                    link: "https://doi.org/10.1086/260062"
+                    title: "Edward O. Thorp",
+                    author: "Wikipedia",
+                    link: "https://en.wikipedia.org/wiki/Edward_O._Thorp"
+                },
+                {
+                    title: "Beat the Dealer",
+                    author: "Thorp, E. O. (1966)",
+                    link: "https://en.wikipedia.org/wiki/Beat_the_Dealer"
                 },
                 {
                     title: "The Trillion Dollar Equation",
@@ -139,14 +164,19 @@ export const resourcesData = {
                     link: "https://youtu.be/A5w-dEgIU1M"
                 },
                 {
-                    title: "The Easiest Way to Derive the Black-Scholes Model",
-                    author: "Perfiliev Financial Training (YouTube)",
-                    link: "https://youtu.be/NHvQ5CSSgw0"
+                    title: "Beat the Market: A Scientific Stock Market System",
+                    author: "Thorp, E. O., and Kassouf, S. T. (1967)",
+                    link: "https://en.wikipedia.org/wiki/Beat_the_Market"
                 },
                 {
-                    title: "Edward O. Thorp",
-                    author: "Wikipedia",
-                    link: "https://en.wikipedia.org/wiki/Edward_O._Thorp"
+                    title: "The Pricing of Options and Corporate Liabilities",
+                    author: "Black, F. and Scholes, M. (1973)",
+                    link: "https://doi.org/10.1086/260062"
+                },
+                {
+                    title: "Black-Scholes and Bachelier",
+                    author: "arXiv:2104.08686",
+                    link: "https://arxiv.org/pdf/2104.08686.pdf"
                 },
                 {
                     title: "Black–Scholes model",
@@ -154,9 +184,9 @@ export const resourcesData = {
                     link: "https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model"
                 },
                 {
-                    title: "Black-Scholes and Bachelier",
-                    author: "arXiv:2104.08686",
-                    link: "https://arxiv.org/pdf/2104.08686.pdf"
+                    title: "The Easiest Way to Derive the Black-Scholes Model",
+                    author: "Perfiliev Financial Training (YouTube)",
+                    link: "https://youtu.be/NHvQ5CSSgw0"
                 }
             ]
         },
@@ -302,6 +332,12 @@ export const resourcesData = {
         {
             category: "Videos & Lectures",
             items: [
+                {
+                    title: "A Video Walkthrough of the Derivation",
+                    author: "Unknown",
+                    description: "An embedded walkthrough of the Speculation Theory derivation.",
+                    link: "https://www.youtube.com/watch?v=QDtYwGo7w2M"
+                },
                 {
                     title: "The Trillion Dollar Equation",
                     author: "Veritasium",
