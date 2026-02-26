@@ -124,7 +124,7 @@ const ExplanationView = ({ activeEvent }) => {
                                                 setActiveSubTab(nextTab.id);
                                                 // Scroll to top of subtabs container with a slight delay to allow render
                                                 setTimeout(() => {
-                                                    document.getElementById('subtabs-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                    document.getElementById('subtabs-container')?.scrollIntoView({ behaviour: 'smooth', block: 'start' });
                                                 }, 50);
                                             }}
                                             style={{
@@ -218,7 +218,7 @@ const ContentPanel = ({ activeEvent, onClose }) => {
     const scrollToReferences = () => {
         const refSection = document.getElementById('reference-section');
         if (refSection) {
-            refSection.scrollIntoView({ behavior: 'smooth' });
+            refSection.scrollIntoView({ behaviour: 'smooth' });
         }
     };
 

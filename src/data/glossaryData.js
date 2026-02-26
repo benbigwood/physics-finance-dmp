@@ -223,5 +223,25 @@ export const glossaryTerms = [
         term: "Metric Tensor",
         definition: "A fundamental concept in differential geometry. In portfolio theory, the covariance matrix acts as a metric tensor that defines the concept of 'distance' in terms of financial risk.",
         category: "Math"
+    },
+    {
+        term: "Self-Similarity",
+        definition: "A property in which an object or process looks roughly the same on any scale. In finance, it describes how the statistical properties of price fluctuations remain invariant across different time frames.",
+        category: "Math"
+    },
+    {
+        term: "Lévy Flights",
+        definition: "A type of random walk where the step sizes have a heavy-tailed probability distribution (Lévy distribution). In finance, they model the power law behaviour of extreme price changes.",
+        category: "Math"
+    },
+    {
+        term: "Principal Components",
+        definition: "A set of linearly uncorrelated variables created from a larger set of correlated variables. In portfolio theory, they are derived by diagonalising the covariance matrix to identify orthogonal sources of risk.",
+        category: "Math"
+    },
+    {
+        term: "Volatility Clustering",
+        definition: "The observation that large changes in asset prices tend to be followed by large changes, and small changes tend to be followed by small changes. It contrasts with standard Brownian motion, which assumes constant volatility.",
+        category: "Finance"
     }
 ];

@@ -73,7 +73,7 @@ const FractalMarketSimulation = () => {
 
         // Find min/max for scaling
         let min = Infinity, max = -Infinity;
-        // Optimization: sample points if array is huge? No, user subset might be small.
+        // Optimisation: sample points if array is huge? No, user subset might be small.
         // But for the macro view, we might process too many points.
         // Start/End indices
         const step = Math.max(1, Math.floor(dataSubset.length / width)); // Decimation for rendering

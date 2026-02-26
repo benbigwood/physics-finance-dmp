@@ -262,7 +262,7 @@ export const resourcesData = {
                     author: "Benoit Mandelbrot & Richard L. Hudson",
                     year: "2004",
                     description: "Mandelbrot's own account of why modern financial theory fails and how fractals provide a better model.",
-                    link: "https://www.amazon.com/Misbehavior-Markets-Fractal-Financial-Turbulence/dp/0465043570"
+                    link: "https://www.amazon.com/Misbehaviour-Markets-Fractal-Financial-Turbulence/dp/0465043570"
                 },
                 {
                     title: "Quantum Finance: Path Integrals and Hamiltonians for Options and Interest Rates",
