@@ -481,7 +481,10 @@ export const timelineEvents = [
     references: [
       { id: 1, title: "60 Years of portfolio optimisation: Practical challenges and current trends", author: "Kolm, P.N., Tütüncü, R. and Fabozzi, F.J. (2014)", link: "https://doi.org/10.1016/j.ejor.2013.10.060" },
       { id: 2, title: "Portfolio Selection: Efficient Diversification of Investments", author: "Markowitz, H.M. (1959)", link: "https://www.jstor.org/stable/j.ctt1bh4c8h" },
-      { id: 3, title: "Capital Asset Prices: A Theory of Market Equilibrium Under Conditions of Risk", author: "Sharpe, W.F. (1964)", link: "https://doi.org/10.1111/j.1540-6261.1964.tb02865.x" }
+      { id: 3, title: "Capital Asset Prices: A Theory of Market Equilibrium Under Conditions of Risk", author: "Sharpe, W.F. (1964)", link: "https://doi.org/10.1111/j.1540-6261.1964.tb02865.x" },
+      { id: 4, title: "Portfolio Selection", author: "Markowitz, H. (1952)", link: "https://www.jstor.org/stable/2975974" },
+      { id: 5, title: "An Analytic Derivation of the Efficient Portfolio Frontier", author: "Merton, R.C. (1972)", link: "https://www.jstor.org/stable/2329621" },
+      { id: 6, title: "Mutual Fund Performance", author: "Sharpe, W.F. (1966)", link: "https://www.jstor.org/stable/2351741" }
     ],
     customContent: (
       <div>
@@ -505,31 +508,18 @@ export const timelineEvents = [
         </p>
       </div>
     ),
-    derivationContent: (
+        derivationContent: (
       <div>
         <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-          The Mathematics of Modern Portfolio Theory
+          1. Introduction and Definitions
         </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Mean-variance portfolio theory uses many tools familiar to physics, due to finance’s heavy reliance on stochastic calculus, derived from the geometric Brownian motion of a particle. In this theory specifically, we see that the portfolio variance <MathDisplay math="\mathbf{w}^T\mathbf{\Sigma}\mathbf{w}" inline={true} /> is of a quadratic form, similar to the energy of a system of coupled oscillators. The minimisation under constraints uses a possibly familiar concept of Lagrange multipliers, exactly like a physicist would use them to solve for equilibrium configurations.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          The covariance matrix denoted <MathDisplay math="\mathbf{\Sigma}" inline={true} /> has variances along the diagonal and covariances on the off diagonal (tell you how asset returns move together) which is analogous to coupling terms in many-body physics such as coupled oscillators. In many-body physics one diagonalises the coupling matrix and transforms to eigenmodes where each mode becomes an independent oscillator, and in portfolio theory one diagonalises <MathDisplay math="\mathbf{\Sigma}" inline={true} />, transforming into eigenvector coordinates, where each eigenvector represents an independent risk factor.
-        </p>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Therefore, mean variance optimisation is essentially a constrained equilibrium problem, mathematically equivalent to finding the equilibrium of a quadratic energy surface under linear constraints.
+          We formulate the problem of portfolio selection as a constrained optimisation problem in linear algebra, originally pioneered by Markowitz <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[4]</a></sup>. We treat the returns of assets as random variables and seek to minimise the variance of a linear combination of these variables.
         </p>
 
         <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
-          1. Introduction and Definitions
-        </h3>
-        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          We formulate the problem of portfolio selection as a constrained optimisation problem in linear algebra. We treat the returns of assets as random variables and seek to minimise the variance of a linear combination of these variables.
-        </p>
-
-        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
           1.1 State Vectors and Metrics
-        </h4>
+        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Consider a universe of <MathDisplay math="N" inline={true} /> assets. We define the following:
         </p>
@@ -551,9 +541,9 @@ export const timelineEvents = [
           </li>
         </ul>
 
-        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
           1.2 Macroscopic Observables
-        </h4>
+        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           From these definitions, we derive the scalar properties of the portfolio:
         </p>
@@ -568,15 +558,17 @@ export const timelineEvents = [
           </li>
         </ol>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem', marginTop: '2rem' }}>
           2. The Optimisation Problem
-        </h3>
+        </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Our objective is to minimise the portfolio risk (variance) for a specifically chosen target return <MathDisplay math="\mu^*" inline={true} />, subject to the constraint that all capital must be invested (the weights must sum to unity).
         </p>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Mathematically, we minimise the scalar field <MathDisplay math="f(\mathbf{w}) = \frac{1}{2}\mathbf{w}^T \mathbf{\Sigma} \mathbf{w}" inline={true} /> subject to two linear constraints:
         </p>
+
         <ol style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
           <li style={{ marginBottom: '0.5rem' }}>
             <strong>Return Constraint:</strong> <MathDisplay math="\mathbf{w}^T \boldsymbol{\mu} = \mu^*" inline={true} />
@@ -589,36 +581,41 @@ export const timelineEvents = [
           Note: The factor of <MathDisplay math="1/2" inline={true} /> is included for algebraic convenience in differentiation, analogous to kinetic energy <MathDisplay math="\frac{1}{2}mv^2" inline={true} />.
         </p>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem', marginTop: '2rem' }}>
           3. Lagrangian Formulation
-        </h3>
+        </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           We introduce two Lagrange multipliers, <MathDisplay math="\lambda_1" inline={true} /> and <MathDisplay math="\lambda_2" inline={true} />, to enforce the constraints. The Lagrangian <MathDisplay math="\mathcal{L}" inline={true} /> is defined as:
         </p>
+
         <MathDisplay math="\mathcal{L}(\mathbf{w}, \lambda_1, \lambda_2) = \frac{1}{2}\mathbf{w}^T \mathbf{\Sigma} \mathbf{w} - \lambda_1 (\mathbf{w}^T \boldsymbol{\mu} - \mu^*) - \lambda_2 (\mathbf{w}^T \mathbf{1} - 1)" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           To find the optimal weights <MathDisplay math="\mathbf{w}^*" inline={true} />, we apply the principle of stationarity: <MathDisplay math="\nabla \mathcal{L} = 0" inline={true} />.
         </p>
 
-        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
           3.1 First Order Condition
-        </h4>
+        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Taking the gradient with respect to the vector <MathDisplay math="\mathbf{w}" inline={true} /> (using the identity <MathDisplay math="\nabla_{\mathbf{w}} (\mathbf{w}^T \mathbf{A} \mathbf{w}) = 2\mathbf{A}\mathbf{w}" inline={true} /> for symmetric <MathDisplay math="\mathbf{A}" inline={true} />):
         </p>
+
         <MathDisplay math="\nabla_{\mathbf{w}} \mathcal{L} = \mathbf{\Sigma} \mathbf{w} - \lambda_1 \boldsymbol{\mu} - \lambda_2 \mathbf{1} = 0" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Rearranging for <MathDisplay math="\mathbf{w}" inline={true} />:
         </p>
         <MathDisplay math="\mathbf{\Sigma} \mathbf{w} = \lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1}" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Assuming <MathDisplay math="\mathbf{\Sigma}" inline={true} /> is non-singular (invertible), we can solve for the optimal weights:
         </p>
-        <MathDisplay math="\mathbf{w}^* = \mathbf{\Sigma}^{-1} (\lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1}) \quad (*)" />
+        <MathDisplay math="\mathbf{w}^* = \mathbf{\Sigma}^{-1} (\lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1}) \quad \text{(Eq. 1)}" />
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem', marginTop: '2rem' }}>
           4. Solving for Lagrange Multipliers
-        </h3>
+        </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           To determine <MathDisplay math="\lambda_1" inline={true} /> and <MathDisplay math="\lambda_2" inline={true} />, we substitute <MathDisplay math="\mathbf{w}^*" inline={true} /> back into our two constraint equations.
         </p>
@@ -629,17 +626,17 @@ export const timelineEvents = [
         <MathDisplay math="\mu^* = \boldsymbol{\mu}^T \mathbf{w}^* = \boldsymbol{\mu}^T \left( \lambda_1 \mathbf{\Sigma}^{-1} \boldsymbol{\mu} + \lambda_2 \mathbf{\Sigma}^{-1} \mathbf{1} \right)" />
         <MathDisplay math="\mu^* = \lambda_1 (\boldsymbol{\mu}^T \mathbf{\Sigma}^{-1} \boldsymbol{\mu}) + \lambda_2 (\boldsymbol{\mu}^T \mathbf{\Sigma}^{-1} \mathbf{1})" />
 
-        <p style={{ marginBottom: '0.5rem', lineHeight: '1.6', fontWeight: 600 }}>
+        <p style={{ marginBottom: '0.5rem', lineHeight: '1.6', fontWeight: 600, marginTop: '1rem' }}>
           2. The Budget Constraint:
         </p>
         <MathDisplay math="1 = \mathbf{1}^T \mathbf{w}^* = \mathbf{1}^T \left( \lambda_1 \mathbf{\Sigma}^{-1} \boldsymbol{\mu} + \lambda_2 \mathbf{\Sigma}^{-1} \mathbf{1} \right)" />
         <MathDisplay math="1 = \lambda_1 (\mathbf{1}^T \mathbf{\Sigma}^{-1} \boldsymbol{\mu}) + \lambda_2 (\mathbf{1}^T \mathbf{\Sigma}^{-1} \mathbf{1})" />
 
-        <h4 style={{ fontSize: '1.2rem', color: 'var(--color-highlight)', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
           4.1 Matrix Solution
-        </h4>
+        </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          We define three scalar constants (<MathDisplay math="A, B, C" inline={true} />) representing the intrinsic geometry of the asset universe:
+          Following the analytical derivation by Merton <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[5]</a></sup>, we define three scalar constants (<MathDisplay math="A, B, C" inline={true} />) representing the intrinsic geometry of the asset universe:
         </p>
         <MathDisplay math="A = \mathbf{1}^T \mathbf{\Sigma}^{-1} \mathbf{1}, \quad B = \boldsymbol{\mu}^T \mathbf{\Sigma}^{-1} \mathbf{1}, \quad C = \boldsymbol{\mu}^T \mathbf{\Sigma}^{-1} \boldsymbol{\mu}" />
 
@@ -647,46 +644,167 @@ export const timelineEvents = [
           This creates a linear system for our multipliers:
         </p>
         <MathDisplay math="\begin{pmatrix} C & B \\ B & A \end{pmatrix} \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} \mu^* \\ 1 \end{pmatrix}" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Inverting the matrix (where determinant <MathDisplay math="D = AC - B^2" inline={true} />):
         </p>
         <MathDisplay math="\begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \frac{1}{D} \begin{pmatrix} A & -B \\ -B & C \end{pmatrix} \begin{pmatrix} \mu^* \\ 1 \end{pmatrix}" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Yielding:
         </p>
         <MathDisplay math="\lambda_1 = \frac{A\mu^* - B}{D}, \quad \lambda_2 = \frac{C - B\mu^*}{D}" />
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem', marginTop: '2rem' }}>
           5. The Efficient Frontier Equation
-        </h3>
+        </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          We substitute the optimal weights back into the variance definition <MathDisplay math="\sigma_p^2 = \mathbf{w}^{*T} \mathbf{\Sigma} \mathbf{w}^*" inline={true} />. Using Eq. (*), this simplifies to:
+          We substitute the optimal weights back into the variance definition <MathDisplay math="\sigma_p^2 = \mathbf{w}^{*T} \mathbf{\Sigma} \mathbf{w}^*" inline={true} />. Using Eq. 1, this simplifies to:
         </p>
         <MathDisplay math="\sigma_p^2 = \lambda_1 \mu^* + \lambda_2" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           Substituting our solved <MathDisplay math="\lambda" inline={true} /> values:
         </p>
         <MathDisplay math="\sigma_p^2 = \frac{A(\mu^*)^2 - 2B\mu^* + C}{D}" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           This equation describes a <strong>Parabola</strong> in <MathDisplay math="(\sigma_p^2, \mu^*)" inline={true} /> space. However, in standard financial plots involving standard deviation <MathDisplay math="(\sigma_p, \mu^*)" inline={true} />, this equation represents a <strong>Hyperbola</strong>. This hyperbola is the <strong>Efficient Frontier</strong>.
         </p>
 
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem', marginTop: '2rem' }}>
           6. The Tangency Portfolio (Maximum Sharpe Ratio)
-        </h3>
+        </h2>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          If a risk-free asset <MathDisplay math="r_f" inline={true} /> is introduced, we instead maximise the Sharpe Ratio <MathDisplay math="S(\mathbf{w})" inline={true} />:
+          If a risk-free asset <MathDisplay math="r_f" inline={true} /> is introduced, we instead maximise the Sharpe Ratio <MathDisplay math="S(\mathbf{w})" inline={true} />, introduced by William Sharpe <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[6]</a></sup>, which measures the excess return per unit of risk:
         </p>
         <MathDisplay math="S(\mathbf{w}) = \frac{\mathbf{w}^T \boldsymbol{\mu} - r_f}{\sqrt{\mathbf{w}^T \mathbf{\Sigma} \mathbf{w}}}" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6', fontStyle: 'italic', color: 'var(--color-text-secondary)' }}>
-          Note: The explicit vector differentiation of this quotient is omitted here for brevity. It involves applying the quotient rule to vector derivatives.
+          Note: The explicit vector differentiation of this quotient is omitted here for brevity. It involves applying the quotient rule to vector derivatives, which is structurally straightforward but notationally dense for this context.
         </p>
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           The result of the maximisation yields the Tangency Portfolio weights <MathDisplay math="\mathbf{w}_{tan}" inline={true} />:
         </p>
         <MathDisplay math="\mathbf{w}_{tan} \propto \mathbf{\Sigma}^{-1}(\boldsymbol{\mu} - r_f \mathbf{1})" />
+
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           This vector represents the point where the Capital Market Line (CML) is tangent to the Efficient Frontier hyperbola.
+        </p>
+
+        <h2 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem', marginTop: '2rem' }}>
+          7. Physical Analogue: Equilibrium of Coupled Oscillators
+        </h2>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Mean-variance portfolio theory uses many tools familiar to physics. While finance's continuous-time models (like options pricing) rely on stochastic calculus derived from the geometric Brownian motion of a particle, Markowitz optimisation is a static, single-period snapshot. Therefore, the most mathematically precise physical analogue is not a particle in motion, but a system of coupled oscillators seeking its lowest potential energy state under a geometric constraint.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          7.1 The Physics Setup
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Imagine <MathDisplay math="N" inline={true} /> masses connected by a complex network of springs. We define the following:
+        </p>
+        <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+          <li>
+            <strong>Displacement Vector (<MathDisplay math="\mathbf{x}" inline={true} />):</strong> An <MathDisplay math="N \times 1" inline={true} /> vector representing the displacement of the masses from their unconstrained rest positions.
+          </li>
+          <li>
+            <strong>Stiffness Matrix (<MathDisplay math="\mathbf{K}" inline={true} />):</strong> An <MathDisplay math="N \times N" inline={true} /> symmetric, positive semi-definite matrix representing the spring constants and coupling between masses.
+          </li>
+        </ul>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          The total elastic potential energy of this system is a quadratic form:
+        </p>
+        <MathDisplay math="V(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T \mathbf{K} \mathbf{x}" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Suppose we forcefully displace the system by pushing a rigid board against the masses, constraining their weighted average position to a specific distance <MathDisplay math="d" inline={true} />. This acts as a linear boundary constraint defined by a normal vector <MathDisplay math="\mathbf{c}" inline={true} />:
+        </p>
+        <MathDisplay math="\mathbf{c}^T \mathbf{x} = d" />
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          7.2 The Equivalence Mapping
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Notice the exact structural equivalence between this physical system and the financial portfolio problem:
+        </p>
+
+        <div style={{ overflowX: 'auto', marginBottom: '1rem' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', margin: '1rem 0' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--color-surface-hover)' }}>
+                <th style={{ padding: '0.75rem', color: 'var(--color-primary)' }}>Concept</th>
+                <th style={{ padding: '0.75rem', color: 'var(--color-primary)' }}>Physics: Coupled Springs</th>
+                <th style={{ padding: '0.75rem', color: 'var(--color-primary)' }}>Finance: Portfolio Theory</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderBottom: '1px solid var(--color-bg)' }}>
+                <td style={{ padding: '0.75rem' }}>State Vector</td>
+                <td style={{ padding: '0.75rem' }}>Displacements: <MathDisplay math="\mathbf{x}" inline={true} /></td>
+                <td style={{ padding: '0.75rem' }}>Asset Weights: <MathDisplay math="\mathbf{w}" inline={true} /></td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--color-bg)' }}>
+                <td style={{ padding: '0.75rem' }}>Coupling Matrix</td>
+                <td style={{ padding: '0.75rem' }}>Stiffness Matrix: <MathDisplay math="\mathbf{K}" inline={true} /></td>
+                <td style={{ padding: '0.75rem' }}>Covariance Matrix: <MathDisplay math="\mathbf{\Sigma}" inline={true} /></td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--color-bg)' }}>
+                <td style={{ padding: '0.75rem' }}>Scalar to Minimise</td>
+                <td style={{ padding: '0.75rem' }}>Potential Energy: <MathDisplay math="V = \frac{1}{2}\mathbf{x}^T \mathbf{K} \mathbf{x}" inline={true} /></td>
+                <td style={{ padding: '0.75rem' }}>Portfolio Risk: <MathDisplay math="\sigma_p^2 = \frac{1}{2}\mathbf{w}^T \mathbf{\Sigma} \mathbf{w}" inline={true} /></td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--color-bg)' }}>
+                <td style={{ padding: '0.75rem' }}>Linear Constraint</td>
+                <td style={{ padding: '0.75rem' }}>Geometric boundary: <MathDisplay math="\mathbf{c}^T \mathbf{x} = d" inline={true} /></td>
+                <td style={{ padding: '0.75rem' }}>Target Return: <MathDisplay math="\boldsymbol{\mu}^T \mathbf{w} = \mu^*" inline={true} /></td>
+              </tr>
+            </tbody>
+          </table>
+          <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic', textAlign: 'center' }}>
+            Mathematical equivalence between static mechanics and portfolio optimisation.
+          </p>
+        </div>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          7.3 The Lagrangian Solution and Hooke's Law
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Just like the portfolio optimisation, the physical system will naturally seek the lowest possible potential energy that still satisfies the boundary constraint. We construct the Lagrangian:
+        </p>
+        <MathDisplay math="\mathcal{L}(\mathbf{x}, \lambda) = \frac{1}{2}\mathbf{x}^T \mathbf{K} \mathbf{x} - \lambda(\mathbf{c}^T \mathbf{x} - d)" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Taking the gradient with respect to the displacement vector <MathDisplay math="\mathbf{x}" inline={true} /> to find the equilibrium force balance (stationarity):
+        </p>
+        <MathDisplay math="\nabla_{\mathbf{x}} \mathcal{L} = \mathbf{K}\mathbf{x} - \lambda\mathbf{c} = 0" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          Here, Hooke's Law naturally emerges. The term <MathDisplay math="\mathbf{K}\mathbf{x}" inline={true} /> is the internal restoring force of the springs, and <MathDisplay math="\lambda\mathbf{c}" inline={true} /> is the external constraint force. Solving for the equilibrium positions gives:
+        </p>
+        <MathDisplay math="\mathbf{x}^* = \lambda \mathbf{K}^{-1} \mathbf{c}" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          This is the exact mathematical shape as <MathDisplay math="\mathbf{w}^* \propto \mathbf{\Sigma}^{-1} \boldsymbol{\mu}" inline={true} /> derived in the finance framework. Mean-variance optimisation is essentially finding the equilibrium of a quadratic energy surface under linear constraints.
+        </p>
+
+        <h3 style={{ fontSize: '1.4rem', color: 'var(--color-accent)', marginTop: '2rem', marginBottom: '1rem' }}>
+          7.4 Diagonalisation and Normal Modes
+        </h3>
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In many-body physics, if the stiffness matrix <MathDisplay math="\mathbf{K}" inline={true} /> has off-diagonal terms, the oscillators are coupled. To solve the system, a physicist diagonalises <MathDisplay math="\mathbf{K}" inline={true} />:
+        </p>
+        <MathDisplay math="\mathbf{K} = \mathbf{P} \boldsymbol{\Lambda} \mathbf{P}^T" />
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          where <MathDisplay math="\mathbf{P}" inline={true} /> is the orthogonal matrix of eigenvectors. Transforming into these new coordinates (<MathDisplay math="\mathbf{y} = \mathbf{P}^T \mathbf{x}" inline={true} />) yields the <strong>Normal Modes</strong> of the system—independent, decoupled oscillators.
+        </p>
+
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          In portfolio theory, diagonalising the covariance matrix <MathDisplay math="\mathbf{\Sigma}" inline={true} /> serves the exact same purpose. It transforms a highly correlated asset universe into linearly independent <strong>Principal Components</strong> (often called “eigenportfolios”). In this diagonalised basis, each eigenvector represents an independent risk factor, completely decoupled from the others, perfectly mirroring the physics of normal modes.
         </p>
       </div>
     )
