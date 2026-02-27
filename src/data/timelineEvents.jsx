@@ -948,12 +948,17 @@ export const timelineEvents = [
           Volatility clustering and memory
         </h3>
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          Volatility of a security or a market's index's return fluctuate over time. <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup> Over a short window, volatility, <MathDisplay math="\sigma(t)" inline={true} />, can be approximated by:
+          Volatility of a market – a measure of how much a security or market index’s returns fluctuate over time, indicating how widely prices move around their average. <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[8]</a></sup> Over a short window, volatility, <MathDisplay math="\sigma(t)" inline={true} />, can be approximated by:
         </p>
         <MathDisplay math="\sigma(t)^{2} = E[r_{\Delta t}(t)^{2}] \quad (8)" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          In real markets: Returns <MathDisplay math="r(t)" inline={true} /> don't show strong correlation. Hence <MathDisplay math="corr(r(t), r(t+\tau)) \approx 0" inline={true} /> for <MathDisplay math="\tau > 0" inline={true} /> (9). But absolute returns show strong correlation <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>. <MathDisplay math="corr(|r(t)|, |r(t+\tau)|) \sim \tau^{-\beta}" inline={true} /> for <MathDisplay math="0 < \beta < 1" inline={true} /> (10).
+          In real markets: Returns <MathDisplay math="r(t)" inline={true} /> don't show strong correlation. Hence:
         </p>
+        <MathDisplay math="\text{corr}(r(t), r(t+\tau)) \approx 0 \quad \text{for} \quad \tau > 0 \quad (9)" />
+        <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+          But absolute returns show strong correlation <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[9]</a></sup>:
+        </p>
+        <MathDisplay math="\text{corr}(|r(t)|, |r(t+\tau)|) \sim \tau^{-\beta} \quad \text{for} \quad 0 < \beta < 1 \quad (10)" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
           This is called volatility clustering. <sup><a href="#reference-section" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8rem' }}>[10]</a></sup> And describes a phenomenon that large price changes follow large price changes and small changes follow small changes. We can decompose returns <MathDisplay math="r(t)" inline={true} /> to:
         </p>
@@ -970,7 +975,7 @@ export const timelineEvents = [
         </p>
         <MathDisplay math="\langle(\Delta x)^{2}\rangle = 2D(t)t" />
         <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-          This produces bursts of volatile particle motion. In finance, returns are described by anomalous diffusion in an inhomogenous medium. Volatility clustering in finance corresponds like a Brownian motion to a medium with varying diffusivity and that exhibits memory.
+          This produces bursts of volatile particle motion. In finance, returns are described by anomalous diffusion in an inhomogenous medium. Volatility clustering in finance corresponds to a medium with varying diffusivity in which the intensity of random motion changes over time.
         </p>
       </div>
     )
